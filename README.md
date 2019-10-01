@@ -1,1 +1,1 @@
-# peakPantheR.github.io
+# peakPantheR documentation page
