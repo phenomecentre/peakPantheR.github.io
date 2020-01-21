@@ -107,16 +107,16 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.9/peakPantheR">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.10/peakPantheR">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>The <code>peakPantheR</code> package is designed for the detection, integration and reporting of pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>).</p>
 <p>The <strong>Real Time Annotation</strong> is set to detect and integrate <strong>multiple</strong> compounds in <strong>one</strong> file at a time. It therefore can be deployed on a LC-MS instrument to integrate a set of pre-defined features (<em>e.g. spiked standards</em>) as soon as the acquisition of a sample is completed.</p>
-<p>Using the <em><a href="https://bioconductor.org/packages/3.9/faahKO">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
+<p>Using the <em><a href="https://bioconductor.org/packages/3.10/faahKO">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
 <ul>
 <li>Detail the <strong>Real Time Annotation</strong> concept</li>
-<li>Apply the <strong>Real Time Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.9/faahKO">faahKO</a></em> dataset</li>
+<li>Apply the <strong>Real Time Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.10/faahKO">faahKO</a></em> dataset</li>
 </ul>
 <div id="abbreviations" class="section level2">
 <h2 class="hasAnchor">
@@ -179,16 +179,16 @@ document.addEventListener("DOMContentLoaded", function() {
 <div id="real-time-annotation-example" class="section level1">
 <h1 class="hasAnchor">
 <a href="#real-time-annotation-example" class="anchor"></a>Real Time Annotation Example</h1>
-<p>In the following example we will target two pre-defined features in a single raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.9/faahKO">faahKO</a></em> package. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
+<p>In the following example we will target two pre-defined features in a single raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.10/faahKO">faahKO</a></em> package. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
 <div id="input-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#input-data" class="anchor"></a>Input Data</h2>
-<p>The path to a MS file from the <em><a href="https://bioconductor.org/packages/3.9/faahKO">faahKO</a></em> is located and used as input spectra:</p>
+<p>The path to a MS file from the <em><a href="https://bioconductor.org/packages/3.10/faahKO">faahKO</a></em> is located and used as input spectra:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(faahKO)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="co">## file paths</span></a>
 <a class="sourceLine" id="cb2-3" title="3">input_spectraPath  &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'cdf/KO/ko15.CDF'</span>, <span class="dt">package =</span> <span class="st">"faahKO"</span>))</a>
 <a class="sourceLine" id="cb2-4" title="4">input_spectraPath</a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; [1] "C:/R/R-3.6.1/library/faahKO/cdf/KO/ko15.CDF"</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; [1] "C:/R/R-3.6.2/library/faahKO/cdf/KO/ko15.CDF"</span></a></code></pre></div>
 <p>Two targeted features (<em>e.g. compounds, fragments, adducts, …</em>) are defined and stored in a table with as columns:</p>
 <ul>
 <li>
@@ -275,11 +275,11 @@ document.addEventListener("DOMContentLoaded", function() {
 <a class="sourceLine" id="cb4-6" title="6">                                    <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></a>
 <a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; Reading data from 2 windows</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; Data read in: 1.12 secs</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; Data read in: 1.1 secs</span></a>
 <a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></a>
 <a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; Found 2/2 features in 0.03 secs</span></a>
 <a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; Peak statistics done in: 0 secs</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; Feature search done in: 1.64 secs</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; Feature search done in: 1.65 secs</span></a></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">annotation<span class="op">$</span>TIC</a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; [1] 2410533091</span></a></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co">## acquisition time cannot be extracted from NetCDF files</span></a>

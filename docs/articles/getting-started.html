@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.9/peakPantheR">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.10/peakPantheR">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
 <p>Package for <em>Peak Picking and ANnoTation of High resolution Experiments in R</em>, implemented in <code>R</code> and <code>Shiny</code></p>
 <div id="overview" class="section level1">
 <h1 class="hasAnchor">
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </ul>
 </li>
 </ul>
-<p><code>peakPantheR</code> can process LC/MS data files in <em>NetCDF</em>, <em>mzML</em>/<em>mzXML</em> and <em>mzData</em> format as data import is achieved using Bioconductor’s <em><a href="https://bioconductor.org/packages/3.9/mzR">mzR</a></em> package.</p>
+<p><code>peakPantheR</code> can process LC/MS data files in <em>NetCDF</em>, <em>mzML</em>/<em>mzXML</em> and <em>mzData</em> format as data import is achieved using Bioconductor’s <em><a href="https://bioconductor.org/packages/3.10/mzR">mzR</a></em> package.</p>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -154,8 +154,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <div id="ms-files" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ms-files" class="anchor"></a>MS files</h2>
-<p>For demonstration purpose we can annotate a set a set of raw MS spectra (in <em>NetCDF</em> format) provided by the <em><a href="https://bioconductor.org/packages/3.9/faahKO">faahKO</a></em> package. Briefly, this subset of the data from <span class="citation">(Saghatelian et al. 2004)</span> invesigate the metabolic consequences of knocking out the fatty acid amide hydrolase (FAAH) gene in mice. The dataset consists of samples from the spinal cords of 6 knock-out and 6 wild-type mice. Each file contains data in centroid mode acquired in positive ion mode form 200-600 m/z and 2500-4500 seconds.</p>
-<p>Below we install the <em><a href="https://bioconductor.org/packages/3.9/faahKO">faahKO</a></em> package and locate raw CDF files of interest:</p>
+<p>For demonstration purpose we can annotate a set a set of raw MS spectra (in <em>NetCDF</em> format) provided by the <em><a href="https://bioconductor.org/packages/3.10/faahKO">faahKO</a></em> package. Briefly, this subset of the data from <span class="citation">(Saghatelian et al. 2004)</span> invesigate the metabolic consequences of knocking out the fatty acid amide hydrolase (FAAH) gene in mice. The dataset consists of samples from the spinal cords of 6 knock-out and 6 wild-type mice. Each file contains data in centroid mode acquired in positive ion mode form 200-600 m/z and 2500-4500 seconds.</p>
+<p>Below we install the <em><a href="https://bioconductor.org/packages/3.10/faahKO">faahKO</a></em> package and locate raw CDF files of interest:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb4-2" title="2">    <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)</a>
 <a class="sourceLine" id="cb4-3" title="3"></a>
@@ -166,9 +166,9 @@ document.addEventListener("DOMContentLoaded", function() {
 <a class="sourceLine" id="cb5-4" title="4">                        <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'cdf/KO/ko16.CDF'</span>, <span class="dt">package =</span> <span class="st">"faahKO"</span>),</a>
 <a class="sourceLine" id="cb5-5" title="5">                        <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'cdf/KO/ko18.CDF'</span>, <span class="dt">package =</span> <span class="st">"faahKO"</span>))</a>
 <a class="sourceLine" id="cb5-6" title="6">input_spectraPaths</a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; [1] "C:/R/R-3.6.1/library/faahKO/cdf/KO/ko15.CDF"</span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; [2] "C:/R/R-3.6.1/library/faahKO/cdf/KO/ko16.CDF"</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt; [3] "C:/R/R-3.6.1/library/faahKO/cdf/KO/ko18.CDF"</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; [1] "C:/R/R-3.6.2/library/faahKO/cdf/KO/ko15.CDF"</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; [2] "C:/R/R-3.6.2/library/faahKO/cdf/KO/ko16.CDF"</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt; [3] "C:/R/R-3.6.2/library/faahKO/cdf/KO/ko18.CDF"</span></a></code></pre></div>
 </div>
 <div id="expected-regions-of-interest" class="section level2">
 <h2 class="hasAnchor">
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <li>
 <code>mz</code> (m/z, optional / <code>NA</code>)</li>
 </ul>
-<p>Below we define 2 features of interest that are present in the <em><a href="https://bioconductor.org/packages/3.9/faahKO">faahKO</a></em> dataset and can be employed in subsequent vignettes:</p>
+<p>Below we define 2 features of interest that are present in the <em><a href="https://bioconductor.org/packages/3.10/faahKO">faahKO</a></em> dataset and can be employed in subsequent vignettes:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># targetFeatTable</span></a>
 <a class="sourceLine" id="cb6-2" title="2">input_targetFeatTable &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/vector.html">vector</a></span>(), <span class="dv">2</span>, <span class="dv">8</span>, <span class="dt">dimnames=</span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(), </a>
 <a class="sourceLine" id="cb6-3" title="3">                        <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cpdID"</span>, <span class="st">"cpdName"</span>, <span class="st">"rtMin"</span>, <span class="st">"rt"</span>, <span class="st">"rtMax"</span>, <span class="st">"mzMin"</span>, </a>
