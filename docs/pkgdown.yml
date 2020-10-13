@@ -1,9 +1,10 @@
 pandoc: 2.7.1
-pkgdown: 1.5.1
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   getting-started: getting-started.html
   parallel-annotation: parallel-annotation.html
+  peakPantheR-GUI: peakPantheR-GUI.html
   real-time-annotation: real-time-annotation.html
-last_built: 2020-04-29T20:53Z
+last_built: 2020-10-13T21:45Z
 

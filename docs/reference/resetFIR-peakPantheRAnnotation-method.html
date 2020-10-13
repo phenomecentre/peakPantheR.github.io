@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Reset FIR windows to uROI or ROI values
-Reset FIR windows to uROI (or ROI if <code>uROIExist=FALSE</code>) — resetFIR,peakPantheRAnnotation-method • peakPantheR</title>
+Reset FIR windows to uROI (or ROI if uROIExist=FALSE) — resetFIR,peakPantheRAnnotation-method • peakPantheR</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@ Reset FIR windows to uROI (or ROI if <code>uROIExist=FALSE</code>) — resetFIR,
 
 
 <meta property="og:title" content="Reset FIR windows to uROI or ROI values
-Reset FIR windows to uROI (or ROI if <code>uROIExist=FALSE</code>) — resetFIR,peakPantheRAnnotation-method" />
+Reset FIR windows to uROI (or ROI if uROIExist=FALSE) — resetFIR,peakPantheRAnnotation-method" />
 <meta property="og:description" content="Reset FIR windows to uROI or ROI values
 Reset FIR windows to uROI (or ROI if uROIExist=FALSE)" />
 
@@ -75,7 +75,7 @@ Reset FIR windows to uROI (or ROI if uROIExist=FALSE)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
       </span>
     </div>
 
@@ -102,6 +102,9 @@ Reset FIR windows to uROI (or ROI if uROIExist=FALSE)" />
     </li>
     <li>
       <a href="../articles/parallel-annotation.html">Parallel Annotation</a>
+    </li>
+    <li>
+      <a href="../articles/peakPantheR-GUI.html">peakPantheR Graphical User Interface</a>
     </li>
     <li>
       <a href="../articles/real-time-annotation.html">Real Time Annotation</a>
@@ -141,7 +144,7 @@ Reset FIR windows to uROI (or ROI if <code>uROIExist=FALSE</code>)</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for peakPantheRAnnotation</span>
-<span class='fu'>resetFIR</span>(<span class='no'>object</span>, <span class='no'>verbose</span>)</pre>
+<span class='fu'>resetFIR</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>verbose</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,26 +167,27 @@ Reset FIR windows to uROI (or ROI if <code>uROIExist=FALSE</code>)</p>
     <pre class="examples"><div class='input'><span class='co'>## Initialise a peakPantheRAnnotation object with 2 targeted compounds</span>
 
 <span class='co'>## targetFeatTable</span>
-<span class='no'>input_targetFeatTable</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span>(), <span class='fl'>2</span>, <span class='fl'>8</span>,
-                            <span class='kw'>dimnames</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'cpdID'</span>, <span class='st'>'cpdName'</span>, <span class='st'>'rtMin'</span>,
-                            <span class='st'>'rt'</span>, <span class='st'>'rtMax'</span>, <span class='st'>'mzMin'</span>, <span class='st'>'mz'</span>, <span class='st'>'mzMax'</span>))),
-                            <span class='kw'>stringsAsFactors</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='no'>input_targetFeatTable</span>[<span class='fl'>1</span>,] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>,  <span class='fl'>3.</span>,  <span class='fl'>1.</span>,  <span class='fl'>4.</span>,  <span class='fl'>5.</span>,  <span class='fl'>2.</span>,  <span class='fl'>6.</span>)
-<span class='no'>input_targetFeatTable</span>[<span class='fl'>2</span>,] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'ID-2'</span>, <span class='st'>'Cpd 2'</span>, <span class='fl'>19.</span>, <span class='fl'>17.</span>, <span class='fl'>20.</span>, <span class='fl'>21.</span>, <span class='fl'>18.</span>, <span class='fl'>22.</span>)
-<span class='no'>input_targetFeatTable</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>:<span class='fl'>8</span>)] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span>(<span class='no'>input_targetFeatTable</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>:<span class='fl'>8</span>)],
-                                        <span class='no'>as.numeric</span>)
+<span class='va'>input_targetFeatTable</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>8</span>,
+                            dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cpdID'</span>, <span class='st'>'cpdName'</span>, <span class='st'>'rtMin'</span>,
+                            <span class='st'>'rt'</span>, <span class='st'>'rtMax'</span>, <span class='st'>'mzMin'</span>, <span class='st'>'mz'</span>, <span class='st'>'mzMax'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+                            stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>input_targetFeatTable</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>,  <span class='fl'>3.</span>,  <span class='fl'>1.</span>,  <span class='fl'>4.</span>,  <span class='fl'>5.</span>,  <span class='fl'>2.</span>,  <span class='fl'>6.</span><span class='op'>)</span>
+<span class='va'>input_targetFeatTable</span><span class='op'>[</span><span class='fl'>2</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-2'</span>, <span class='st'>'Cpd 2'</span>, <span class='fl'>19.</span>, <span class='fl'>17.</span>, <span class='fl'>20.</span>, <span class='fl'>21.</span>, <span class='fl'>18.</span>, <span class='fl'>22.</span><span class='op'>)</span>
+<span class='va'>input_targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>input_targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span>,
+                                        <span class='va'>as.numeric</span><span class='op'>)</span>
 <span class='co'>## FIR</span>
-<span class='no'>input_FIR</span>       <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span>(), <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='kw'>dimnames</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-                                <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'rtMin'</span>, <span class='st'>'rtMax'</span>, <span class='st'>'mzMin'</span>, <span class='st'>'mzMax'</span>))),
-                                <span class='kw'>stringsAsFactors</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='no'>input_FIR</span>[<span class='fl'>1</span>,]   <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>13.</span>, <span class='fl'>14.</span>, <span class='fl'>15.</span>, <span class='fl'>16.</span>)
-<span class='no'>input_FIR</span>[<span class='fl'>2</span>,]   <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>29.</span>, <span class='fl'>30.</span>, <span class='fl'>31.</span>, <span class='fl'>32.</span>)
+<span class='va'>input_FIR</span>       <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>, 
+                                <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'rtMin'</span>, <span class='st'>'rtMax'</span>, <span class='st'>'mzMin'</span>, <span class='st'>'mzMax'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+                                stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>input_FIR</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span>   <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>13.</span>, <span class='fl'>14.</span>, <span class='fl'>15.</span>, <span class='fl'>16.</span><span class='op'>)</span>
+<span class='va'>input_FIR</span><span class='op'>[</span><span class='fl'>2</span>,<span class='op'>]</span>   <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>29.</span>, <span class='fl'>30.</span>, <span class='fl'>31.</span>, <span class='fl'>32.</span><span class='op'>)</span>
 
-<span class='no'>annotation</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='peakPantheRAnnotation.html'>peakPantheRAnnotation</a></span>(<span class='kw'>targetFeatTable</span> <span class='kw'>=</span> <span class='no'>input_targetFeatTable</span>,
-                                    <span class='kw'>FIR</span> <span class='kw'>=</span> <span class='no'>input_FIR</span>, <span class='kw'>uROIExist</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='va'>annotation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='peakPantheRAnnotation.html'>peakPantheRAnnotation</a></span><span class='op'>(</span>targetFeatTable <span class='op'>=</span> <span class='va'>input_targetFeatTable</span>,
+                                    FIR <span class='op'>=</span> <span class='va'>input_FIR</span>, uROIExist <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='co'>## Reset FIR with ROI values as uROI are not set</span>
-<span class='no'>updatedAnnotation</span> <span class='kw'>&lt;-</span> <span class='fu'>resetFIR</span>(<span class='no'>annotation</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>FIR will be reset with ROI values as uROI values are not set</span></div><div class='input'># FIR will be reset with ROI values as uROI values are not set
+<span class='va'>updatedAnnotation</span> <span class='op'>&lt;-</span> <span class='fu'>resetFIR</span><span class='op'>(</span><span class='va'>annotation</span>, verbose<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>FIR will be reset with ROI values as uROI values are not set</span></div><div class='input'><span class='co'># FIR will be reset with ROI values as uROI values are not set</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -200,7 +204,7 @@ Reset FIR windows to uROI (or ROI if <code>uROIExist=FALSE</code>)</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
       </span>
     </div>
 
@@ -99,6 +99,9 @@
     </li>
     <li>
       <a href="../articles/parallel-annotation.html">Parallel Annotation</a>
+    </li>
+    <li>
+      <a href="../articles/peakPantheR-GUI.html">peakPantheR Graphical User Interface</a>
     </li>
     <li>
       <a href="../articles/real-time-annotation.html">Real Time Annotation</a>
@@ -136,7 +139,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S4 method for peakPantheRAnnotation</span>
-<span class='fu'>peakFit</span>(<span class='no'>object</span>)</pre>
+<span class='fu'>peakFit</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,39 +156,40 @@
 <em>curveFit</em> list of <code>peakPantheR_curveFit</code> or NA for each ROI</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>'faahKO'</span>)){
+    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
 <span class='co'>## Initialise a peakPantheRAnnotation object with 3 samples and 2 targeted</span>
 <span class='co'>## compounds</span>
 
 <span class='co'># Paths to spectra files</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>faahKO</span>)
-<span class='no'>spectraPaths</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'cdf/KO/ko15.CDF'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'faahKO'</span>),
-                    <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'cdf/KO/ko16.CDF'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'faahKO'</span>),
-                    <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'cdf/KO/ko18.CDF'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'faahKO'</span>))
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://dx.doi.org/10.1021/bi0480335'>faahKO</a></span><span class='op'>)</span>
+<span class='va'>spectraPaths</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko15.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span>,
+                    <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko16.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span>,
+                    <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko18.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># targetFeatTable</span>
-<span class='no'>targetFeatTable</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span>(), <span class='fl'>2</span>, <span class='fl'>8</span>, <span class='kw'>dimnames</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-                    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'cpdID'</span>,<span class='st'>'cpdName'</span>,<span class='st'>'rtMin'</span>,<span class='st'>'rt'</span>,<span class='st'>'rtMax'</span>,<span class='st'>'mzMin'</span>,<span class='st'>'mz'</span>,
-                    <span class='st'>'mzMax'</span>))), <span class='kw'>stringsAsFactors</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='no'>targetFeatTable</span>[<span class='fl'>1</span>,] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>, <span class='fl'>3310.</span>, <span class='fl'>3344.888</span>, <span class='fl'>3390.</span>, <span class='fl'>522.194778</span>,
-                        <span class='fl'>522.2</span>, <span class='fl'>522.205222</span>)
-<span class='no'>targetFeatTable</span>[<span class='fl'>2</span>,] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'ID-2'</span>, <span class='st'>'Cpd 2'</span>, <span class='fl'>3280.</span>, <span class='fl'>3385.577</span>, <span class='fl'>3440.</span>, <span class='fl'>496.195038</span>,
-                        <span class='fl'>496.2</span>, <span class='fl'>496.204962</span>)
-<span class='no'>targetFeatTable</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>:<span class='fl'>8</span>)] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span>(<span class='no'>targetFeatTable</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>:<span class='fl'>8</span>)], <span class='no'>as.numeric</span>,
-                                    <span class='kw'>FUN.VALUE</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(<span class='fl'>2</span>))
+<span class='va'>targetFeatTable</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>8</span>, dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+                    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cpdID'</span>,<span class='st'>'cpdName'</span>,<span class='st'>'rtMin'</span>,<span class='st'>'rt'</span>,<span class='st'>'rtMax'</span>,<span class='st'>'mzMin'</span>,<span class='st'>'mz'</span>,
+                    <span class='st'>'mzMax'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>, <span class='fl'>3310.</span>, <span class='fl'>3344.888</span>, <span class='fl'>3390.</span>, <span class='fl'>522.194778</span>,
+                        <span class='fl'>522.2</span>, <span class='fl'>522.205222</span><span class='op'>)</span>
+<span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>2</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-2'</span>, <span class='st'>'Cpd 2'</span>, <span class='fl'>3280.</span>, <span class='fl'>3385.577</span>, <span class='fl'>3440.</span>, <span class='fl'>496.195038</span>,
+                        <span class='fl'>496.2</span>, <span class='fl'>496.204962</span><span class='op'>)</span>
+<span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span><span class='op'>(</span><span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>as.numeric</span>,
+                                    FUN.VALUE<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='no'>annotation</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='peakPantheRAnnotation.html'>peakPantheRAnnotation</a></span>(<span class='kw'>spectraPaths</span><span class='kw'>=</span><span class='no'>spectraPaths</span>,
-                                    <span class='kw'>targetFeatTable</span><span class='kw'>=</span><span class='no'>targetFeatTable</span>)
+<span class='va'>annotation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='peakPantheRAnnotation.html'>peakPantheRAnnotation</a></span><span class='op'>(</span>spectraPaths<span class='op'>=</span><span class='va'>spectraPaths</span>,
+                                    targetFeatTable<span class='op'>=</span><span class='va'>targetFeatTable</span><span class='op'>)</span>
 
 <span class='co'>## default values without annotation</span>
-<span class='fu'>peakFit</span>(<span class='no'>annotation</span>)
+<span class='fu'>peakFit</span><span class='op'>(</span><span class='va'>annotation</span><span class='op'>)</span>
 <span class='co'># [[1]]</span>
 <span class='co'># NULL</span>
 <span class='co'># [[2]]</span>
 <span class='co'># NULL</span>
 <span class='co'># [[3]]</span>
 <span class='co'># NULL</span>
-}</div><div class='output co'>#&gt; [[1]]
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt; NULL
 #&gt; 
 #&gt; [[2]]
@@ -209,7 +213,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Peak Picking and Annotation of High Resolution Experiments">
-<meta property="og:description" content="An automated pipeline for the detection, integration and reporting of predefined features across a large number of mass spectrometry data files.">
+<meta property="og:description" content="An automated pipeline for the detection, integration and reporting of predefined features across a large number of mass spectrometry data files.
+    It enables the real time annotation of multiple compounds in a single file, or the parallel annotation of multiple compounds in multiple files.
+    A graphical user interface as well as command line functions will assist in assessing the quality of annotation and update fitting parameters until a satisfactory result is obtained.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -31,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
       </span>
     </div>
 
@@ -58,6 +60,9 @@
     </li>
     <li>
       <a href="articles/parallel-annotation.html">Parallel Annotation</a>
+    </li>
+    <li>
+      <a href="articles/peakPantheR-GUI.html">peakPantheR Graphical User Interface</a>
     </li>
     <li>
       <a href="articles/real-time-annotation.html">Real Time Annotation</a>
@@ -116,10 +121,12 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>To install <a href="https://bioconductor.org/packages/release/bioc/html/peakPantheR.html">peakPantheR</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)
-<span class="kw pkg">BiocManager</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span>(<span class="st">"peakPantheR"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"peakPantheR"</span><span class="op">)</span></pre></div>
 <p>To install the development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">BiocManager</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span>(<span class="st">"phenomecentre/peakPantheR"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"phenomecentre/peakPantheR"</span><span class="op">)</span></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -138,6 +145,19 @@
 <li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/getting-started.html">Getting Started with peakPantheR</a></li>
 <li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/real-time-annotation.html">Real Time Annotation</a></li>
 <li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/parallel-annotation.html">Parallel Annotation</a></li>
+<li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/peakPantheR-GUI.html">Graphical user interface use</a></li>
+</ul>
+</div>
+<div id="examples" class="section level2">
+<h2 class="hasAnchor">
+<a href="#examples" class="anchor"></a>Examples</h2>
+<p>Besides the vignettes, more tutorials are available via github:</p>
+<ul>
+<li>
+<a href="https://github.com/phenomecentre/metabotyping-dementia-urine">Targeted integration of metabolites from 3 LC-MS profiling dataset using peakPantheR</a>: Application of peakpPantheR to extract features from 3 LC-MS assays from a human urine metabolic profiling study on cognitive decline and dementia.<br>
+</li>
+<li>
+<a href="https://github.com/phenomecentre/nPYc-toolbox-tutorials">Quality-Control of peakPantheR extracted using the nPYc-Toolbox</a>: Tutorial on how to use the nPYC-Toolbox to perform QC on peakPanther extracted datasets.</li>
 </ul>
 </div>
 <div id="copyright" class="section level2">
@@ -180,7 +200,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/phenomecentre/peakPantheR"><img src="https://travis-ci.org/phenomecentre/peakPantheR.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://travis-ci.com/phenomecentre/peakPantheR"><img src="https://travis-ci.com/phenomecentre/peakPantheR.svg?branch=master" alt="Build Status"></a></li>
 <li><a href="https://codecov.io/gh/phenomecentre/peakPantheR/branch/master"><img src="https://codecov.io/gh/phenomecentre/peakPantheR/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/116680214"><img src="https://zenodo.org/badge/116680214.svg" alt="DOI"></a></li>
 </ul>
@@ -194,7 +214,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

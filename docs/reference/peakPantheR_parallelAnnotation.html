@@ -79,7 +79,7 @@ during execution) the sample is removed from the outputed object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
       </span>
     </div>
 
@@ -106,6 +106,9 @@ during execution) the sample is removed from the outputed object." />
     </li>
     <li>
       <a href="../articles/parallel-annotation.html">Parallel Annotation</a>
+    </li>
+    <li>
+      <a href="../articles/peakPantheR-GUI.html">peakPantheR Graphical User Interface</a>
     </li>
     <li>
       <a href="../articles/real-time-annotation.html">Real Time Annotation</a>
@@ -149,8 +152,16 @@ processing. If the processing of a file fails (file does not exist or error
 during execution) the sample is removed from the outputed object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>peakPantheR_parallelAnnotation</span>(<span class='no'>object</span>, <span class='kw'>ncores</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>getAcquTime</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>resetWorkers</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>centroided</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>peakPantheR_parallelAnnotation</span><span class='op'>(</span>
+    <span class='va'>object</span>,
+    ncores <span class='op'>=</span> <span class='fl'>0</span>,
+    getAcquTime <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    resetWorkers <span class='op'>=</span> <span class='fl'>1</span>,
+    centroided <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    curveModel <span class='op'>=</span> <span class='st'>"skewedGaussian"</span>,
+    verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -186,7 +197,13 @@ more efficiently. For values &gt;1, ensure sufficient system memory is available
     <tr>
       <th>centroided</th>
       <td><p>(bool) use TRUE if the data is centroided, used by
-<code><a href='https://rdrr.io/pkg/MSnbase/man/readMSData.html'>readMSData</a></code> when reading the raw data files</p></td>
+<code><a href='https://lgatto.github.io/MSnbase/reference/readMSData.html'>readMSData</a></code> when reading the raw data files</p></td>
+    </tr>
+    <tr>
+      <th>curveModel</th>
+      <td><p>(str) specify the peak-shape model to fit,
+by default <code>skewedGaussian</code>.
+Accepted values are <code>skewedGaussian</code> and <code>emgGaussian</code></p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -215,44 +232,44 @@ and error message</p>
 <code><a href='peakPantheR_singleFileSearch.html'>peakPantheR_singleFileSearch</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>'faahKO'</span>)){
+    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
 <span class='co'>## Load data</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>faahKO</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://dx.doi.org/10.1021/bi0480335'>faahKO</a></span><span class='op'>)</span>
 
 <span class='co'># 3 files</span>
-<span class='no'>input_spectraPaths</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'cdf/KO/ko15.CDF'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'faahKO'</span>),
-                        <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'cdf/KO/ko16.CDF'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'faahKO'</span>),
-                        <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'cdf/KO/ko18.CDF'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'faahKO'</span>))
+<span class='va'>input_spectraPaths</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko15.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span>,
+                        <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko16.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span>,
+                        <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko18.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># 4 features</span>
-<span class='no'>input_ROI</span>     <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span>(), <span class='fl'>4</span>, <span class='fl'>8</span>,
-                    <span class='kw'>dimnames</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'cpdID'</span>, <span class='st'>'cpdName'</span>, <span class='st'>'rtMin'</span>, <span class='st'>'rt'</span>,
-                                        <span class='st'>'rtMax'</span>, <span class='st'>'mzMin'</span>, <span class='st'>'mz'</span>, <span class='st'>'mzMax'</span>))),
-                    <span class='kw'>stringsAsFactors</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='no'>input_ROI</span>[<span class='fl'>1</span>,] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>, <span class='fl'>3310.</span>, <span class='fl'>3344.888</span>, <span class='fl'>3390.</span>, <span class='fl'>522.194778</span>,
-                    <span class='fl'>522.2</span>, <span class='fl'>522.205222</span>)
-<span class='no'>input_ROI</span>[<span class='fl'>2</span>,] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'ID-2'</span>, <span class='st'>'Cpd 2'</span>, <span class='fl'>3280.</span>, <span class='fl'>3385.577</span>, <span class='fl'>3440.</span>, <span class='fl'>496.195038</span>,
-                    <span class='fl'>496.2</span>, <span class='fl'>496.204962</span>)
-<span class='no'>input_ROI</span>[<span class='fl'>3</span>,] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'ID-3'</span>, <span class='st'>'Cpd 3'</span>, <span class='fl'>3420.</span>, <span class='fl'>3454.435</span>, <span class='fl'>3495.</span>, <span class='fl'>464.195358</span>,
-                    <span class='fl'>464.2</span>, <span class='fl'>464.204642</span>)
-<span class='no'>input_ROI</span>[<span class='fl'>4</span>,] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'ID-4'</span>, <span class='st'>'Cpd 4'</span>, <span class='fl'>3670.</span>, <span class='fl'>3701.697</span>, <span class='fl'>3745.</span>, <span class='fl'>536.194638</span>,
-                    <span class='fl'>536.2</span>, <span class='fl'>536.205362</span>)
-<span class='no'>input_ROI</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>:<span class='fl'>8</span>)] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span>(<span class='no'>input_ROI</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>:<span class='fl'>8</span>)], <span class='no'>as.numeric</span>,
-                            <span class='kw'>FUN.VALUE</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(<span class='fl'>4</span>))
+<span class='va'>input_ROI</span>     <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>4</span>, <span class='fl'>8</span>,
+                    dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cpdID'</span>, <span class='st'>'cpdName'</span>, <span class='st'>'rtMin'</span>, <span class='st'>'rt'</span>,
+                                        <span class='st'>'rtMax'</span>, <span class='st'>'mzMin'</span>, <span class='st'>'mz'</span>, <span class='st'>'mzMax'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+                    stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>input_ROI</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>, <span class='fl'>3310.</span>, <span class='fl'>3344.888</span>, <span class='fl'>3390.</span>, <span class='fl'>522.194778</span>,
+                    <span class='fl'>522.2</span>, <span class='fl'>522.205222</span><span class='op'>)</span>
+<span class='va'>input_ROI</span><span class='op'>[</span><span class='fl'>2</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-2'</span>, <span class='st'>'Cpd 2'</span>, <span class='fl'>3280.</span>, <span class='fl'>3385.577</span>, <span class='fl'>3440.</span>, <span class='fl'>496.195038</span>,
+                    <span class='fl'>496.2</span>, <span class='fl'>496.204962</span><span class='op'>)</span>
+<span class='va'>input_ROI</span><span class='op'>[</span><span class='fl'>3</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-3'</span>, <span class='st'>'Cpd 3'</span>, <span class='fl'>3420.</span>, <span class='fl'>3454.435</span>, <span class='fl'>3495.</span>, <span class='fl'>464.195358</span>,
+                    <span class='fl'>464.2</span>, <span class='fl'>464.204642</span><span class='op'>)</span>
+<span class='va'>input_ROI</span><span class='op'>[</span><span class='fl'>4</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-4'</span>, <span class='st'>'Cpd 4'</span>, <span class='fl'>3670.</span>, <span class='fl'>3701.697</span>, <span class='fl'>3745.</span>, <span class='fl'>536.194638</span>,
+                    <span class='fl'>536.2</span>, <span class='fl'>536.205362</span><span class='op'>)</span>
+<span class='va'>input_ROI</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span><span class='op'>(</span><span class='va'>input_ROI</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>as.numeric</span>,
+                            FUN.VALUE<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># Initialise object</span>
-<span class='no'>initAnnotation</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='peakPantheRAnnotation.html'>peakPantheRAnnotation</a></span>(<span class='kw'>spectraPaths</span><span class='kw'>=</span><span class='no'>input_spectraPaths</span>,
-                                        <span class='kw'>targetFeatTable</span><span class='kw'>=</span><span class='no'>input_ROI</span>)
+<span class='va'>initAnnotation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='peakPantheRAnnotation.html'>peakPantheRAnnotation</a></span><span class='op'>(</span>spectraPaths<span class='op'>=</span><span class='va'>input_spectraPaths</span>,
+                                        targetFeatTable<span class='op'>=</span><span class='va'>input_ROI</span><span class='op'>)</span>
 <span class='co'># to use updated ROI:</span>
 <span class='co'># uROIExist=TRUE, useUROI=TRUE, uROI=input_uROI</span>
 <span class='co'># to use FallBack Integration Regions:</span>
 <span class='co'># useFIR=TRUE, FIR=input_FIR</span>
 
 <span class='co'># Run serially</span>
-<span class='no'>result_parallelAnnotation</span> <span class='kw'>&lt;-</span> <span class='fu'>peakPantheR_parallelAnnotation</span>(<span class='no'>initAnnotation</span>,
-                                                        <span class='kw'>ncores</span><span class='kw'>=</span><span class='fl'>0</span>,
-                                                        <span class='kw'>getAcquTime</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
-                                                        <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='va'>result_parallelAnnotation</span> <span class='op'>&lt;-</span> <span class='fu'>peakPantheR_parallelAnnotation</span><span class='op'>(</span><span class='va'>initAnnotation</span>,
+                                                        ncores<span class='op'>=</span><span class='fl'>0</span>,
+                                                        getAcquTime<span class='op'>=</span><span class='cn'>FALSE</span>,
+                                                        verbose<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='co'># Processing 4 compounds in 3 samples:</span>
 <span class='co'>#  uROI:\tFALSE</span>
 <span class='co'>#  FIR:\tFALSE</span>
@@ -311,16 +328,17 @@ and error message</p>
 <span class='co'># Parallel annotation done in: 2.18 secs</span>
 
 <span class='co'># No failures</span>
-<span class='no'>result_parallelAnnotation</span>$<span class='no'>failures</span>
+<span class='va'>result_parallelAnnotation</span><span class='op'>$</span><span class='va'>failures</span>
 
-<span class='no'>result_parallelAnnotation</span>$<span class='no'>annotation</span>
+<span class='va'>result_parallelAnnotation</span><span class='op'>$</span><span class='va'>annotation</span>
 <span class='co'># An object of class peakPantheRAnnotation</span>
 <span class='co'>#  4 compounds in 3 samples. </span>
 <span class='co'>#    updated ROI do not exist (uROI)</span>
 <span class='co'>#    does not use updated ROI (uROI)</span>
 <span class='co'>#    does not use fallback integration regions (FIR)</span>
 <span class='co'>#    is annotated</span>
-}</div><div class='output co'>#&gt; <span class='message'>Processing 4 compounds in 3 samples:</span></div><div class='output co'>#&gt; <span class='message'>  uROI:	FALSE</span></div><div class='output co'>#&gt; <span class='message'>  FIR:	FALSE</span></div><div class='output co'>#&gt; <span class='message'>----- ko15 -----</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 4 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.49 secs</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #3</span></div><div class='output co'>#&gt; <span class='message'>Found 4/4 features in 0.04 secs</span></div><div class='output co'>#&gt; <span class='message'>Peak statistics done in: 0 secs</span></div><div class='output co'>#&gt; <span class='message'>Feature search done in: 2.05 secs</span></div><div class='output co'>#&gt; <span class='message'>----- ko16 -----</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 4 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.45 secs</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #2</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #3</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #4</span></div><div class='output co'>#&gt; <span class='message'>Found 4/4 features in 0.04 secs</span></div><div class='output co'>#&gt; <span class='message'>Peak statistics done in: 0 secs</span></div><div class='output co'>#&gt; <span class='message'>Feature search done in: 2 secs</span></div><div class='output co'>#&gt; <span class='message'>----- ko18 -----</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 4 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.43 secs</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #2</span></div><div class='output co'>#&gt; <span class='message'>Fit of ROI #3 is unsuccessful (apex residuals is 0.45 of max fit intensity, max intensity residuals is 0.46 of max fit intensity)</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #4</span></div><div class='output co'>#&gt; <span class='message'>Found 3/4 features in 0.04 secs</span></div><div class='output co'>#&gt; <span class='message'>Peak statistics done in: 0 secs</span></div><div class='output co'>#&gt; <span class='message'>Feature search done in: 1.96 secs</span></div><div class='output co'>#&gt; <span class='message'>Annotation object cannot be reordered by sample acquisition date</span></div><div class='output co'>#&gt; <span class='message'>----------------</span></div><div class='output co'>#&gt; <span class='message'>Parallel annotation done in: 7.18 secs</span></div><div class='output co'>#&gt; <span class='message'>  0 failure(s)</span></div><div class='output co'>#&gt; An object of class peakPantheRAnnotation
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='message'>Processing 4 compounds in 3 samples:</span></div><div class='output co'>#&gt; <span class='message'>  uROI:	FALSE</span></div><div class='output co'>#&gt; <span class='message'>  FIR:	FALSE</span></div><div class='output co'>#&gt; <span class='message'>----- ko15 -----</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 4 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.79 secs</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #3</span></div><div class='output co'>#&gt; <span class='message'>Found 4/4 features in 0.04 secs</span></div><div class='output co'>#&gt; <span class='message'>Peak statistics done in: 0.01 secs</span></div><div class='output co'>#&gt; <span class='message'>Feature search done in: 2.46 secs</span></div><div class='output co'>#&gt; <span class='message'>----- ko16 -----</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 4 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.73 secs</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #2</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #3</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #4</span></div><div class='output co'>#&gt; <span class='message'>Found 4/4 features in 0.04 secs</span></div><div class='output co'>#&gt; <span class='message'>Peak statistics done in: 0 secs</span></div><div class='output co'>#&gt; <span class='message'>Feature search done in: 2.36 secs</span></div><div class='output co'>#&gt; <span class='message'>----- ko18 -----</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 4 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.73 secs</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #2</span></div><div class='output co'>#&gt; <span class='message'>Fit of ROI #3 is unsuccessful (apex residuals is 0.45 of max fit intensity, max intensity residuals is 0.46 of max fit intensity)</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #4</span></div><div class='output co'>#&gt; <span class='message'>Found 3/4 features in 0.04 secs</span></div><div class='output co'>#&gt; <span class='message'>Peak statistics done in: 0 secs</span></div><div class='output co'>#&gt; <span class='message'>Feature search done in: 2.35 secs</span></div><div class='output co'>#&gt; <span class='message'>Annotation object cannot be reordered by sample acquisition date</span></div><div class='output co'>#&gt; <span class='message'>----------------</span></div><div class='output co'>#&gt; <span class='message'>Parallel annotation done in: 8.7 secs</span></div><div class='output co'>#&gt; <span class='message'>  0 failure(s)</span></div><div class='output co'>#&gt; An object of class peakPantheRAnnotation
 #&gt;  4 compounds in 3 samples. 
 #&gt;   updated ROI do not exist (uROI)
 #&gt;   does not use updated ROI (uROI)
@@ -342,7 +360,7 @@ and error message</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
