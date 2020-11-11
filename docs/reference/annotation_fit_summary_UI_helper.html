@@ -73,7 +73,7 @@ ppm error, RT deviation)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -155,6 +155,41 @@ ppm error, RT deviation)</p>
 
     <p>(data.frame) Fit statistics</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## Initialise a peakPantheRAnnotation object with 3 samples and 2 targeted</span>
+<span class='co'>## compounds</span>
+
+<span class='co'># Paths to spectra files</span>
+<span class='va'>spectraPaths</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'./path/file1'</span>, <span class='st'>'./path/file2'</span>, <span class='st'>'./path/file3'</span><span class='op'>)</span>
+
+<span class='co'># targetFeatTable</span>
+<span class='va'>targetFeatTable</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>8</span>, dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+                    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cpdID'</span>,<span class='st'>'cpdName'</span>,<span class='st'>'rtMin'</span>,<span class='st'>'rt'</span>,<span class='st'>'rtMax'</span>,<span class='st'>'mzMin'</span>,<span class='st'>'mz'</span>,
+                    <span class='st'>'mzMax'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>, <span class='fl'>3310.</span>, <span class='fl'>3344.888</span>, <span class='fl'>3390.</span>, <span class='fl'>522.194778</span>,
+                        <span class='fl'>522.2</span>, <span class='fl'>522.205222</span><span class='op'>)</span>
+<span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>2</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-2'</span>, <span class='st'>'Cpd 2'</span>, <span class='fl'>3280.</span>, <span class='fl'>3385.577</span>, <span class='fl'>3440.</span>, <span class='fl'>496.195038</span>,
+                        <span class='fl'>496.2</span>, <span class='fl'>496.204962</span><span class='op'>)</span>
+<span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span><span class='op'>(</span><span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>as.numeric</span>,
+                                    FUN.VALUE<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>emptyAnnotation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='peakPantheRAnnotation.html'>peakPantheRAnnotation</a></span><span class='op'>(</span>spectraPaths<span class='op'>=</span><span class='va'>spectraPaths</span>,
+                                        targetFeatTable<span class='op'>=</span><span class='va'>targetFeatTable</span><span class='op'>)</span>
+
+<span class='co'># statistics of an empty annotation</span>
+<span class='fu'>annotation_fit_summary_UI_helper</span><span class='op'>(</span><span class='va'>emptyAnnotation</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;              Ratio peaks found (%) Ratio peaks filled (%) ppm error
+#&gt; ID-1 - Cpd 1                    NA                      0       NaN
+#&gt; ID-2 - Cpd 2                    NA                      0       NaN
+#&gt;              RT deviation (s)
+#&gt; ID-1 - Cpd 1              NaN
+#&gt; ID-2 - Cpd 2              NaN</div><div class='input'><span class='co'>#             Ratio peaks found (%) Ratio peaks filled (%) ppm error</span>
+<span class='co'># ID-1 - Cpd 1                    NA                      0       NaN</span>
+<span class='co'># ID-2 - Cpd 2                    NA                      0       NaN</span>
+<span class='co'>#               RT deviation (s)</span>
+<span class='co'># ID-1 - Cpd 1               NaN</span>
+<span class='co'># ID-2 - Cpd 2               NaN</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

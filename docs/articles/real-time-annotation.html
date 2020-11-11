@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -85,7 +85,8 @@
 
       
 
-      </header><div class="row">
+      </header><link href="real-time-annotation_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="real-time-annotation_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Real Time Annotation</h1>
@@ -110,16 +111,16 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.11/peakPantheR">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.12/peakPantheR">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>The <code>peakPantheR</code> package is designed for the detection, integration and reporting of pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>).</p>
 <p>The <strong>Real Time Annotation</strong> is set to detect and integrate <strong>multiple</strong> compounds in <strong>one</strong> file at a time. It therefore can be deployed on a LC-MS instrument to integrate a set of pre-defined features (<em>e.g. spiked standards</em>) as soon as the acquisition of a sample is completed.</p>
-<p>Using the <em><a href="https://bioconductor.org/packages/3.11/faahKO">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
+<p>Using the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
 <ul>
 <li>Detail the <strong>Real Time Annotation</strong> concept</li>
-<li>Apply the <strong>Real Time Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.11/faahKO">faahKO</a></em> dataset</li>
+<li>Apply the <strong>Real Time Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> dataset</li>
 </ul>
 <div id="abbreviations" class="section level2">
 <h2 class="hasAnchor">
@@ -182,17 +183,17 @@ document.addEventListener("DOMContentLoaded", function() {
 <div id="real-time-annotation-example" class="section level1">
 <h1 class="hasAnchor">
 <a href="#real-time-annotation-example" class="anchor"></a>Real Time Annotation Example</h1>
-<p>In the following example we will target two pre-defined features in a single raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.11/faahKO">faahKO</a></em> package. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
+<p>In the following example we will target two pre-defined features in a single raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> package. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
 <div id="input-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#input-data" class="anchor"></a>Input Data</h2>
-<p>The path to a MS file from the <em><a href="https://bioconductor.org/packages/3.11/faahKO">faahKO</a></em> is located and used as input spectra:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335">faahKO</a></span><span class="op">)</span>
+<p>The path to a MS file from the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> is located and used as input spectra:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335">faahKO</a></span><span class="op">)</span>
 <span class="co">## file paths</span>
 <span class="va">input_spectraPath</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">input_spectraPath</span>
-<span class="co">#&gt; [1] "C:/R/R-4.0.2/library/faahKO/cdf/KO/ko15.CDF"</span></pre></div>
+<span class="co">#&gt; [1] "C:/R/R-4.0.3/library/faahKO/cdf/KO/ko15.CDF"</span></code></pre></div>
 <p>Two targeted features (<em>e.g. compounds, fragments, adducts, …</em>) are defined and stored in a table with as columns:</p>
 <ul>
 <li>
@@ -212,8 +213,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <li>
 <code>mz</code> (m/z, optional / <code>NA</code>)</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># targetFeatTable</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># targetFeatTable</span>
 <span class="va">input_targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>, 
                         <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cpdID"</span>, <span class="st">"cpdName"</span>, <span class="st">"rtMin"</span>, <span class="st">"rt"</span>, <span class="st">"rtMax"</span>, <span class="st">"mzMin"</span>, 
                         <span class="st">"mz"</span>, <span class="st">"mzMax"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
@@ -222,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="va">input_targetFeatTable</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ID-2"</span>, <span class="st">"Cpd 2"</span>, <span class="fl">3280.</span>, <span class="fl">3385.577</span>, <span class="fl">3440.</span>, 
                                 <span class="fl">496.195038</span>, <span class="fl">496.2</span>, <span class="fl">496.204962</span><span class="op">)</span>
 <span class="va">input_targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">input_targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, 
-                                            <span class="va">as.numeric</span><span class="op">)</span></pre></div>
+                                            <span class="va">as.numeric</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="10%">
@@ -272,8 +273,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <h2 class="hasAnchor">
 <a href="#run-single-file-annotation" class="anchor"></a>Run Single File Annotation</h2>
 <p><code><a href="../reference/peakPantheR_singleFileSearch.html">peakPantheR_singleFileSearch()</a></code> takes as input a <code>singleSpectraDataPath</code> pointing to the file to process and <code>targetFeatTable</code> defining the features to integrate. The resulting annotation contains all the fitting and integration properties:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR">peakPantheR</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR">peakPantheR</a></span><span class="op">)</span>
 <span class="va">annotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/peakPantheR_singleFileSearch.html">peakPantheR_singleFileSearch</a></span><span class="op">(</span>
                                     singleSpectraDataPath <span class="op">=</span> <span class="va">input_spectraPath</span>,
                                     targetFeatTable <span class="op">=</span> <span class="va">input_targetFeatTable</span>,
@@ -282,20 +283,20 @@ document.addEventListener("DOMContentLoaded", function() {
                                     verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="co">#&gt; Reading data from 2 windows</span>
-<span class="co">#&gt; Data read in: 1.67 secs</span>
+<span class="co">#&gt; Data read in: 1.6 secs</span>
 <span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
 <span class="co">#&gt; Found 2/2 features in 0.03 secs</span>
 <span class="co">#&gt; Peak statistics done in: 0 secs</span>
-<span class="co">#&gt; Feature search done in: 2.36 secs</span></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">annotation</span><span class="op">$</span><span class="va">TIC</span>
-<span class="co">#&gt; [1] 2410533091</span></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="co">## acquisition time cannot be extracted from NetCDF files</span>
+<span class="co">#&gt; Feature search done in: 2.28 secs</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">annotation</span><span class="op">$</span><span class="va">TIC</span>
+<span class="co">#&gt; [1] 2410533091</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## acquisition time cannot be extracted from NetCDF files</span>
 <span class="va">annotation</span><span class="op">$</span><span class="va">acquTime</span>
-<span class="co">#&gt; [1] NA</span></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">annotation</span><span class="op">$</span><span class="va">peakTable</span></pre></div>
+<span class="co">#&gt; [1] NA</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">annotation</span><span class="op">$</span><span class="va">peakTable</span></code></pre></div>
 <table class="table">
 <caption>Table continues below</caption>
 <colgroup>
@@ -402,8 +403,8 @@ document.addEventListener("DOMContentLoaded", function() {
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">annotation</span><span class="op">$</span><span class="va">curveFit</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">annotation</span><span class="op">$</span><span class="va">curveFit</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; $amplitude</span>
 <span class="co">#&gt; [1] 162404.8</span>
@@ -446,9 +447,9 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">#&gt; [1] "skewedGaussian"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "peakPantheR_curveFit"</span></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="va">annotation</span><span class="op">$</span><span class="va">ROIsDataPoint</span>
+<span class="co">#&gt; [1] "peakPantheR_curveFit"</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">annotation</span><span class="op">$</span><span class="va">ROIsDataPoint</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt;          rt    mz    int</span>
 <span class="co">#&gt; 1  3315.154 522.2   2187</span>
@@ -598,7 +599,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">#&gt; 94 3434.090 496.2   92048</span>
 <span class="co">#&gt; 95 3435.655 496.2   86408</span>
 <span class="co">#&gt; 96 3437.220 496.2   81288</span>
-<span class="co">#&gt; 97 3438.785 496.2   78144</span></pre></div>
+<span class="co">#&gt; 97 3438.785 496.2   78144</span></code></pre></div>
 <p><code><a href="../reference/peakPantheR_singleFileSearch.html">peakPantheR_singleFileSearch()</a></code> takes multiple parameters that can alter the file annotation:</p>
 <ul>
 <li>

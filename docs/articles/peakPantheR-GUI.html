@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -85,7 +85,8 @@
 
       
 
-      </header><div class="row">
+      </header><link href="peakPantheR-GUI_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="peakPantheR-GUI_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>peakPantheR Graphical User Interface</h1>
@@ -111,17 +112,17 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.11/peakPantheR">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer, Goncalo Correia<br></p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.12/peakPantheR">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer, Goncalo Correia<br></p>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>The <code>peakPantheR</code> package is designed for the detection, integration and reporting of pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>).</p>
 <p>The graphical user interface implements all of <code>peakPantheR</code>’s functionalities and can be preferred to understand the methodology, select the best parameters on a subset of the samples before running the command line, or to visually explore results.</p>
-<p>Using the <em><a href="https://bioconductor.org/packages/3.11/faahKO">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
+<p>Using the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
 <ul>
 <li>Detail the step-by-step use of the <strong>graphical user interface</strong>
 </li>
-<li>Apply the <strong>GUI</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.11/faahKO">faahKO</a></em> dataset</li>
+<li>Apply the <strong>GUI</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> dataset</li>
 </ul>
 <div id="abbreviations" class="section level2">
 <h2 class="hasAnchor">
@@ -151,17 +152,17 @@ document.addEventListener("DOMContentLoaded", function() {
 <div id="example-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example-data" class="anchor"></a>Example Data</h2>
-<p>This vignette employ the <code>.csv</code> or <code>.RData</code> files generated from <em><a href="https://bioconductor.org/packages/3.11/faahKO">faahKO</a></em> in the vignette <a href="getting-started.html">Getting Started with peakPantheR</a>.</p>
+<p>This vignette employ the <code>.csv</code> or <code>.RData</code> files generated from <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> in the vignette <a href="getting-started.html">Getting Started with peakPantheR</a>.</p>
 </div>
 <div id="getting-started" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting Started</h2>
 <p>The graphical user interface is started as follow:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR">peakPantheR</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR">peakPantheR</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/peakPantheR_start_GUI.html">peakPantheR_start_GUI</a></span><span class="op">(</span>browser <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#  To exit press ESC in the command line</span></pre></div>
+<span class="co">#  To exit press ESC in the command line</span></code></pre></div>
 <blockquote>
 <p>The graphical interface is divided in 5 main tabs, <strong>Import Data</strong>, <strong>Run annotation</strong>, <strong>Diagnostic: plot &amp; update</strong>, <strong>View results</strong> and <strong>Export results</strong>.</p>
 </blockquote>
