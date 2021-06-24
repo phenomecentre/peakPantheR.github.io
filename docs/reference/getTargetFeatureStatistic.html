@@ -46,6 +46,8 @@ factor and asymmetry factor for each measured feature." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -57,9 +59,15 @@ factor and asymmetry factor for each measured feature." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,19 +81,13 @@ factor and asymmetry factor for each measured feature." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -113,7 +115,7 @@ factor and asymmetry factor for each measured feature." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/phenomecentre/peakPantheR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,12 +142,12 @@ factor and asymmetry factor for each measured feature." />
 factor and asymmetry factor for each measured feature.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getTargetFeatureStatistic</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>getTargetFeatureStatistic</span><span class='op'>(</span>
     <span class='va'>fittedCurves</span>,
     <span class='va'>targetFeatTable</span>,
     <span class='va'>foundPeakTable</span>,
     verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,7 +182,7 @@ as columns. The following columns are mandatory: <code>mzMin</code>, <code>mz</c
 
     <p>A <code>data.frame</code> with measured compounds as rows and measurements
 and properties as columns (see Details).</p>
-<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Details:</h3>
+<h3 class='hasAnchor' id='details-'><a class='anchor' aria-hidden='true' href='#details-'></a>Details:</h3>
 <p>The returned <code>data.frame</code> is structured as follow:</p><table class='table'>
 <tr><td>found</td><td>was the peak found</td></tr>
 <tr><td>rt</td><td>retention time of peak apex (sec)</td></tr>
@@ -192,6 +194,7 @@ apex intensity</td></tr>
 <tr><td>mzMin</td><td>m/z peak minimum (between rtMin, rtMax)</td></tr>
 <tr><td>mzMax</td><td>m/z peak maximum (between rtMin, rtMax)</td></tr>
 <tr><td>peakArea</td><td>integrated peak area</td></tr>
+<tr><td>peakAreaRaw</td><td>integrated peak area from raw data points</td></tr>
 <tr><td>maxIntMeasured</td><td>maximum peak intensity in raw data</td></tr>
 <tr><td>maxIntPredicted</td><td>maximum peak intensity based on curve fit</td></tr>
 <tr><td>ppm_error</td><td>difference in ppm between the expected and measured m/z</td></tr>
@@ -270,11 +273,11 @@ peakStatistics
 
       <footer>
       <div class="copyright">
-  <p>Developed by Arnaud Wolfer, Goncalo Correia.</p>
+  <p><p>Developed by Arnaud Wolfer, Goncalo Correia.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -282,6 +285,8 @@ peakStatistics
 
   
 
+
+  
 
   </body>
 </html>

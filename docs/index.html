@@ -21,6 +21,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -33,18 +35,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -73,7 +69,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/phenomecentre/peakPantheR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -91,46 +87,46 @@
   <div class="contents col-md-9">
 <div id="peakpanther-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#peakpanther-" class="anchor"></a>peakPantheR <img src="reference/figures/peakPantheR-logo.png" align="right">
+<a href="#peakpanther-" class="anchor" aria-hidden="true"></a>peakPantheR <img src="reference/figures/peakPantheR-logo.png" align="right">
 </h1></div>
 
 <p>Package for <em>Peak Picking and ANnoTation of High resolution Experiments in R</em>, implemented in <code>R</code> and <code>Shiny</code></p>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
-<p><a href="https://phenomecentre.github.io/peakPantheR.github.io/"><strong>peakPantheR</strong></a> is an R/Bioconductor package that implements functions to detect, integrate and report pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>). It is designed for:</p>
+<a href="#overview" class="anchor" aria-hidden="true"></a>Overview</h2>
+<p><a href="https://phenomecentre.github.io/peakPantheR.github.io/" class="external-link"><strong>peakPantheR</strong></a> is an R/Bioconductor package that implements functions to detect, integrate and report pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>). It is designed for:</p>
 <ul>
 <li>
-<strong>Real time</strong> feature detection and integration (see <a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/real-time-annotation.html">Real Time Annotation</a>)
+<strong>Real time</strong> feature detection and integration (see <a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/real-time-annotation.html" class="external-link">Real Time Annotation</a>)
 <ul>
 <li>process <code>multiple</code> compounds in <code>one</code> file at a time</li>
 </ul>
 </li>
 <li>
-<strong>Post-acquisition</strong> feature detection, integration and reporting (see <a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/parallel-annotation.html">Parallel Annotation</a>)
+<strong>Post-acquisition</strong> feature detection, integration and reporting (see <a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/parallel-annotation.html" class="external-link">Parallel Annotation</a>)
 <ul>
 <li>process <code>multiple</code> compounds in <code>multiple</code> files in <code>parallel</code>, store results in a <code>single</code> object</li>
 </ul>
 </li>
 </ul>
-<p><code>peakPantheR</code> can process LC/MS data files in <em>NetCDF</em>, <em>mzML</em>/<em>mzXML</em> and <em>mzData</em> format as data import is achieved using Bioconductor’s <a href="https://bioconductor.org/packages/3.10/mzR"><code>mzR</code></a> package.</p>
-<p>The reference versions of <code>peakPantheR</code> is available on the corresponding Bioconductor page (<a href="https://bioconductor.org/packages/release/bioc/html/peakPantheR.html">release</a> or <a href="https://bioconductor.org/packages/devel/bioc/html/peakPantheR.html">dev</a> version).</p>
-<p>Active development and issue tracking take place on the <a href="https://github.com/phenomecentre/peakPantheR">github page</a>, while an overview of the package, vignettes and documentation are available on the <a href="https://phenomecentre.github.io/peakPantheR.github.io/">supporting website</a>.</p>
+<p><code>peakPantheR</code> can process LC/MS data files in <em>NetCDF</em>, <em>mzML</em>/<em>mzXML</em> and <em>mzData</em> format as data import is achieved using Bioconductor’s <a href="https://bioconductor.org/packages/release/bioc/html/mzR.html" class="external-link"><code>mzR</code></a> package.</p>
+<p>The reference versions of <code>peakPantheR</code> is available on the corresponding Bioconductor page (<a href="https://bioconductor.org/packages/release/bioc/html/peakPantheR.html" class="external-link">release</a> or <a href="https://bioconductor.org/packages/devel/bioc/html/peakPantheR.html" class="external-link">dev</a> version).</p>
+<p>Active development and issue tracking take place on the <a href="https://github.com/phenomecentre/peakPantheR" class="external-link">github page</a>, while an overview of the package, vignettes and documentation are available on the <a href="https://phenomecentre.github.io/peakPantheR.github.io/" class="external-link">supporting website</a>.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>To install <a href="https://bioconductor.org/packages/release/bioc/html/peakPantheR.html">peakPantheR</a>:</p>
+<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
+<p>To install <a href="https://bioconductor.org/packages/release/bioc/html/peakPantheR.html" class="external-link">peakPantheR</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"peakPantheR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"peakPantheR"</span><span class="op">)</span></code></pre></div>
 <p>To install the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"phenomecentre/peakPantheR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"phenomecentre/peakPantheR"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<a href="#usage" class="anchor" aria-hidden="true"></a>Usage</h2>
 <p>Both real time and parallel compound integration require a common set of information:</p>
 <ul>
 <li>Path(s) to <code>netCDF</code> / <code>mzML</code> MS file(s)</li>
@@ -139,40 +135,39 @@
 </div>
 <div id="vignettes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#vignettes" class="anchor"></a>Vignettes</h2>
+<a href="#vignettes" class="anchor" aria-hidden="true"></a>Vignettes</h2>
 <p>An overview of the package and detailed information on usage are available in the following vignettes:</p>
 <ul>
-<li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/getting-started.html">Getting Started with peakPantheR</a></li>
-<li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/real-time-annotation.html">Real Time Annotation</a></li>
-<li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/parallel-annotation.html">Parallel Annotation</a></li>
-<li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/peakPantheR-GUI.html">Graphical user interface use</a></li>
+<li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/getting-started.html" class="external-link">Getting Started with peakPantheR</a></li>
+<li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/real-time-annotation.html" class="external-link">Real Time Annotation</a></li>
+<li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/parallel-annotation.html" class="external-link">Parallel Annotation</a></li>
+<li><a href="https://phenomecentre.github.io/peakPantheR.github.io/articles/peakPantheR-GUI.html" class="external-link">Graphical user interface use</a></li>
 </ul>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
-<p>Besides the vignettes, more tutorials are available via github:</p>
-<ul>
-<li>
-<a href="https://github.com/phenomecentre/metabotyping-dementia-urine">Targeted integration of metabolites from 3 LC-MS profiling dataset using peakPantheR</a>: Application of peakpPantheR to extract features from 3 LC-MS assays from a human urine metabolic profiling study on cognitive decline and dementia.<br>
-</li>
-<li>
-<a href="https://github.com/phenomecentre/nPYc-toolbox-tutorials">Quality-Control of peakPantheR extracted using the nPYc-Toolbox</a>: Tutorial on how to use the nPYC-Toolbox to perform QC on peakPanther extracted datasets.</li>
-</ul>
+<a href="#examples" class="anchor" aria-hidden="true"></a>Examples</h2>
+<p>Besides the vignettes, more tutorials are available via github: - <a href="https://github.com/phenomecentre/metabotyping-dementia-urine" class="external-link">Targeted integration of metabolites from 3 LC-MS profiling dataset using peakPantheR</a>: Application of peakpPantheR to extract features from 3 LC-MS assays from a human urine metabolic profiling study on cognitive decline and dementia.<br>
+- <a href="https://github.com/phenomecentre/nPYc-toolbox-tutorials" class="external-link">Quality-Control of peakPantheR extracted using the nPYc-Toolbox</a>: Tutorial on how to use the nPYC-Toolbox to perform QC on peakPanther extracted datasets.</p>
+</div>
+<div id="contributing" class="section level2">
+<h2 class="hasAnchor">
+<a href="#contributing" class="anchor" aria-hidden="true"></a>Contributing</h2>
+<p>Suggestions and contributions to <code>peakPantheR</code> are welcome, for more information please first refer to the <a href="./CONTRIBUTIONS.html">contribution guide and code of conduct</a>, or get in touch by opening a <a href="https://github.com/phenomecentre/peakPantheR/issues/" class="external-link">Github issue</a>.</p>
 </div>
 <div id="copyright" class="section level2">
 <h2 class="hasAnchor">
-<a href="#copyright" class="anchor"></a>Copyright</h2>
-<p><code>peakPantheR</code> is licensed under the <a href="http://choosealicense.com/licenses/gpl-3.0/">GPLv3</a></p>
+<a href="#copyright" class="anchor" aria-hidden="true"></a>Copyright</h2>
+<p><code>peakPantheR</code> is licensed under the <a href="http://choosealicense.com/licenses/gpl-3.0/" class="external-link">GPLv3</a></p>
 <p>As a summary, the GPLv3 license requires attribution, inclusion of copyright and license information, disclosure of source code and changes. Derivative work must be available under the same terms.</p>
-<p>© National Phenome Centre (2020)</p>
+<p>© National Phenome Centre (2021)</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li>Download from BIOC at <br><a href="https://www.bioconductor.org/packages/peakPantheR">https://www.bioconductor.org/packages/peakPantheR</a>
 </li>
@@ -182,42 +177,48 @@
 </li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
 </ul>
 </div>
+
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Arnaud Wolfer <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5856-3218" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Goncalo Correia <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8271-9294" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html">More on authors...</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/phenomecentre/peakPantheR/actions"><img src="https://github.com/phenomecentre/peakPantheR/workflows/R-CMD-check-bioc/badge.svg" alt="Github Bioc Status"></a></li>
-<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/peakPantheR"><img src="http://www.bioconductor.org/shields/build/release/bioc/peakPantheR.svg" alt="BioC status"></a></li>
-<li><a href="https://github.com/phenomecentre/peakPantheR/actions"><img src="https://github.com/phenomecentre/peakPantheR/workflows/R-CMD-check-bioc-devel/badge.svg" alt="Github Bioc-devel Status"></a></li>
-<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/peakPantheR"><img src="http://www.bioconductor.org/shields/build/devel/bioc/peakPantheR.svg" alt="BioC dev status"></a></li>
-<li><a href="https://codecov.io/gh/phenomecentre/peakPantheR/branch/master"><img src="https://codecov.io/gh/phenomecentre/peakPantheR/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://zenodo.org/badge/latestdoi/116680214"><img src="https://zenodo.org/badge/116680214.svg" alt="DOI"></a></li>
+<li><a href="https://github.com/phenomecentre/peakPantheR/actions" class="external-link"><img src="https://github.com/phenomecentre/peakPantheR/workflows/R-CMD-check-bioc/badge.svg" alt="R-CMD-check-Bioc"></a></li>
+<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/peakPantheR" class="external-link"><img src="http://www.bioconductor.org/shields/build/release/bioc/peakPantheR.svg" alt="BioC status"></a></li>
+<li><a href="https://github.com/phenomecentre/peakPantheR/actions" class="external-link"><img src="https://github.com/phenomecentre/peakPantheR/workflows/R-CMD-check-bioc-devel/badge.svg" alt="R-CMD-check-Bioc-devel"></a></li>
+<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/peakPantheR" class="external-link"><img src="http://www.bioconductor.org/shields/build/devel/bioc/peakPantheR.svg" alt="BioC dev status"></a></li>
+<li><a href="https://codecov.io/gh/phenomecentre/peakPantheR/branch/master" class="external-link"><img src="https://codecov.io/gh/phenomecentre/peakPantheR/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://zenodo.org/badge/latestdoi/116680214" class="external-link"><img src="https://zenodo.org/badge/116680214.svg" alt="DOI"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Arnaud Wolfer, Goncalo Correia.</p>
+  <p></p>
+<p>Developed by Arnaud Wolfer, Goncalo Correia.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -225,6 +226,8 @@
 
   
 
+
+  
 
   </body>
 </html>

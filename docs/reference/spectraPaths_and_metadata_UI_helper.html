@@ -47,6 +47,8 @@ the `filepath` column" />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -58,9 +60,15 @@ the `filepath` column" />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -74,19 +82,13 @@ the `filepath` column" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -114,7 +116,7 @@ the `filepath` column" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/phenomecentre/peakPantheR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -142,10 +144,10 @@ If reading from the spectraMetadata file, the spectraPaths are taken from
 the `filepath` column</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spectraPaths_and_metadata_UI_helper</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>spectraPaths_and_metadata_UI_helper</span><span class='op'>(</span>
     spectraPaths <span class='op'>=</span> <span class='cn'>NULL</span>,
     spectraMetadataPath <span class='op'>=</span> <span class='cn'>NULL</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,35 +170,36 @@ spectra as row and metadata as columns. (spectraPaths in column `filepath`)</p><
 the CSV file</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Input data</span>
-<span class='co'># spectraPath</span>
-<span class='va'>input_spectraPaths</span>    <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'./path/file1'</span>, <span class='st'>'./path/file2'</span>, <span class='st'>'./path/file3'</span><span class='op'>)</span>
-
-<span class='co'># spectraMetadata</span>
-<span class='va'>input_spectraMetadata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>input_spectraPaths</span>,
-                            <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'a'</span>,<span class='st'>'b'</span>,<span class='st'>'c'</span><span class='op'>)</span><span class='op'>)</span>, nrow<span class='op'>=</span><span class='fl'>3</span>, ncol<span class='op'>=</span><span class='fl'>2</span>,
-                            dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'filepath'</span>, <span class='st'>'testcol'</span><span class='op'>)</span><span class='op'>)</span>,
-                            byrow<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>, stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-
-<span class='co'># temporary file location</span>
-<span class='va'>spectraMetaPath</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>pattern<span class='op'>=</span><span class='st'>"file"</span>, tmpdir<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, fileext<span class='op'>=</span><span class='st'>'.csv'</span><span class='op'>)</span>
-<span class='co'># save csv</span>
-<span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>input_spectraMetadata</span>,
-                    file<span class='op'>=</span><span class='va'>spectraMetaPath</span>,
-                    row.names<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-
-<span class='co'># load data from CSV</span>
-<span class='fu'>spectraPaths_and_metadata_UI_helper</span><span class='op'>(</span>spectraPaths <span class='op'>=</span> <span class='cn'>NULL</span>,
-                                    spectraMetadataPath <span class='op'>=</span> <span class='va'>spectraMetaPath</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $spectra
-#&gt; [1] "./path/file1" "./path/file2" "./path/file3"
-#&gt; 
-#&gt; $meta
-#&gt;   testcol
-#&gt; 1       a
-#&gt; 2       b
-#&gt; 3       c
-#&gt; </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'>## Input data</span></span>
+<span class='r-in'><span class='co'># spectraPath</span></span>
+<span class='r-in'><span class='va'>input_spectraPaths</span>    <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'./path/file1'</span>, <span class='st'>'./path/file2'</span>, <span class='st'>'./path/file3'</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># spectraMetadata</span></span>
+<span class='r-in'><span class='va'>input_spectraMetadata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>input_spectraPaths</span>,</span>
+<span class='r-in'>                            <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'a'</span>,<span class='st'>'b'</span>,<span class='st'>'c'</span><span class='op'>)</span><span class='op'>)</span>, nrow<span class='op'>=</span><span class='fl'>3</span>, ncol<span class='op'>=</span><span class='fl'>2</span>,</span>
+<span class='r-in'>                            dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'filepath'</span>, <span class='st'>'testcol'</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span class='r-in'>                            byrow<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>, stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># temporary file location</span></span>
+<span class='r-in'><span class='va'>spectraMetaPath</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>pattern<span class='op'>=</span><span class='st'>"file"</span>, tmpdir<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, fileext<span class='op'>=</span><span class='st'>'.csv'</span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># save csv</span></span>
+<span class='r-in'><span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>input_spectraMetadata</span>,</span>
+<span class='r-in'>                    file<span class='op'>=</span><span class='va'>spectraMetaPath</span>,</span>
+<span class='r-in'>                    row.names<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># load data from CSV</span></span>
+<span class='r-in'><span class='fu'>spectraPaths_and_metadata_UI_helper</span><span class='op'>(</span>spectraPaths <span class='op'>=</span> <span class='cn'>NULL</span>,</span>
+<span class='r-in'>                                    spectraMetadataPath <span class='op'>=</span> <span class='va'>spectraMetaPath</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $spectra</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "./path/file1" "./path/file2" "./path/file3"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $meta</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   testcol</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1       a</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2       b</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3       c</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -208,11 +211,11 @@ the CSV file</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Arnaud Wolfer, Goncalo Correia.</p>
+  <p><p>Developed by Arnaud Wolfer, Goncalo Correia.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -220,6 +223,8 @@ the CSV file</p>
 
   
 
+
+  
 
   </body>
 </html>

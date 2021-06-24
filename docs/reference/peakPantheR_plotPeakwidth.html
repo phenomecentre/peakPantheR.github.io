@@ -49,6 +49,8 @@ rotateAxis=TRUE x is the measurement values and y the run order." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -60,9 +62,15 @@ rotateAxis=TRUE x is the measurement values and y the run order." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -76,19 +84,13 @@ rotateAxis=TRUE x is the measurement values and y the run order." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -116,7 +118,7 @@ rotateAxis=TRUE x is the measurement values and y the run order." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/phenomecentre/peakPantheR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -146,7 +148,7 @@ input order. If <code>rotateAxis=FALSE</code> x is run order / plot order, y is 
 <code>rotateAxis=TRUE</code> x is the measurement values and y the run order.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>
     <span class='va'>apexValue</span>,
     widthMin <span class='op'>=</span> <span class='cn'>NULL</span>,
     widthMax <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -155,7 +157,7 @@ input order. If <code>rotateAxis=FALSE</code> x is run order / plot order, y is 
     sampleColour <span class='op'>=</span> <span class='cn'>NULL</span>,
     rotateAxis <span class='op'>=</span> <span class='cn'>FALSE</span>,
     verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -204,37 +206,49 @@ as <code>apexValue</code>, <code>widthMin</code>, <code>widthMax</code>, <code>a
     <p>Grob (ggplot object)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Input data</span>
-<span class='va'>apexVal</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span><span class='op'>)</span>
-<span class='va'>minVal</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>2</span><span class='op'>)</span>
-<span class='va'>maxVal</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>5</span><span class='op'>)</span>
-<span class='va'>acqTime</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'2017-07-13 21:06:14'</span>, <span class='st'>'2017-07-14 21:06:14'</span>, 
-                        <span class='st'>'2017-07-15 21:06:14'</span>, <span class='st'>'2017-07-16 21:06:14'</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'>## Plot 4 sampels with colour</span>
-<span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>apexValue<span class='op'>=</span><span class='va'>apexVal</span>, widthMin<span class='op'>=</span><span class='va'>minVal</span>,widthMax<span class='op'>=</span><span class='va'>maxVal</span>,
-                        acquTime<span class='op'>=</span><span class='cn'>NULL</span>, varName<span class='op'>=</span><span class='st'>'Test variable 1'</span>,
-                        sampleColour<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>,<span class='st'>'red'</span>,<span class='st'>'green'</span>,<span class='st'>'orange'</span><span class='op'>)</span>,
-                        rotateAxis<span class='op'>=</span><span class='cn'>FALSE</span>, verbose<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='img'><img src='peakPantheR_plotPeakwidth-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>## Plot 4 samples with colour by acquisition time</span>
-<span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>apexValue<span class='op'>=</span><span class='va'>apexVal</span>, widthMin<span class='op'>=</span><span class='va'>minVal</span>,widthMax<span class='op'>=</span><span class='va'>maxVal</span>,
-                        acquTime<span class='op'>=</span><span class='va'>acqTime</span>, varName<span class='op'>=</span><span class='st'>'Test variable 2'</span>,
-                        sampleColour<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>,<span class='st'>'red'</span>,<span class='st'>'green'</span>,<span class='st'>'orange'</span><span class='op'>)</span>,
-                        rotateAxis<span class='op'>=</span><span class='cn'>FALSE</span>, verbose<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='img'><img src='peakPantheR_plotPeakwidth-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>## Plot 4 samples with colour, rotate axis</span>
-<span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>apexValue<span class='op'>=</span><span class='va'>apexVal</span>, widthMin<span class='op'>=</span><span class='va'>minVal</span>,widthMax<span class='op'>=</span><span class='va'>maxVal</span>,
-                        acquTime<span class='op'>=</span><span class='cn'>NULL</span>, varName<span class='op'>=</span><span class='st'>'Test variable 3'</span>,
-                        sampleColour<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>,<span class='st'>'red'</span>,<span class='st'>'green'</span>,<span class='st'>'orange'</span><span class='op'>)</span>,
-                        rotateAxis<span class='op'>=</span><span class='cn'>TRUE</span>, verbose<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='img'><img src='peakPantheR_plotPeakwidth-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>## Plot 4 samples with colour by acquisition time, rotate axis</span>
-<span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>apexValue<span class='op'>=</span><span class='va'>apexVal</span>, widthMin<span class='op'>=</span><span class='va'>minVal</span>,widthMax<span class='op'>=</span><span class='va'>maxVal</span>,
-                        acquTime<span class='op'>=</span><span class='va'>acqTime</span>, varName<span class='op'>=</span><span class='st'>'Test variable 4'</span>,
-                        sampleColour<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>,<span class='st'>'red'</span>,<span class='st'>'green'</span>,<span class='st'>'orange'</span><span class='op'>)</span>,
-                        rotateAxis<span class='op'>=</span><span class='cn'>FALSE</span>, verbose<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='img'><img src='peakPantheR_plotPeakwidth-4.png' alt='' width='700' height='433' /></div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'>## Input data</span></span>
+<span class='r-in'><span class='va'>apexVal</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>minVal</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>maxVal</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>5</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>acqTime</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'2017-07-13 21:06:14'</span>, <span class='st'>'2017-07-14 21:06:14'</span>, </span>
+<span class='r-in'>                        <span class='st'>'2017-07-15 21:06:14'</span>, <span class='st'>'2017-07-16 21:06:14'</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Plot 4 sampels with colour</span></span>
+<span class='r-in'><span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>apexValue<span class='op'>=</span><span class='va'>apexVal</span>, widthMin<span class='op'>=</span><span class='va'>minVal</span>,widthMax<span class='op'>=</span><span class='va'>maxVal</span>,</span>
+<span class='r-in'>                        acquTime<span class='op'>=</span><span class='cn'>NULL</span>, varName<span class='op'>=</span><span class='st'>'Test variable 1'</span>,</span>
+<span class='r-in'>                        sampleColour<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>,<span class='st'>'red'</span>,<span class='st'>'green'</span>,<span class='st'>'orange'</span><span class='op'>)</span>,</span>
+<span class='r-in'>                        rotateAxis<span class='op'>=</span><span class='cn'>FALSE</span>, verbose<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.</span>
+<span class='r-plt'><img src='peakPantheR_plotPeakwidth-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Plot 4 samples with colour by acquisition time</span></span>
+<span class='r-in'><span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>apexValue<span class='op'>=</span><span class='va'>apexVal</span>, widthMin<span class='op'>=</span><span class='va'>minVal</span>,widthMax<span class='op'>=</span><span class='va'>maxVal</span>,</span>
+<span class='r-in'>                        acquTime<span class='op'>=</span><span class='va'>acqTime</span>, varName<span class='op'>=</span><span class='st'>'Test variable 2'</span>,</span>
+<span class='r-in'>                        sampleColour<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>,<span class='st'>'red'</span>,<span class='st'>'green'</span>,<span class='st'>'orange'</span><span class='op'>)</span>,</span>
+<span class='r-in'>                        rotateAxis<span class='op'>=</span><span class='cn'>FALSE</span>, verbose<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.</span>
+<span class='r-plt'><img src='peakPantheR_plotPeakwidth-2.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Plot 4 samples with colour, rotate axis</span></span>
+<span class='r-in'><span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>apexValue<span class='op'>=</span><span class='va'>apexVal</span>, widthMin<span class='op'>=</span><span class='va'>minVal</span>,widthMax<span class='op'>=</span><span class='va'>maxVal</span>,</span>
+<span class='r-in'>                        acquTime<span class='op'>=</span><span class='cn'>NULL</span>, varName<span class='op'>=</span><span class='st'>'Test variable 3'</span>,</span>
+<span class='r-in'>                        sampleColour<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>,<span class='st'>'red'</span>,<span class='st'>'green'</span>,<span class='st'>'orange'</span><span class='op'>)</span>,</span>
+<span class='r-in'>                        rotateAxis<span class='op'>=</span><span class='cn'>TRUE</span>, verbose<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.</span>
+<span class='r-plt'><img src='peakPantheR_plotPeakwidth-3.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Plot 4 samples with colour by acquisition time, rotate axis</span></span>
+<span class='r-in'><span class='fu'>peakPantheR_plotPeakwidth</span><span class='op'>(</span>apexValue<span class='op'>=</span><span class='va'>apexVal</span>, widthMin<span class='op'>=</span><span class='va'>minVal</span>,widthMax<span class='op'>=</span><span class='va'>maxVal</span>,</span>
+<span class='r-in'>                        acquTime<span class='op'>=</span><span class='va'>acqTime</span>, varName<span class='op'>=</span><span class='st'>'Test variable 4'</span>,</span>
+<span class='r-in'>                        sampleColour<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>,<span class='st'>'red'</span>,<span class='st'>'green'</span>,<span class='st'>'orange'</span><span class='op'>)</span>,</span>
+<span class='r-in'>                        rotateAxis<span class='op'>=</span><span class='cn'>FALSE</span>, verbose<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.</span>
+<span class='r-plt'><img src='peakPantheR_plotPeakwidth-4.png' alt='' width='700' height='433' /></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -246,11 +260,11 @@ as <code>apexValue</code>, <code>widthMin</code>, <code>widthMax</code>, <code>a
 
       <footer>
       <div class="copyright">
-  <p>Developed by Arnaud Wolfer, Goncalo Correia.</p>
+  <p><p>Developed by Arnaud Wolfer, Goncalo Correia.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -258,6 +272,8 @@ as <code>apexValue</code>, <code>widthMin</code>, <code>widthMax</code>, <code>a
 
   
 
+
+  
 
   </body>
 </html>

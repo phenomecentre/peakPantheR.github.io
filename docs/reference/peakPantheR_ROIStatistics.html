@@ -47,6 +47,8 @@ for all IS (IS_ROI) across samples" />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -58,9 +60,15 @@ for all IS (IS_ROI) across samples" />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -74,19 +82,13 @@ for all IS (IS_ROI) across samples" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -114,7 +116,7 @@ for all IS (IS_ROI) across samples" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/phenomecentre/peakPantheR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -142,7 +144,7 @@ for all IS (IS_ROI) across samples" />
 for all IS (<code>IS_ROI</code>) across samples</p>
     </div>
 
-    <pre class="usage"><span class='fu'>peakPantheR_ROIStatistics</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>peakPantheR_ROIStatistics</span><span class='op'>(</span>
     <span class='va'>referenceSpectraFiles</span>,
     <span class='va'>saveFolder</span>,
     ROI <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -151,7 +153,7 @@ for all IS (<code>IS_ROI</code>) across samples</p>
     ncores <span class='op'>=</span> <span class='fl'>0</span>,
     saveISPlots <span class='op'>=</span> <span class='cn'>TRUE</span>,
     verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,41 +208,83 @@ mean RT is not calculated and saved in <code>IS_mean_RT.csv</code>)</p></td>
     <p>None</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
-<span class='co'>## Initialise a peakPantheRAnnotation object with 2 samples and 1 targeted</span>
-<span class='co'>## compound</span>
-
-<span class='co'># Paths to spectra files</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://dx.doi.org/10.1021/bi0480335'>faahKO</a></span><span class='op'>)</span>
-<span class='va'>spectraPaths</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko15.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span>,
-                    <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko16.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># targetFeatTable</span>
-<span class='va'>targetFeatTable</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>1</span>, <span class='fl'>8</span>, dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
-                    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cpdID'</span>,<span class='st'>'cpdName'</span>,<span class='st'>'rtMin'</span>,<span class='st'>'rt'</span>,<span class='st'>'rtMax'</span>,<span class='st'>'mzMin'</span>,<span class='st'>'mz'</span>,
-                    <span class='st'>'mzMax'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>, <span class='fl'>3310.</span>, <span class='fl'>3344.888</span>, <span class='fl'>3390.</span>, <span class='fl'>522.194778</span>,
-                        <span class='fl'>522.2</span>, <span class='fl'>522.205222</span><span class='op'>)</span>
-<span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span><span class='op'>(</span><span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>as.numeric</span>,
-                                    FUN.VALUE<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># input</span>
-<span class='va'>refSpecFiles</span>  <span class='op'>&lt;-</span> <span class='va'>spectraPaths</span>
-<span class='va'>input_ROI</span>     <span class='op'>&lt;-</span> <span class='va'>targetFeatTable</span>
-<span class='va'>input_IS_ROI</span>  <span class='op'>&lt;-</span> <span class='va'>targetFeatTable</span>
-<span class='va'>sampleColour</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>, <span class='st'>'red'</span><span class='op'>)</span>
-
-<span class='co'># temporary saveFolder</span>
-<span class='va'>saveFolder1</span>   <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='co'># Calculate ROI statiscs</span>
-<span class='fu'>peakPantheR_ROIStatistics</span><span class='op'>(</span><span class='va'>refSpecFiles</span>, <span class='va'>saveFolder1</span>, ROI<span class='op'>=</span><span class='va'>input_ROI</span>,
-                            IS_ROI<span class='op'>=</span><span class='va'>input_IS_ROI</span>, sampleColour<span class='op'>=</span><span class='va'>sampleColour</span>,
-                            ncores<span class='op'>=</span><span class='fl'>0</span>, saveISPlots<span class='op'>=</span><span class='cn'>TRUE</span>, verbose<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='message'>- EICs for each ROI windows will be saved to: C:\Users\AppData\Local\Temp\RtmpaMK9nF</span></div><div class='output co'>#&gt; <span class='message'>    1 ROI in 2 reference samples</span></div><div class='output co'>#&gt; <span class='message'>- Mean RT of IS across reference samples will be saved to: C:\Users\AppData\Local\Temp\RtmpaMK9nF</span></div><div class='output co'>#&gt; <span class='message'>    1 IS in 2 reference samples</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>-- Saving EICs for each ROI --</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 1 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.67 secs</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 1 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.6 secs</span></div><div class='output co'>#&gt; <span class='message'>1 ROIs saved to C:\Users\AppData\Local\Temp\RtmpaMK9nF</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>-- Calculating mean RT for each IS --</span></div><div class='output co'>#&gt; <span class='message'>Processing 1 compounds in 2 samples:</span></div><div class='output co'>#&gt; <span class='message'>  uROI:	FALSE</span></div><div class='output co'>#&gt; <span class='message'>  FIR:	FALSE</span></div><div class='output co'>#&gt; <span class='message'>----- ko15 -----</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Check input, mzMLPath must be a .mzML</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 1 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.62 secs</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></div><div class='output co'>#&gt; <span class='message'>Found 1/1 features in 0.01 secs</span></div><div class='output co'>#&gt; <span class='message'>Peak statistics done in: 0 secs</span></div><div class='output co'>#&gt; <span class='message'>Feature search done in: 2.24 secs</span></div><div class='output co'>#&gt; <span class='message'>----- ko16 -----</span></div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Check input, mzMLPath must be a .mzML</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 1 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.6 secs</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></div><div class='output co'>#&gt; <span class='message'>Found 1/1 features in 0.01 secs</span></div><div class='output co'>#&gt; <span class='message'>Peak statistics done in: 0 secs</span></div><div class='output co'>#&gt; <span class='message'>Feature search done in: 2.21 secs</span></div><div class='output co'>#&gt; <span class='message'>Annotation object cannot be reordered by sample acquisition date</span></div><div class='output co'>#&gt; <span class='message'>----------------</span></div><div class='output co'>#&gt; <span class='message'>Parallel annotation done in: 5.45 secs</span></div><div class='output co'>#&gt; <span class='message'>  0 failure(s)</span></div><div class='output co'>#&gt; <span class='message'>Annotation parameters saved at C:\Users\AppData\Local\Temp\RtmpaMK9nF/IS_search/annotationParameters_summary.csv</span></div><div class='output co'>#&gt; <span class='message'>Saving diagnostic plots:</span></div><div class='output co'>#&gt; <span class='message'>  Compound 1/1 diagnostic plot saved at C:\Users\AppData\Local\Temp\RtmpaMK9nF/IS_search/cpd_1.png</span></div><div class='output co'>#&gt; <span class='message'>IS mean RT saved at C:\Users\AppData\Local\Temp\RtmpaMK9nF/IS_mean_RT.csv</span></div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span></span>
+<span class='r-in'><span class='co'>## Initialise a peakPantheRAnnotation object with 2 samples and 1 targeted</span></span>
+<span class='r-in'><span class='co'>## compound</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Paths to spectra files</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://dx.doi.org/10.1021/bi0480335'>faahKO</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>spectraPaths</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko15.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span>,</span>
+<span class='r-in'>                    <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko16.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># targetFeatTable</span></span>
+<span class='r-in'><span class='va'>targetFeatTable</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>1</span>, <span class='fl'>8</span>, dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'>                    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cpdID'</span>,<span class='st'>'cpdName'</span>,<span class='st'>'rtMin'</span>,<span class='st'>'rt'</span>,<span class='st'>'rtMax'</span>,<span class='st'>'mzMin'</span>,<span class='st'>'mz'</span>,</span>
+<span class='r-in'>                    <span class='st'>'mzMax'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>, <span class='fl'>3310.</span>, <span class='fl'>3344.888</span>, <span class='fl'>3390.</span>, <span class='fl'>522.194778</span>,</span>
+<span class='r-in'>                        <span class='fl'>522.2</span>, <span class='fl'>522.205222</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span><span class='op'>(</span><span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>as.numeric</span>,</span>
+<span class='r-in'>                                    FUN.VALUE<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># input</span></span>
+<span class='r-in'><span class='va'>refSpecFiles</span>  <span class='op'>&lt;-</span> <span class='va'>spectraPaths</span></span>
+<span class='r-in'><span class='va'>input_ROI</span>     <span class='op'>&lt;-</span> <span class='va'>targetFeatTable</span></span>
+<span class='r-in'><span class='va'>input_IS_ROI</span>  <span class='op'>&lt;-</span> <span class='va'>targetFeatTable</span></span>
+<span class='r-in'><span class='va'>sampleColour</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'blue'</span>, <span class='st'>'red'</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># temporary saveFolder</span></span>
+<span class='r-in'><span class='va'>saveFolder1</span>   <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Calculate ROI statiscs</span></span>
+<span class='r-in'><span class='fu'>peakPantheR_ROIStatistics</span><span class='op'>(</span><span class='va'>refSpecFiles</span>, <span class='va'>saveFolder1</span>, ROI<span class='op'>=</span><span class='va'>input_ROI</span>,</span>
+<span class='r-in'>                            IS_ROI<span class='op'>=</span><span class='va'>input_IS_ROI</span>, sampleColour<span class='op'>=</span><span class='va'>sampleColour</span>,</span>
+<span class='r-in'>                            ncores<span class='op'>=</span><span class='fl'>0</span>, saveISPlots<span class='op'>=</span><span class='cn'>TRUE</span>, verbose<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> - EICs for each ROI windows will be saved to: C:\Users\xxx\Temp\RtmpKOEfj0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     1 ROI in 2 reference samples</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> - Mean RT of IS across reference samples will be saved to: C:\Users\xxx\Temp\RtmpKOEfj0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     1 IS in 2 reference samples</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> -- Saving EICs for each ROI --</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Reading data from 1 windows</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Data read in: 3.05 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Reading data from 1 windows</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Data read in: 3.04 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 1 ROIs saved to C:\Users\xxx\Temp\RtmpKOEfj0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> -- Calculating mean RT for each IS --</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Processing 1 compounds in 2 samples:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   uROI:	FALSE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   FIR:	FALSE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> ----- ko15 -----</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Check input, mzMLPath must be a .mzML</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Reading data from 1 windows</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Data read in: 2.96 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Found 1/1 features in 0.02 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Peak statistics done in: 0.01 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Feature search done in: 4.15 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> ----- ko16 -----</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Check input, mzMLPath must be a .mzML</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Reading data from 1 windows</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Data read in: 3.24 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Found 1/1 features in 0.03 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Peak statistics done in: 0 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Feature search done in: 4.29 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Annotation object cannot be reordered by sample acquisition date</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> ----------------</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Parallel annotation done in: 10.21 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   0 failure(s)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Annotation parameters saved at C:\Users\xxx\Temp\RtmpKOEfj0/IS_search/annotationParameters_summary.csv</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Saving diagnostic plots:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   Compound 1/1 diagnostic plot saved at C:\Users\xxx\Temp\RtmpKOEfj0/IS_search/cpd_1.png</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> IS mean RT saved at C:\Users\xxx\Temp\RtmpKOEfj0/IS_mean_RT.csv</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -252,11 +296,11 @@ mean RT is not calculated and saved in <code>IS_mean_RT.csv</code>)</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Arnaud Wolfer, Goncalo Correia.</p>
+  <p><p>Developed by Arnaud Wolfer, Goncalo Correia.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -264,6 +308,8 @@ mean RT is not calculated and saved in <code>IS_mean_RT.csv</code>)</p></td>
 
   
 
+
+  
 
   </body>
 </html>

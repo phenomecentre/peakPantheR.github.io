@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -70,8 +66,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/phenomecentre/peakPantheR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/phenomecentre/peakPantheR/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,15 +81,14 @@
 
       
 
-      </header><link href="parallel-annotation_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="parallel-annotation_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="parallel-annotation_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Parallel Annotation</h1>
             
-            <h4 class="date">2020-10-11</h4>
+            <h4 data-toc-skip class="date">2020-10-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/phenomecentre/peakPantheR/blob/master/vignettes/parallel-annotation.Rmd"><code>vignettes/parallel-annotation.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/phenomecentre/peakPantheR/blob/master/vignettes/parallel-annotation.Rmd" class="external-link"><code>vignettes/parallel-annotation.Rmd</code></a></small>
       <div class="hidden name"><code>parallel-annotation.Rmd</code></div>
 
     </div>
@@ -111,20 +106,20 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.12/peakPantheR">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer, Goncalo Correia<br></p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.13/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer, Goncalo Correia<br></p>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
+<a href="#introduction" class="anchor" aria-hidden="true"></a>Introduction</h1>
 <p>The <code>peakPantheR</code> package is designed for the detection, integration and reporting of pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>).</p>
 <p>The <strong>Parallel Annotation</strong> is set to detect and integrate <strong>multiple</strong> compounds in <strong>multiple</strong> files in <strong>parallel</strong> and store results in a <strong>single</strong> object. It can be employed to integrate a large number of expected features across a dataset.</p>
-<p>Using the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
+<p>Using the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
 <ul>
 <li>Detail the <strong>Parallel Annotation</strong> concept</li>
-<li>Apply the <strong>Parallel Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> dataset</li>
+<li>Apply the <strong>Parallel Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> dataset</li>
 </ul>
 <div id="abbreviations" class="section level2">
 <h2 class="hasAnchor">
-<a href="#abbreviations" class="anchor"></a>Abbreviations</h2>
+<a href="#abbreviations" class="anchor" aria-hidden="true"></a>Abbreviations</h2>
 <ul>
 <li>
 <strong>ROI</strong>: <em>Regions Of Interest</em>
@@ -162,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="parallel-annotation-concept" class="section level1">
 <h1 class="hasAnchor">
-<a href="#parallel-annotation-concept" class="anchor"></a>Parallel Annotation Concept</h1>
+<a href="#parallel-annotation-concept" class="anchor" aria-hidden="true"></a>Parallel Annotation Concept</h1>
 <p>Parallel compound integration is set to process <strong>multiple</strong> compounds in <strong>multiple</strong> files in <strong>parallel</strong>, and store results in a <strong>single</strong> object.</p>
 <p><img src="../man/figures/parallelAnnotation.png" width="700px"></p>
 <p>To achieve this, <code>peakPantheR</code> will:</p>
@@ -207,22 +202,22 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="parallel-annotation-example" class="section level1">
 <h1 class="hasAnchor">
-<a href="#parallel-annotation-example" class="anchor"></a>Parallel Annotation Example</h1>
-<p>We can target 2 pre-defined features in 6 raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> package using <code><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation()</a></code>. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
+<a href="#parallel-annotation-example" class="anchor" aria-hidden="true"></a>Parallel Annotation Example</h1>
+<p>We can target 2 pre-defined features in 6 raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> package using <code><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation()</a></code>. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
 <div id="input-data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#input-data" class="anchor"></a>Input Data</h2>
-<p>First the paths to 3 MS file from the <em><a href="https://bioconductor.org/packages/3.12/faahKO">faahKO</a></em> are located and used as input spectras. In this example these 3 samples are considered as representative of the whole run (e.g. Quality Control samples):</p>
+<a href="#input-data" class="anchor" aria-hidden="true"></a>Input Data</h2>
+<p>First the paths to 3 MS file from the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> are located and used as input spectras. In this example these 3 samples are considered as representative of the whole run (e.g. Quality Control samples):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335">faahKO</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span>
 <span class="co">## file paths</span>
-<span class="va">input_spectraPaths</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko18.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">input_spectraPaths</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko18.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">input_spectraPaths</span>
-<span class="co">#&gt; [1] "C:/R/R-4.0.3/library/faahKO/cdf/KO/ko15.CDF"</span>
-<span class="co">#&gt; [2] "C:/R/R-4.0.3/library/faahKO/cdf/KO/ko16.CDF"</span>
-<span class="co">#&gt; [3] "C:/R/R-4.0.3/library/faahKO/cdf/KO/ko18.CDF"</span></code></pre></div>
+<span class="co">#&gt; [1] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko15.CDF"</span>
+<span class="co">#&gt; [2] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko16.CDF"</span>
+<span class="co">#&gt; [3] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko18.CDF"</span></code></pre></div>
 <p>Two targeted features (<em>e.g. compounds, fragments, adducts, …</em>) are defined and stored in a table with as columns:</p>
 <ul>
 <li>
@@ -244,16 +239,16 @@ document.addEventListener("DOMContentLoaded", function() {
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># targetFeatTable</span>
-<span class="va">input_targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>, 
-                        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cpdID"</span>, <span class="st">"cpdName"</span>, <span class="st">"rtMin"</span>, <span class="st">"rt"</span>, <span class="st">"rtMax"</span>, <span class="st">"mzMin"</span>, 
+<span class="va">input_targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>, 
+                        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cpdID"</span>, <span class="st">"cpdName"</span>, <span class="st">"rtMin"</span>, <span class="st">"rt"</span>, <span class="st">"rtMax"</span>, <span class="st">"mzMin"</span>, 
                             <span class="st">"mz"</span>, <span class="st">"mzMax"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">input_targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ID-1"</span>, <span class="st">"Cpd 1"</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, 
+<span class="va">input_targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ID-1"</span>, <span class="st">"Cpd 1"</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, 
                                 <span class="fl">522.194778</span>, <span class="fl">522.2</span>, <span class="fl">522.205222</span><span class="op">)</span>
-<span class="va">input_targetFeatTable</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ID-2"</span>, <span class="st">"Cpd 2"</span>, <span class="fl">3280.</span>, <span class="fl">3385.577</span>, <span class="fl">3440.</span>, 
+<span class="va">input_targetFeatTable</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ID-2"</span>, <span class="st">"Cpd 2"</span>, <span class="fl">3280.</span>, <span class="fl">3385.577</span>, <span class="fl">3440.</span>, 
                                 <span class="fl">496.195038</span>, <span class="fl">496.2</span>, <span class="fl">496.204962</span><span class="op">)</span>
-<span class="va">input_targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">input_targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, 
+<span class="va">input_targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">input_targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, 
                                         <span class="va">as.numeric</span><span class="op">)</span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="10%">
 <col width="12%">
@@ -300,11 +295,11 @@ document.addEventListener("DOMContentLoaded", function() {
 <p>Additional compound and spectra metadata can be provided but isn’t employed during the fitting procedure:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># spectra Metadata</span>
-<span class="va">input_spectraMetadata</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sample type 1"</span>, <span class="st">"sample type 2"</span>, 
+<span class="va">input_spectraMetadata</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sample type 1"</span>, <span class="st">"sample type 2"</span>, 
                             <span class="st">"sample type 1"</span><span class="op">)</span>, <span class="fl">3</span>, <span class="fl">1</span>, 
-                            dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sampleType"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+                            dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sampleType"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                             stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<table class="table">
+<table style="width:22%;" class="table">
 <colgroup><col width="22%"></colgroup>
 <thead><tr class="header">
 <th align="center">sampleType</th>
@@ -324,10 +319,10 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="initialise-and-run-parallel-annotation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#initialise-and-run-parallel-annotation" class="anchor"></a>Initialise and Run Parallel Annotation</h2>
+<a href="#initialise-and-run-parallel-annotation" class="anchor" aria-hidden="true"></a>Initialise and Run Parallel Annotation</h2>
 <p>A <code>peakPantheRAnnotation</code> object is first initialised with the path to the files to process (<code>spectraPaths</code>), features to integrate (<code>targetFeatTable</code>) and additional information and parameters such as <code>spectraMetadata</code>, <code>uROI</code>, <code>FIR</code> and if they should be used (<code>useUROI=TRUE</code>, <code>useFIR=TRUE</code>):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR">peakPantheR</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR" class="external-link">peakPantheR</a></span><span class="op">)</span>
 <span class="va">init_annotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/peakPantheRAnnotation.html">peakPantheRAnnotation</a></span><span class="op">(</span>spectraPaths <span class="op">=</span> <span class="va">input_spectraPaths</span>,
                         targetFeatTable <span class="op">=</span> <span class="va">input_targetFeatTable</span>,
                         spectraMetadata <span class="op">=</span> <span class="va">input_spectraMetadata</span><span class="op">)</span></code></pre></div>
@@ -353,38 +348,38 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">#&gt; Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="co">#&gt; Check input, mzMLPath must be a .mzML</span>
 <span class="co">#&gt; Reading data from 2 windows</span>
-<span class="co">#&gt; Data read in: 1.64 secs</span>
+<span class="co">#&gt; Data read in: 3.25 secs</span>
 <span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
-<span class="co">#&gt; Found 2/2 features in 0.03 secs</span>
-<span class="co">#&gt; Peak statistics done in: 0 secs</span>
-<span class="co">#&gt; Feature search done in: 2.43 secs</span>
+<span class="co">#&gt; Found 2/2 features in 0.11 secs</span>
+<span class="co">#&gt; Peak statistics done in: 0.01 secs</span>
+<span class="co">#&gt; Feature search done in: 4.52 secs</span>
 <span class="co">#&gt; ----- ko16 -----</span>
 <span class="co">#&gt; Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="co">#&gt; Check input, mzMLPath must be a .mzML</span>
 <span class="co">#&gt; Reading data from 2 windows</span>
-<span class="co">#&gt; Data read in: 1.61 secs</span>
+<span class="co">#&gt; Data read in: 3.23 secs</span>
 <span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
 <span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #2</span>
-<span class="co">#&gt; Found 2/2 features in 0.02 secs</span>
-<span class="co">#&gt; Peak statistics done in: 0 secs</span>
-<span class="co">#&gt; Feature search done in: 2.2 secs</span>
+<span class="co">#&gt; Found 2/2 features in 0.05 secs</span>
+<span class="co">#&gt; Peak statistics done in: 0.01 secs</span>
+<span class="co">#&gt; Feature search done in: 4.44 secs</span>
 <span class="co">#&gt; ----- ko18 -----</span>
 <span class="co">#&gt; Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="co">#&gt; Check input, mzMLPath must be a .mzML</span>
 <span class="co">#&gt; Reading data from 2 windows</span>
-<span class="co">#&gt; Data read in: 1.58 secs</span>
+<span class="co">#&gt; Data read in: 3.21 secs</span>
 <span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
 <span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #2</span>
-<span class="co">#&gt; Found 2/2 features in 0.02 secs</span>
-<span class="co">#&gt; Peak statistics done in: 0 secs</span>
-<span class="co">#&gt; Feature search done in: 2.16 secs</span>
+<span class="co">#&gt; Found 2/2 features in 0.05 secs</span>
+<span class="co">#&gt; Peak statistics done in: 0.01 secs</span>
+<span class="co">#&gt; Feature search done in: 4.36 secs</span>
 <span class="co">#&gt; Annotation object cannot be reordered by sample acquisition date</span>
 <span class="co">#&gt; ----------------</span>
-<span class="co">#&gt; Parallel annotation done in: 8.22 secs</span>
+<span class="co">#&gt; Parallel annotation done in: 15.86 secs</span>
 <span class="co">#&gt;   0 failure(s)</span>
 
 <span class="co"># successful fit</span>
-<span class="fu"><a href="../reference/nbSamples,peakPantheRAnnotation-method.html">nbSamples</a></span><span class="op">(</span><span class="va">annotation_result</span><span class="op">$</span><span class="va">annotation</span><span class="op">)</span>
+<span class="fu"><a href="../reference/nbSamples-peakPantheRAnnotation-method.html">nbSamples</a></span><span class="op">(</span><span class="va">annotation_result</span><span class="op">$</span><span class="va">annotation</span><span class="op">)</span>
 <span class="co">#&gt; [1] 3</span>
 <span class="va">data_annotation</span>   <span class="op">&lt;-</span> <span class="va">annotation_result</span><span class="op">$</span><span class="va">annotation</span>
 <span class="va">data_annotation</span>
@@ -402,8 +397,8 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="process-parallel-annotation-results" class="section level2">
 <h2 class="hasAnchor">
-<a href="#process-parallel-annotation-results" class="anchor"></a>Process Parallel Annotation Results</h2>
-<p>Based on the fit results, updated ROI (<code>uROI</code>) and fallback integration region (<code>FIR</code>) can be automatically determined using <code><a href="../reference/annotationParamsDiagnostic,peakPantheRAnnotation-method.html">annotationParamsDiagnostic()</a></code>:</p>
+<a href="#process-parallel-annotation-results" class="anchor" aria-hidden="true"></a>Process Parallel Annotation Results</h2>
+<p>Based on the fit results, updated ROI (<code>uROI</code>) and fallback integration region (<code>FIR</code>) can be automatically determined using <code><a href="../reference/annotationParamsDiagnostic-peakPantheRAnnotation-method.html">annotationParamsDiagnostic()</a></code>:</p>
 <ul>
 <li>
 <code>uROI</code> are established as the min/max (<code>rt</code> and <code>m/z</code>) of the found peaks (+/- 5% in RT)</li>
@@ -412,7 +407,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">updated_annotation</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/annotationParamsDiagnostic,peakPantheRAnnotation-method.html">annotationParamsDiagnostic</a></span><span class="op">(</span><span class="va">data_annotation</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">updated_annotation</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/annotationParamsDiagnostic-peakPantheRAnnotation-method.html">annotationParamsDiagnostic</a></span><span class="op">(</span><span class="va">data_annotation</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; uROI will be set as mimimum/maximum of found peaks (+/-5% of ROI in retention time)</span>
 <span class="co">#&gt; FIR will be calculated as the median of found "rtMin","rtMax","mzMin","mzMax"</span>
 
@@ -424,20 +419,20 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">#&gt;   does not use updated ROI (uROI)</span>
 <span class="co">#&gt;   does not use fallback integration regions (FIR)</span>
 <span class="co">#&gt;   is annotated</span></code></pre></div>
-<p><code><a href="../reference/outputAnnotationDiagnostic,peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code> will save to disk <code>annotationParameters_summary.csv</code> containing the original <code>ROI</code> and newly determined <code>uROI</code> and <code>FIR</code> for manual validation. Additionnaly a diagnostic plot for each compound is saved for reference and can be generated in parallel with the argument <code>ncores</code>:</p>
+<p><code><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code> will save to disk <code>annotationParameters_summary.csv</code> containing the original <code>ROI</code> and newly determined <code>uROI</code> and <code>FIR</code> for manual validation. Additionnaly a diagnostic plot for each compound is saved for reference and can be generated in parallel with the argument <code>ncores</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create a colourScale based on the sampleType</span>
-<span class="va">uniq_sType</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="../reference/spectraMetadata,peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">updated_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">sampleType</span><span class="op">)</span>,
+<span class="va">uniq_sType</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="../reference/spectraMetadata-peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">updated_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">sampleType</span><span class="op">)</span>,
                     na.last<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">col_sType</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'red'</span><span class="op">)</span>,
-                <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">uniq_sType</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="../reference/spectraMetadata,peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">updated_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">sampleType</span><span class="op">]</span> <span class="op">)</span>
+<span class="va">col_sType</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'red'</span><span class="op">)</span>,
+                <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">uniq_sType</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="../reference/spectraMetadata-peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">updated_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">sampleType</span><span class="op">]</span> <span class="op">)</span>
 
 <span class="co"># create a temporary location to save the diagnotic (otherwise provide the path</span>
 <span class="co"># to the selected location)</span>
-<span class="va">output_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">output_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># output fit diagnostic to disk</span>
-<span class="fu"><a href="../reference/outputAnnotationDiagnostic,peakPantheRAnnotation-method.html">outputAnnotationDiagnostic</a></span><span class="op">(</span><span class="va">updated_annotation</span>, saveFolder<span class="op">=</span><span class="va">output_folder</span>, 
+<span class="fu"><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic</a></span><span class="op">(</span><span class="va">updated_annotation</span>, saveFolder<span class="op">=</span><span class="va">output_folder</span>, 
                             savePlots<span class="op">=</span><span class="cn">TRUE</span>, sampleColour<span class="op">=</span><span class="va">col_sType</span>, 
                             verbose<span class="op">=</span><span class="cn">TRUE</span>, ncores<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p>The data saved in <code>annotationParameters_summary.csv</code> is as follow:</p>
@@ -527,7 +522,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </tr>
 </tbody>
 </table>
-<table class="table">
+<table style="width:92%;" class="table">
 <colgroup>
 <col width="13%">
 <col width="5%">
@@ -570,22 +565,22 @@ document.addEventListener("DOMContentLoaded", function() {
 <p><code>ROI</code> exported to <code>.csv</code> can be updated based on the diagnostic plots; <code>uROI</code> (updated ROI potentially used for all samples) and <code>FIR</code> (fallback integration regions for when no peak is found) can also be tweaked to better fit the peaks.</p>
 <div id="retention-time-correction" class="section level3">
 <h3 class="hasAnchor">
-<a href="#retention-time-correction" class="anchor"></a>Retention time correction</h3>
-<p>The optional <code><a href="../reference/retentionTimeCorrection,peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> method provides an interface to adjust the expected ROI rt values and account for chromatographic batch effects. By comparing expected and found rt values for a set of reference compounds, a model of the chromatographic shift for the present batch can be established. This model can be in turned used to correct the expected retention time of all targeted compounds. In order to apply this method, the <code>peakPantheRAnnotation</code> must be previously annotated (<code>isAnnotated=TRUE</code>). The retention time correction algorithm to use can be selected using the <code>method</code> argument (currently <code>polynomial</code> and <code>constant</code> methods are available). <code><a href="../reference/retentionTimeCorrection,peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> fits a correction function to model the dependency of the mean <code>rt_dev_sec</code> per reference feature with the expected databased retention time. If <code>useUROI=TRUE</code>, the expected retention time value is taken from the <code>UROI_rt</code> field, otherwise <code>ROI_rt</code> is used. If <code>robust=TRUE</code>, the RANSAC algorithm is used to automatically detect outliers and exclude them from the fit (this should only be used with a large number of reference features). <code><a href="../reference/retentionTimeCorrection,peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> returns a list with 2 elements: * a modified <code>peakPantheRAnnotation</code> object * a <code>ggplot2</code> diagnostic plot (optional, depending on whether <code>TRUE</code> or <code>FALSE</code> is passed to the <code>diagnostic</code> argument). The returned <code>peakPantheRAnnotation</code> object contains the same <code>uROI</code> and <code>FIR</code> <code>mz</code> values as the original annotation, but the retention time related parameters (<code>rt</code>, <code>rtMin</code> and <code>rtMax</code>) are replaced by the adjusted values. The <code>rtMax</code> and <code>rtMin</code> are set as the corrected <code>rt</code> value plus or minus half the value passed to the <code>rtWindowWidth</code> argument, respectively. <code>useUROI</code> is also set to TRUE. To continue with the workflow, simply set a new annotation object with the fit parameters established by <code><a href="../reference/retentionTimeCorrection,peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> and call <code><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation()</a></code> for the final annotation.</p>
+<a href="#retention-time-correction" class="anchor" aria-hidden="true"></a>Retention time correction</h3>
+<p>The optional <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> method provides an interface to adjust the expected ROI rt values and account for chromatographic batch effects. By comparing expected and found rt values for a set of reference compounds, a model of the chromatographic shift for the present batch can be established. This model can be in turned used to correct the expected retention time of all targeted compounds. In order to apply this method, the <code>peakPantheRAnnotation</code> must be previously annotated (<code>isAnnotated=TRUE</code>). The retention time correction algorithm to use can be selected using the <code>method</code> argument (currently <code>polynomial</code> and <code>constant</code> methods are available). <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> fits a correction function to model the dependency of the mean <code>rt_dev_sec</code> per reference feature with the expected databased retention time. If <code>useUROI=TRUE</code>, the expected retention time value is taken from the <code>UROI_rt</code> field, otherwise <code>ROI_rt</code> is used. If <code>robust=TRUE</code>, the RANSAC algorithm is used to automatically detect outliers and exclude them from the fit (this should only be used with a large number of reference features). <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> returns a list with 2 elements: * a modified <code>peakPantheRAnnotation</code> object * a <code>ggplot2</code> diagnostic plot (optional, depending on whether <code>TRUE</code> or <code>FALSE</code> is passed to the <code>diagnostic</code> argument). The returned <code>peakPantheRAnnotation</code> object contains the same <code>uROI</code> and <code>FIR</code> <code>mz</code> values as the original annotation, but the retention time related parameters (<code>rt</code>, <code>rtMin</code> and <code>rtMax</code>) are replaced by the adjusted values. The <code>rtMax</code> and <code>rtMin</code> are set as the corrected <code>rt</code> value plus or minus half the value passed to the <code>rtWindowWidth</code> argument, respectively. <code>useUROI</code> is also set to TRUE. To continue with the workflow, simply set a new annotation object with the fit parameters established by <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> and call <code><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation()</a></code> for the final annotation.</p>
 <p><img src="parallel-annotation_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 <pre><code>#&gt; Warning in applyRTCorrection_checkInputParams(params, method, referenceTable):
-#&gt; `polynomialOrder` is larger than the number of references passed.
-#&gt; `polynomialOrder` will be set equal to number of reference compounds - 1</code></pre>
+#&gt; `polynomialOrder` is larger than the number of references passed. `polynomialOrder`
+#&gt; will be set equal to number of reference compounds - 1</code></pre>
 </div>
 </div>
 <div id="new-initialisation-with-updated-parameters-to-be-applied-to-all-study-samples" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-initialisation-with-updated-parameters-to-be-applied-to-all-study-samples" class="anchor"></a>New Initialisation with Updated Parameters to be Applied to All Study Samples</h2>
+<a href="#new-initialisation-with-updated-parameters-to-be-applied-to-all-study-samples" class="anchor" aria-hidden="true"></a>New Initialisation with Updated Parameters to be Applied to All Study Samples</h2>
 <p>Following this manual validation of the fit on reference samples, the modified parameters in the <code>.csv</code> file can be reloaded and applied to all study samples.</p>
 <div id="load-new-fit-parameters" class="section level3">
 <h3 class="hasAnchor">
-<a href="#load-new-fit-parameters" class="anchor"></a>Load new fit parameters</h3>
-<p><code><a href="../reference/peakPantheR_loadAnnotationParamsCSV.html">peakPantheR_loadAnnotationParamsCSV()</a></code> will load the new <code>.csv</code> parameters (as generated by <code><a href="../reference/outputAnnotationDiagnostic,peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code>) and initialise a <code>peakPantheRAnnotation</code> object without <code>spectraPaths</code>, <code>spectraMetadata</code> or <code>cpdMetadata</code> which will need to be added before annotation. <code>useUROI</code> and <code>useFIR</code> are set to <code>FALSE</code> by default and will need to be modified according to the analysis to run. <code>uROIExist</code> is established depending on the <code>.csv</code> uROI column, and will only be set to TRUE if no <code>NA</code> are present. It is possible to reset the <code>FIR</code> values with the <code>uROI</code> windows using <code><a href="../reference/resetFIR,peakPantheRAnnotation-method.html">resetFIR()</a></code>.</p>
+<a href="#load-new-fit-parameters" class="anchor" aria-hidden="true"></a>Load new fit parameters</h3>
+<p><code><a href="../reference/peakPantheR_loadAnnotationParamsCSV.html">peakPantheR_loadAnnotationParamsCSV()</a></code> will load the new <code>.csv</code> parameters (as generated by <code><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code>) and initialise a <code>peakPantheRAnnotation</code> object without <code>spectraPaths</code>, <code>spectraMetadata</code> or <code>cpdMetadata</code> which will need to be added before annotation. <code>useUROI</code> and <code>useFIR</code> are set to <code>FALSE</code> by default and will need to be modified according to the analysis to run. <code>uROIExist</code> is established depending on the <code>.csv</code> uROI column, and will only be set to TRUE if no <code>NA</code> are present. It is possible to reset the <code>FIR</code> values with the <code>uROI</code> windows using <code><a href="../reference/resetFIR-peakPantheRAnnotation-method.html">resetFIR()</a></code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">update_csv_path</span> <span class="op">&lt;-</span> <span class="st">'/path_to_new_csv/'</span>
 
@@ -602,36 +597,36 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">#&gt;   does not use fallback integration regions (FIR)</span>
 <span class="co">#&gt;   is not annotated</span>
 
-<span class="va">new_annotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resetFIR,peakPantheRAnnotation-method.html">resetFIR</a></span><span class="op">(</span><span class="va">new_annotation</span><span class="op">)</span>
+<span class="va">new_annotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resetFIR-peakPantheRAnnotation-method.html">resetFIR</a></span><span class="op">(</span><span class="va">new_annotation</span><span class="op">)</span>
 <span class="co">#&gt; FIR will be reset with uROI values</span></code></pre></div>
 </div>
 <div id="add-new-samples-to-process" class="section level3">
 <h3 class="hasAnchor">
-<a href="#add-new-samples-to-process" class="anchor"></a>Add new samples to process</h3>
-<p>Now that the fit parameters were set on 3 representative samples (e.g. QC), the same processing can be applied to all study samples. <code><a href="../reference/resetAnnotation,peakPantheRAnnotation-method.html">resetAnnotation()</a></code> will reinitialise all the results and modify the samples or compounds targeted as required:</p>
+<a href="#add-new-samples-to-process" class="anchor" aria-hidden="true"></a>Add new samples to process</h3>
+<p>Now that the fit parameters were set on 3 representative samples (e.g. QC), the same processing can be applied to all study samples. <code><a href="../reference/resetAnnotation-peakPantheRAnnotation-method.html">resetAnnotation()</a></code> will reinitialise all the results and modify the samples or compounds targeted as required:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## new files</span>
-<span class="va">new_spectraPaths</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/WT/wt15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/WT/wt16.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko18.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'cdf/WT/wt18.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">new_spectraPaths</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/WT/wt15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/WT/wt16.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko18.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/WT/wt18.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">new_spectraPaths</span>
-<span class="co">#&gt; [1] "C:/R/R-4.0.3/library/faahKO/cdf/KO/ko15.CDF"</span>
-<span class="co">#&gt; [2] "C:/R/R-4.0.3/library/faahKO/cdf/WT/wt15.CDF"</span>
-<span class="co">#&gt; [3] "C:/R/R-4.0.3/library/faahKO/cdf/KO/ko16.CDF"</span>
-<span class="co">#&gt; [4] "C:/R/R-4.0.3/library/faahKO/cdf/WT/wt16.CDF"</span>
-<span class="co">#&gt; [5] "C:/R/R-4.0.3/library/faahKO/cdf/KO/ko18.CDF"</span>
-<span class="co">#&gt; [6] "C:/R/R-4.0.3/library/faahKO/cdf/WT/wt18.CDF"</span></code></pre></div>
+<span class="co">#&gt; [1] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko15.CDF"</span>
+<span class="co">#&gt; [2] "C:/R/R-4.1.0/library/faahKO/cdf/WT/wt15.CDF"</span>
+<span class="co">#&gt; [3] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko16.CDF"</span>
+<span class="co">#&gt; [4] "C:/R/R-4.1.0/library/faahKO/cdf/WT/wt16.CDF"</span>
+<span class="co">#&gt; [5] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko18.CDF"</span>
+<span class="co">#&gt; [6] "C:/R/R-4.1.0/library/faahKO/cdf/WT/wt18.CDF"</span></code></pre></div>
 <p>Below we define the metadata of these new samples:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## new spectra metadata</span>
-<span class="va">new_spectraMetadata</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"KO"</span>, <span class="st">"WT"</span>, <span class="st">"KO"</span>, <span class="st">"WT"</span>, <span class="st">"KO"</span>, <span class="st">"WT"</span><span class="op">)</span>,
-                                        <span class="fl">6</span>, <span class="fl">1</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Group"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, 
+<span class="va">new_spectraMetadata</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"KO"</span>, <span class="st">"WT"</span>, <span class="st">"KO"</span>, <span class="st">"WT"</span>, <span class="st">"KO"</span>, <span class="st">"WT"</span><span class="op">)</span>,
+                                        <span class="fl">6</span>, <span class="fl">1</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Group"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, 
                                     stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<table class="table">
+<table style="width:11%;" class="table">
 <colgroup><col width="11%"></colgroup>
 <thead><tr class="header">
 <th align="center">Group</th>
@@ -660,7 +655,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## add new samples to the annotation loaded from csv, useUROI, useFIR</span>
 
-<span class="va">new_annotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resetAnnotation,peakPantheRAnnotation-method.html">resetAnnotation</a></span><span class="op">(</span><span class="va">new_annotation</span>, spectraPaths<span class="op">=</span><span class="va">new_spectraPaths</span>,
+<span class="va">new_annotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resetAnnotation-peakPantheRAnnotation-method.html">resetAnnotation</a></span><span class="op">(</span><span class="va">new_annotation</span>, spectraPaths<span class="op">=</span><span class="va">new_spectraPaths</span>,
                                 spectraMetadata<span class="op">=</span><span class="va">new_spectraMetadata</span>, 
                                 useUROI<span class="op">=</span><span class="cn">TRUE</span>, useFIR<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; peakPantheRAnnotation object being reset:</span>
@@ -685,7 +680,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="run-final-parallel-annotation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#run-final-parallel-annotation" class="anchor"></a>Run Final Parallel Annotation</h2>
+<a href="#run-final-parallel-annotation" class="anchor" aria-hidden="true"></a>Run Final Parallel Annotation</h2>
 <p>We can now run the final annotation on all samples with the optimised targeted features:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># annotate files serially</span>
@@ -705,7 +700,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">#&gt; Warning in minpack.lm::nls.lm(par = init, lower = lower, upper = upper, : lmdif: info = -1. Number of iterations has reached `maxiter' == 50.</span>
 
 <span class="co"># successful fit</span>
-<span class="fu"><a href="../reference/nbSamples,peakPantheRAnnotation-method.html">nbSamples</a></span><span class="op">(</span><span class="va">new_annotation_result</span><span class="op">$</span><span class="va">annotation</span><span class="op">)</span>
+<span class="fu"><a href="../reference/nbSamples-peakPantheRAnnotation-method.html">nbSamples</a></span><span class="op">(</span><span class="va">new_annotation_result</span><span class="op">$</span><span class="va">annotation</span><span class="op">)</span>
 <span class="co">#&gt; [1] 6</span>
 
 <span class="va">final_annotation</span>      <span class="op">&lt;-</span> <span class="va">new_annotation_result</span><span class="op">$</span><span class="va">annotation</span>
@@ -723,36 +718,37 @@ document.addEventListener("DOMContentLoaded", function() {
 <span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></code></pre></div>
 <div id="output-final-results" class="section level3">
 <h3 class="hasAnchor">
-<a href="#output-final-results" class="anchor"></a>Output final results</h3>
-<p>The final fits can be saved to disk with <code><a href="../reference/outputAnnotationDiagnostic,peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code>:</p>
+<a href="#output-final-results" class="anchor" aria-hidden="true"></a>Output final results</h3>
+<p>The final fits can be saved to disk with <code><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code>:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create a colourScale based on the sampleType</span>
-<span class="va">uniq_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="../reference/spectraMetadata,peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">final_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span>,na.last<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">col_group</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'red'</span><span class="op">)</span>,
-                    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">uniq_sType</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="../reference/spectraMetadata,peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">final_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">Group</span><span class="op">]</span> <span class="op">)</span>
+<span class="va">uniq_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="../reference/spectraMetadata-peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">final_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span>,na.last<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">col_group</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'red'</span><span class="op">)</span>,
+                    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">uniq_sType</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="../reference/spectraMetadata-peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">final_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">Group</span><span class="op">]</span> <span class="op">)</span>
 
 <span class="co"># create a temporary location to save the diagnotic (otherwise provide the path</span>
 <span class="co"># to the selected location)</span>
-<span class="va">final_output_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">final_output_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># output fit diagnostic to disk</span>
-<span class="fu"><a href="../reference/outputAnnotationDiagnostic,peakPantheRAnnotation-method.html">outputAnnotationDiagnostic</a></span><span class="op">(</span><span class="va">final_annotation</span>, saveFolder<span class="op">=</span><span class="va">final_output_folder</span>,
+<span class="fu"><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic</a></span><span class="op">(</span><span class="va">final_annotation</span>, saveFolder<span class="op">=</span><span class="va">final_output_folder</span>,
                         savePlots<span class="op">=</span><span class="cn">TRUE</span>, sampleColour<span class="op">=</span><span class="va">col_group</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<p>For each processed sample, a <code>peakTables</code> contains all the fit information for all compounds targeted. <code><a href="../reference/annotationTable,peakPantheRAnnotation-method.html">annotationTable( , column)</a></code> will group the values across all samples and compounds for any <code>peakTables</code> column:</p>
+<p>For each processed sample, a <code>peakTables</code> contains all the fit information for all compounds targeted. <code>annotationTable( , column)</code> will group the values across all samples and compounds for any <code>peakTables</code> column:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># peakTables for the first sample</span>
-<span class="fu"><a href="../reference/peakTables,peakPantheRAnnotation-method.html">peakTables</a></span><span class="op">(</span><span class="va">final_annotation</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<span class="fu"><a href="../reference/peakTables-peakPantheRAnnotation-method.html">peakTables</a></span><span class="op">(</span><span class="va">final_annotation</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <table class="table">
 <caption>Table continues below</caption>
 <colgroup>
-<col width="11%">
-<col width="11%">
-<col width="9%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="15%">
+<col width="10%">
+<col width="10%">
+<col width="8%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="13%">
+<col width="17%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">found</th>
@@ -763,6 +759,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <th align="center">mz</th>
 <th align="center">mzMax</th>
 <th align="center">peakArea</th>
+<th align="center">peakAreaRaw</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -773,7 +770,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <td align="center">522.2</td>
 <td align="center">522.2</td>
 <td align="center">522.2</td>
-<td align="center">4388777</td>
+<td align="center">4289965</td>
+<td align="center">4289965</td>
 </tr>
 <tr class="even">
 <td align="center">TRUE</td>
@@ -783,7 +781,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <td align="center">496.2</td>
 <td align="center">496.2</td>
 <td align="center">496.2</td>
-<td align="center">7318172</td>
+<td align="center">7312556</td>
+<td align="center">7312556</td>
 </tr>
 </tbody>
 </table>
@@ -820,7 +819,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </tr>
 </tbody>
 </table>
-<table class="table">
+<table style="width:72%;" class="table">
 <colgroup>
 <col width="22%">
 <col width="25%">
@@ -850,8 +849,8 @@ document.addEventListener("DOMContentLoaded", function() {
 </table>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Extract the found peak area for all compounds and all samples</span>
-<span class="fu"><a href="../reference/annotationTable,peakPantheRAnnotation-method.html">annotationTable</a></span><span class="op">(</span><span class="va">final_annotation</span>, column<span class="op">=</span><span class="st">'peakArea'</span><span class="op">)</span></code></pre></div>
-<table class="table">
+<span class="fu"><a href="../reference/annotationTable-peakPantheRAnnotation-method.html">annotationTable</a></span><span class="op">(</span><span class="va">final_annotation</span>, column<span class="op">=</span><span class="st">'peakArea'</span><span class="op">)</span></code></pre></div>
+<table style="width:97%;" class="table">
 <colgroup>
 <col width="69%">
 <col width="13%">
@@ -864,45 +863,45 @@ document.addEventListener("DOMContentLoaded", function() {
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>C:/R/R-4.0.3/library/faahKO/cdf/KO/ko15.CDF</strong></td>
-<td align="center">4388777</td>
-<td align="center">7318172</td>
+<td align="center"><strong>C:/R/R-4.1.0/library/faahKO/cdf/KO/ko15.CDF</strong></td>
+<td align="center">4289965</td>
+<td align="center">7312556</td>
 </tr>
 <tr class="even">
-<td align="center"><strong>C:/R/R-4.0.3/library/faahKO/cdf/WT/wt15.CDF</strong></td>
-<td align="center">4419311</td>
-<td align="center">9244188</td>
+<td align="center"><strong>C:/R/R-4.1.0/library/faahKO/cdf/WT/wt15.CDF</strong></td>
+<td align="center">4355690</td>
+<td align="center">9278578</td>
 </tr>
 <tr class="odd">
-<td align="center"><strong>C:/R/R-4.0.3/library/faahKO/cdf/KO/ko16.CDF</strong></td>
-<td align="center">64115</td>
-<td align="center">480884</td>
+<td align="center"><strong>C:/R/R-4.1.0/library/faahKO/cdf/KO/ko16.CDF</strong></td>
+<td align="center">46184</td>
+<td align="center">473801</td>
 </tr>
 <tr class="even">
-<td align="center"><strong>C:/R/R-4.0.3/library/faahKO/cdf/WT/wt16.CDF</strong></td>
-<td align="center">37459</td>
-<td align="center">485471</td>
+<td align="center"><strong>C:/R/R-4.1.0/library/faahKO/cdf/WT/wt16.CDF</strong></td>
+<td align="center">28157</td>
+<td align="center">475297</td>
 </tr>
 <tr class="odd">
-<td align="center"><strong>C:/R/R-4.0.3/library/faahKO/cdf/KO/ko18.CDF</strong></td>
-<td align="center">141430</td>
-<td align="center">755612</td>
+<td align="center"><strong>C:/R/R-4.1.0/library/faahKO/cdf/KO/ko18.CDF</strong></td>
+<td align="center">141309</td>
+<td align="center">743452</td>
 </tr>
 <tr class="even">
-<td align="center"><strong>C:/R/R-4.0.3/library/faahKO/cdf/WT/wt18.CDF</strong></td>
-<td align="center">101900</td>
-<td align="center">1507856</td>
+<td align="center"><strong>C:/R/R-4.1.0/library/faahKO/cdf/WT/wt18.CDF</strong></td>
+<td align="center">101738</td>
+<td align="center">1480713</td>
 </tr>
 </tbody>
 </table>
-<p>Finally all annotation results can be saved to disk as <code>.csv</code> with <code><a href="../reference/outputAnnotationResult,peakPantheRAnnotation-method.html">outputAnnotationResult()</a></code>. These <code>.csv</code> will contain the compound metadata, spectra metadata and a file for each column of peakTables (with samples as rows and compounds as columns):</p>
+<p>Finally all annotation results can be saved to disk as <code>.csv</code> with <code><a href="../reference/outputAnnotationResult-peakPantheRAnnotation-method.html">outputAnnotationResult()</a></code>. These <code>.csv</code> will contain the compound metadata, spectra metadata and a file for each column of peakTables (with samples as rows and compounds as columns):</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create a temporary location to save the diagnotic (otherwise provide the path</span>
 <span class="co"># to the selected location)</span>
-<span class="va">final_output_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">final_output_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># save</span>
-<span class="fu"><a href="../reference/outputAnnotationResult,peakPantheRAnnotation-method.html">outputAnnotationResult</a></span><span class="op">(</span><span class="va">final_annotation</span>, saveFolder<span class="op">=</span><span class="va">final_output_folder</span>, 
+<span class="fu"><a href="../reference/outputAnnotationResult-peakPantheRAnnotation-method.html">outputAnnotationResult</a></span><span class="op">(</span><span class="va">final_annotation</span>, saveFolder<span class="op">=</span><span class="va">final_output_folder</span>, 
                         annotationName<span class="op">=</span><span class="st">'ProjectName'</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; Compound metadata saved at /final_output_folder/ProjectName_cpdMetadata.csv</span>
 <span class="co">#&gt; Spectra metadata saved at </span>
@@ -936,7 +935,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="see-also" class="section level1">
 <h1 class="hasAnchor">
-<a href="#see-also" class="anchor"></a>See Also</h1>
+<a href="#see-also" class="anchor" aria-hidden="true"></a>See Also</h1>
 <ul>
 <li><a href="getting-started.html">Getting Started with peakPantheR</a></li>
 <li><a href="real-time-annotation.html">Real Time Annotation</a></li>
@@ -956,11 +955,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
       <footer><div class="copyright">
-  <p>Developed by Arnaud Wolfer, Goncalo Correia.</p>
+  <p></p>
+<p>Developed by Arnaud Wolfer, Goncalo Correia.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -968,6 +969,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   
 
+
+  
 
   </body>
 </html>

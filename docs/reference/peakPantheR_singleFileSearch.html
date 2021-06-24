@@ -48,6 +48,8 @@ integrated using fallback integration regions (FIR)." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -59,9 +61,15 @@ integrated using fallback integration regions (FIR)." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,19 +83,13 @@ integrated using fallback integration regions (FIR)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -115,7 +117,7 @@ integrated using fallback integration regions (FIR)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/phenomecentre/peakPantheR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -144,7 +146,7 @@ Optimised to reduce the number of file access. Features not detected can be
 integrated using fallback integration regions (FIR).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>peakPantheR_singleFileSearch</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>peakPantheR_singleFileSearch</span><span class='op'>(</span>
     <span class='va'>singleSpectraDataPath</span>,
     <span class='va'>targetFeatTable</span>,
     peakStatistic <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -155,7 +157,7 @@ integrated using fallback integration regions (FIR).</p>
     curveModel <span class='op'>=</span> <span class='st'>"skewedGaussian"</span>,
     verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
     <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -230,7 +232,7 @@ peak-picking parameters (e.g. <code>curveModel</code>, <code>sampling</code>,
 <code>list()$ROIsDataPoint</code> <em>(list)</em> a list of <code>data.frame</code> of raw
 data points for each ROI (retention time 'rt', mass 'mz' and intensity 'int'
 (as column) of each raw data points (as row)).</p>
-<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Details:</h3>
+<h3 class='hasAnchor' id='details-'><a class='anchor' aria-hidden='true' href='#details-'></a>Details:</h3>
 <p>The returned <em>peakTable</em> <code>data.frame</code> is structured as follow:</p><table class='table'>
 <tr><td>cpdID</td><td>database compound ID</td></tr>
 <tr><td>cpdName</td><td>compound name</td></tr>
@@ -244,6 +246,7 @@ apex intensity</td></tr>
 <tr><td>mzMin</td><td>m/z peak minimum (between rtMin, rtMax)</td></tr>
 <tr><td>mzMax</td><td>m/z peak maximum (between rtMin, rtMax)</td></tr>
 <tr><td>peakArea</td><td>integrated peak area</td></tr>
+<tr><td>peakAreaRaw</td><td>integrated peak area from raw data points</td></tr>
 <tr><td>maxIntMeasured</td><td>maximum peak intensity in raw data</td></tr>
 <tr><td>maxIntPredicted</td><td>maximum peak intensity based on curve fit</td></tr>
 <tr><td>is_filled</td><td>Logical indicate if the feature was integrated using FIR
@@ -276,346 +279,354 @@ peak, but the two values cannot be directly converted</td></tr>
 <code><a href='peakPantheR_parallelAnnotation.html'>peakPantheR_parallelAnnotation</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
-<span class='co'>## Load data</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://dx.doi.org/10.1021/bi0480335'>faahKO</a></span><span class='op'>)</span>
-<span class='va'>netcdfFilePath</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko15.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span>
-
-<span class='co'>## targetFeatTable</span>
-<span class='va'>targetFeatTable</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>8</span>, dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
-                    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cpdID'</span>,<span class='st'>'cpdName'</span>,<span class='st'>'rtMin'</span>,<span class='st'>'rt'</span>,<span class='st'>'rtMax'</span>,<span class='st'>'mzMin'</span>,<span class='st'>'mz'</span>,
-                    <span class='st'>'mzMax'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>, <span class='fl'>3310.</span>, <span class='fl'>3344.888</span>, <span class='fl'>3390.</span>, <span class='fl'>522.194778</span>,
-                        <span class='fl'>522.2</span>, <span class='fl'>522.205222</span><span class='op'>)</span>
-<span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>2</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-2'</span>, <span class='st'>'Cpd 2'</span>, <span class='fl'>3280.</span>, <span class='fl'>3385.577</span>, <span class='fl'>3440.</span>, <span class='fl'>496.195038</span>,
-                        <span class='fl'>496.2</span>, <span class='fl'>496.204962</span><span class='op'>)</span>
-<span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span><span class='op'>(</span><span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>as.numeric</span>,
-                                    FUN.VALUE<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>peakPantheR_singleFileSearch</span><span class='op'>(</span><span class='va'>netcdfFilePath</span>,<span class='va'>targetFeatTable</span>,
-                                    peakStatistic<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='co'># Polarity can not be extracted from netCDF files, please set manually the</span>
-<span class='co'>#    polarity with the 'polarity' method.</span>
-<span class='co'># Reading data from 2 windows</span>
-<span class='co'># Data read in: 0.16 secs</span>
-<span class='co'># Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for</span>
-<span class='co'>#   mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and</span>
-<span class='co'>#   ROI$mzMax for ROI #1</span>
-<span class='co'># Found 2/2 features in 0.05 secs</span>
-<span class='co'># Peak statistics done in: 0 secs</span>
-<span class='co'># Feature search done in: 0.75 secs</span>
-
-<span class='va'>res</span>
-<span class='co'># $TIC</span>
-<span class='co'># [1] 2410533091</span>
-<span class='co'>#</span>
-<span class='co'># $peakTable</span>
-<span class='co'>#   found    rtMin       rt    rtMax    mzMin    mz    mzMax peakArea</span>
-<span class='co'># 1  TRUE 3309.759 3346.828 3385.410 522.1948 522.2 522.2052 26133727</span>
-<span class='co'># 2  TRUE 3345.377 3386.529 3428.279 496.2000 496.2 496.2000 35472141</span>
-<span class='co'>#   maxIntMeasured maxIntPredicted cpdID cpdName is_filled  ppm_error</span>
-<span class='co'># 1         889280        901015.8  ID-1   Cpd 1     FALSE 0.02337616</span>
-<span class='co'># 2        1128960       1113576.7  ID-2   Cpd 2     FALSE 0.02460103</span>
-<span class='co'>#   rt_dev_sec  tailingFactor  asymmetryFactor</span>
-<span class='co'># 1  1.9397590       1.015357         1.026824</span>
-<span class='co'># 2  0.9518072       1.005378         1.009318</span>
-<span class='co'>#</span>
-<span class='co'># $acquTime</span>
-<span class='co'># [1] NA</span>
-<span class='co'>#</span>
-<span class='co'>#</span>
-<span class='co'># $curveFit</span>
-<span class='co'># $curveFit[[1]]</span>
-<span class='co'># $amplitude</span>
-<span class='co'># [1] 162404.8</span>
-<span class='co'># </span>
-<span class='co'># $center</span>
-<span class='co'># [1] 3341.888</span>
-<span class='co'># </span>
-<span class='co'># $sigma</span>
-<span class='co'># [1] 0.07878613</span>
-<span class='co'># </span>
-<span class='co'># $gamma</span>
-<span class='co'># [1] 0.00183361</span>
-<span class='co'># </span>
-<span class='co'># $fitStatus</span>
-<span class='co'># [1] 2</span>
-<span class='co'># </span>
-<span class='co'># $curveModel</span>
-<span class='co'># [1] 'skewedGaussian'</span>
-<span class='co'># </span>
-<span class='co'># attr(,'class')</span>
-<span class='co'># [1] 'peakPantheR_curveFit'</span>
-<span class='co'># </span>
-<span class='co'># $curveFit[[2]]</span>
-<span class='co'># $amplitude</span>
-<span class='co'># [1] 199249.1</span>
-<span class='co'># </span>
-<span class='co'># $center</span>
-<span class='co'># [1] 3382.577</span>
-<span class='co'># </span>
-<span class='co'># $sigma</span>
-<span class='co'># [1] 0.07490442</span>
-<span class='co'># </span>
-<span class='co'># $gamma</span>
-<span class='co'># [1] 0.00114719</span>
-<span class='co'># </span>
-<span class='co'># $fitStatus</span>
-<span class='co'># [1] 2</span>
-<span class='co'># </span>
-<span class='co'># $curveModel</span>
-<span class='co'># [1] 'skewedGaussian'</span>
-<span class='co'># </span>
-<span class='co'># attr(,'class')</span>
-<span class='co'># [1] 'peakPantheR_curveFit'</span>
-<span class='co'>#</span>
-<span class='co'>#</span>
-<span class='co'># $ROIsDataPoint</span>
-<span class='co'># $ROIsDataPoint[[1]]</span>
-<span class='co'>#          rt    mz    int</span>
-<span class='co'># 1  3315.154 522.2   2187</span>
-<span class='co'># 2  3316.719 522.2   3534</span>
-<span class='co'># 3  3318.284 522.2   6338</span>
-<span class='co'># 4  3319.849 522.2  11718</span>
-<span class='co'># 5  3321.414 522.2  21744</span>
-<span class='co'># 6  3322.979 522.2  37872</span>
-<span class='co'># 7  3324.544 522.2  62424</span>
-<span class='co'># 8  3326.109 522.2  98408</span>
-<span class='co'># 9  3327.673 522.2 152896</span>
-<span class='co'># 10 3329.238 522.2 225984</span>
-<span class='co'># ...</span>
-<span class='co'>#</span>
-<span class='co'># $ROIsDataPoint[[2]]</span>
-<span class='co'>#          rt    mz     int</span>
-<span class='co'># 1  3280.725 496.2    1349</span>
-<span class='co'># 2  3290.115 496.2    2069</span>
-<span class='co'># 3  3291.680 496.2    3103</span>
-<span class='co'># 4  3293.245 496.2    5570</span>
-<span class='co'># 5  3294.809 496.2   10730</span>
-<span class='co'># 6  3296.374 496.2   20904</span>
-<span class='co'># 7  3297.939 496.2   38712</span>
-<span class='co'># 8  3299.504 496.2   64368</span>
-<span class='co'># 9  3301.069 496.2   97096</span>
-<span class='co'># 10 3302.634 496.2  136320</span>
-<span class='co'># ...</span>
-<span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='message'>Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></div><div class='output co'>#&gt; <span class='message'>Reading data from 2 windows</span></div><div class='output co'>#&gt; <span class='message'>Data read in: 1.73 secs</span></div><div class='output co'>#&gt; <span class='message'>Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></div><div class='output co'>#&gt; <span class='message'>Found 2/2 features in 0.02 secs</span></div><div class='output co'>#&gt; <span class='message'>Peak statistics done in: 0 secs</span></div><div class='output co'>#&gt; <span class='message'>Feature search done in: 2.38 secs</span></div><div class='output co'>#&gt; $TIC
-#&gt; [1] 2410533091
-#&gt; 
-#&gt; $peakTable
-#&gt;   found    rtMin       rt    rtMax    mzMin    mz    mzMax peakArea
-#&gt; 1  TRUE 3309.759 3346.828 3385.410 522.1948 522.2 522.2052 26133727
-#&gt; 2  TRUE 3345.377 3386.529 3428.279 496.2000 496.2 496.2000 35472141
-#&gt;   maxIntMeasured maxIntPredicted cpdID cpdName is_filled  ppm_error rt_dev_sec
-#&gt; 1         889280        901015.8  ID-1   Cpd 1     FALSE 0.02337616  1.9397590
-#&gt; 2        1128960       1113576.7  ID-2   Cpd 2     FALSE 0.02460103  0.9518072
-#&gt;   tailingFactor asymmetryFactor
-#&gt; 1      1.015357        1.026824
-#&gt; 2      1.005378        1.009318
-#&gt; 
-#&gt; $acquTime
-#&gt; [1] NA
-#&gt; 
-#&gt; $curveFit
-#&gt; $curveFit[[1]]
-#&gt; $amplitude
-#&gt; [1] 162404.8
-#&gt; 
-#&gt; $center
-#&gt; [1] 3341.888
-#&gt; 
-#&gt; $sigma
-#&gt; [1] 0.07878613
-#&gt; 
-#&gt; $gamma
-#&gt; [1] 0.00183361
-#&gt; 
-#&gt; $fitStatus
-#&gt; [1] 2
-#&gt; 
-#&gt; $curveModel
-#&gt; [1] "skewedGaussian"
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "peakPantheR_curveFit"
-#&gt; 
-#&gt; $curveFit[[2]]
-#&gt; $amplitude
-#&gt; [1] 199249.1
-#&gt; 
-#&gt; $center
-#&gt; [1] 3382.577
-#&gt; 
-#&gt; $sigma
-#&gt; [1] 0.07490442
-#&gt; 
-#&gt; $gamma
-#&gt; [1] 0.00114719
-#&gt; 
-#&gt; $fitStatus
-#&gt; [1] 2
-#&gt; 
-#&gt; $curveModel
-#&gt; [1] "skewedGaussian"
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "peakPantheR_curveFit"
-#&gt; 
-#&gt; 
-#&gt; $ROIsDataPoint
-#&gt; $ROIsDataPoint[[1]]
-#&gt;          rt    mz    int
-#&gt; 1  3315.154 522.2   2187
-#&gt; 2  3316.719 522.2   3534
-#&gt; 3  3318.284 522.2   6338
-#&gt; 4  3319.849 522.2  11718
-#&gt; 5  3321.414 522.2  21744
-#&gt; 6  3322.979 522.2  37872
-#&gt; 7  3324.544 522.2  62424
-#&gt; 8  3326.109 522.2  98408
-#&gt; 9  3327.673 522.2 152896
-#&gt; 10 3329.238 522.2 225984
-#&gt; 11 3330.803 522.2 308672
-#&gt; 12 3332.368 522.2 399360
-#&gt; 13 3333.933 522.2 504000
-#&gt; 14 3335.498 522.2 614656
-#&gt; 15 3337.063 522.2 711872
-#&gt; 16 3338.628 522.2 784704
-#&gt; 17 3340.193 522.2 836608
-#&gt; 18 3341.758 522.2 866304
-#&gt; 19 3343.323 522.2 882304
-#&gt; 20 3344.888 522.2 889280
-#&gt; 21 3346.453 522.2 888256
-#&gt; 22 3348.018 522.2 866816
-#&gt; 23 3349.583 522.2 827392
-#&gt; 24 3351.148 522.2 777728
-#&gt; 25 3352.713 522.2 727040
-#&gt; 26 3354.278 522.2 678464
-#&gt; 27 3355.843 522.2 629120
-#&gt; 28 3357.408 522.2 578048
-#&gt; 29 3358.973 522.2 524288
-#&gt; 30 3360.538 522.2 471040
-#&gt; 31 3362.102 522.2 416320
-#&gt; 32 3363.667 522.2 360064
-#&gt; 33 3365.232 522.2 302400
-#&gt; 34 3366.797 522.2 249152
-#&gt; 35 3368.362 522.2 202560
-#&gt; 36 3369.927 522.2 161024
-#&gt; 37 3371.492 522.2 123520
-#&gt; 38 3373.057 522.2  93160
-#&gt; 39 3374.622 522.2  71856
-#&gt; 40 3376.187 522.2  58392
-#&gt; 41 3377.752 522.2  51072
-#&gt; 42 3379.317 522.2  48376
-#&gt; 43 3380.882 522.2  49168
-#&gt; 44 3382.447 522.2  53120
-#&gt; 45 3384.012 522.2  62488
-#&gt; 46 3385.577 522.2  78680
-#&gt; 47 3387.142 522.2 102840
-#&gt; 48 3388.707 522.2 134656
-#&gt; 
-#&gt; $ROIsDataPoint[[2]]
-#&gt;          rt    mz     int
-#&gt; 1  3280.725 496.2    1349
-#&gt; 2  3290.115 496.2    2069
-#&gt; 3  3291.680 496.2    3103
-#&gt; 4  3293.245 496.2    5570
-#&gt; 5  3294.809 496.2   10730
-#&gt; 6  3296.374 496.2   20904
-#&gt; 7  3297.939 496.2   38712
-#&gt; 8  3299.504 496.2   64368
-#&gt; 9  3301.069 496.2   97096
-#&gt; 10 3302.634 496.2  136320
-#&gt; 11 3304.199 496.2  182080
-#&gt; 12 3305.764 496.2  233472
-#&gt; 13 3307.329 496.2  288064
-#&gt; 14 3308.894 496.2  341248
-#&gt; 15 3310.459 496.2  386560
-#&gt; 16 3312.024 496.2  419648
-#&gt; 17 3313.589 496.2  441344
-#&gt; 18 3315.154 496.2  454592
-#&gt; 19 3316.719 496.2  459776
-#&gt; 20 3318.284 496.2  456320
-#&gt; 21 3319.849 496.2  444736
-#&gt; 22 3321.414 496.2  425408
-#&gt; 23 3322.979 496.2  397888
-#&gt; 24 3324.544 496.2  365952
-#&gt; 25 3326.109 496.2  329856
-#&gt; 26 3327.673 496.2  288832
-#&gt; 27 3329.238 496.2  244864
-#&gt; 28 3330.803 496.2  207616
-#&gt; 29 3332.368 496.2  177216
-#&gt; 30 3333.933 496.2  148544
-#&gt; 31 3335.498 496.2  119240
-#&gt; 32 3337.063 496.2   94736
-#&gt; 33 3338.628 496.2   76832
-#&gt; 34 3340.193 496.2   64048
-#&gt; 35 3341.758 496.2   53744
-#&gt; 36 3343.323 496.2   45704
-#&gt; 37 3344.888 496.2   39576
-#&gt; 38 3346.453 496.2   35080
-#&gt; 39 3348.018 496.2   31432
-#&gt; 40 3349.583 496.2   28904
-#&gt; 41 3351.148 496.2   27064
-#&gt; 42 3352.713 496.2   25632
-#&gt; 43 3354.278 496.2   24480
-#&gt; 44 3355.843 496.2   23840
-#&gt; 45 3357.408 496.2   23688
-#&gt; 46 3358.973 496.2   24680
-#&gt; 47 3360.538 496.2   28608
-#&gt; 48 3362.102 496.2   39616
-#&gt; 49 3363.667 496.2   63344
-#&gt; 50 3365.232 496.2  107352
-#&gt; 51 3366.797 496.2  182144
-#&gt; 52 3368.362 496.2  295232
-#&gt; 53 3369.927 496.2  438016
-#&gt; 54 3371.492 496.2  592256
-#&gt; 55 3373.057 496.2  737408
-#&gt; 56 3374.622 496.2  858624
-#&gt; 57 3376.187 496.2  938368
-#&gt; 58 3377.752 496.2  982976
-#&gt; 59 3379.317 496.2 1015232
-#&gt; 60 3380.882 496.2 1057280
-#&gt; 61 3382.447 496.2 1095680
-#&gt; 62 3384.012 496.2 1122304
-#&gt; 63 3385.577 496.2 1128960
-#&gt; 64 3387.142 496.2 1111040
-#&gt; 65 3388.707 496.2 1058816
-#&gt; 66 3390.272 496.2  996608
-#&gt; 67 3391.837 496.2  942272
-#&gt; 68 3393.402 496.2  888640
-#&gt; 69 3394.966 496.2  820160
-#&gt; 70 3396.531 496.2  744448
-#&gt; 71 3398.096 496.2  674688
-#&gt; 72 3399.661 496.2  609600
-#&gt; 73 3401.226 496.2  543552
-#&gt; 74 3402.791 496.2  480896
-#&gt; 75 3404.356 496.2  428032
-#&gt; 76 3405.921 496.2  387520
-#&gt; 77 3407.486 496.2  350976
-#&gt; 78 3409.051 496.2  313984
-#&gt; 79 3410.616 496.2  276224
-#&gt; 80 3412.181 496.2  243776
-#&gt; 81 3413.746 496.2  219264
-#&gt; 82 3415.311 496.2  202368
-#&gt; 83 3416.876 496.2  189184
-#&gt; 84 3418.441 496.2  174272
-#&gt; 85 3420.006 496.2  158080
-#&gt; 86 3421.571 496.2  143744
-#&gt; 87 3423.136 496.2  135808
-#&gt; 88 3424.701 496.2  131648
-#&gt; 89 3426.266 496.2  126784
-#&gt; 90 3427.831 496.2  118328
-#&gt; 91 3429.395 496.2  109144
-#&gt; 92 3430.960 496.2  101944
-#&gt; 93 3432.525 496.2   96896
-#&gt; 94 3434.090 496.2   92048
-#&gt; 95 3435.655 496.2   86408
-#&gt; 96 3437.220 496.2   81288
-#&gt; 97 3438.785 496.2   78144
-#&gt; 
-#&gt; </div><div class='input'>
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>'faahKO'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span></span>
+<span class='r-in'><span class='co'>## Load data</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://dx.doi.org/10.1021/bi0480335'>faahKO</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>netcdfFilePath</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'cdf/KO/ko15.CDF'</span>, package <span class='op'>=</span> <span class='st'>'faahKO'</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## targetFeatTable</span></span>
+<span class='r-in'><span class='va'>targetFeatTable</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>8</span>, dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'>                    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cpdID'</span>,<span class='st'>'cpdName'</span>,<span class='st'>'rtMin'</span>,<span class='st'>'rt'</span>,<span class='st'>'rtMax'</span>,<span class='st'>'mzMin'</span>,<span class='st'>'mz'</span>,</span>
+<span class='r-in'>                    <span class='st'>'mzMax'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, stringsAsFactors<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-1'</span>, <span class='st'>'Cpd 1'</span>, <span class='fl'>3310.</span>, <span class='fl'>3344.888</span>, <span class='fl'>3390.</span>, <span class='fl'>522.194778</span>,</span>
+<span class='r-in'>                        <span class='fl'>522.2</span>, <span class='fl'>522.205222</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>targetFeatTable</span><span class='op'>[</span><span class='fl'>2</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ID-2'</span>, <span class='st'>'Cpd 2'</span>, <span class='fl'>3280.</span>, <span class='fl'>3385.577</span>, <span class='fl'>3440.</span>, <span class='fl'>496.195038</span>,</span>
+<span class='r-in'>                        <span class='fl'>496.2</span>, <span class='fl'>496.204962</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span><span class='op'>(</span><span class='va'>targetFeatTable</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>as.numeric</span>,</span>
+<span class='r-in'>                                    FUN.VALUE<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>peakPantheR_singleFileSearch</span><span class='op'>(</span><span class='va'>netcdfFilePath</span>,<span class='va'>targetFeatTable</span>,</span>
+<span class='r-in'>                                    peakStatistic<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># Polarity can not be extracted from netCDF files, please set manually the</span></span>
+<span class='r-in'><span class='co'>#    polarity with the 'polarity' method.</span></span>
+<span class='r-in'><span class='co'># Reading data from 2 windows</span></span>
+<span class='r-in'><span class='co'># Data read in: 0.16 secs</span></span>
+<span class='r-in'><span class='co'># Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for</span></span>
+<span class='r-in'><span class='co'>#   mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and</span></span>
+<span class='r-in'><span class='co'>#   ROI$mzMax for ROI #1</span></span>
+<span class='r-in'><span class='co'># Found 2/2 features in 0.05 secs</span></span>
+<span class='r-in'><span class='co'># Peak statistics done in: 0 secs</span></span>
+<span class='r-in'><span class='co'># Feature search done in: 0.75 secs</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>res</span></span>
+<span class='r-in'><span class='co'># $TIC</span></span>
+<span class='r-in'><span class='co'># [1] 2410533091</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='co'># $peakTable</span></span>
+<span class='r-in'><span class='co'>#   found    rtMin       rt    rtMax    mzMin    mz    mzMax peakArea</span></span>
+<span class='r-in'><span class='co'># 1  TRUE 3309.759 3346.828 3385.410 522.1948 522.2 522.2052 26133727</span></span>
+<span class='r-in'><span class='co'># 2  TRUE 3345.377 3386.529 3428.279 496.2000 496.2 496.2000 35472141</span></span>
+<span class='r-in'><span class='co'>#   peakAreaRaw maxIntMeasured maxIntPredicted cpdID cpdName is_filled</span></span>
+<span class='r-in'><span class='co'># 1    26071378         889280        901015.8  ID-1   Cpd 1     FALSE</span></span>
+<span class='r-in'><span class='co'># 2    36498367        1128960       1113576.7  ID-2   Cpd 2     FALSE</span></span>
+<span class='r-in'><span class='co'>#    ppm_error   rt_dev_sec  tailingFactor  asymmetryFactor</span></span>
+<span class='r-in'><span class='co'># 1 0.02337616    1.9397590       1.015357         1.026824</span></span>
+<span class='r-in'><span class='co'># 2 0.02460103    0.9518072       1.005378         1.009318</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='co'># $acquTime</span></span>
+<span class='r-in'><span class='co'># [1] NA</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='co'># $curveFit</span></span>
+<span class='r-in'><span class='co'># $curveFit[[1]]</span></span>
+<span class='r-in'><span class='co'># $amplitude</span></span>
+<span class='r-in'><span class='co'># [1] 162404.8</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $center</span></span>
+<span class='r-in'><span class='co'># [1] 3341.888</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $sigma</span></span>
+<span class='r-in'><span class='co'># [1] 0.07878613</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $gamma</span></span>
+<span class='r-in'><span class='co'># [1] 0.00183361</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $fitStatus</span></span>
+<span class='r-in'><span class='co'># [1] 2</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $curveModel</span></span>
+<span class='r-in'><span class='co'># [1] 'skewedGaussian'</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># attr(,'class')</span></span>
+<span class='r-in'><span class='co'># [1] 'peakPantheR_curveFit'</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $curveFit[[2]]</span></span>
+<span class='r-in'><span class='co'># $amplitude</span></span>
+<span class='r-in'><span class='co'># [1] 199249.1</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $center</span></span>
+<span class='r-in'><span class='co'># [1] 3382.577</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $sigma</span></span>
+<span class='r-in'><span class='co'># [1] 0.07490442</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $gamma</span></span>
+<span class='r-in'><span class='co'># [1] 0.00114719</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $fitStatus</span></span>
+<span class='r-in'><span class='co'># [1] 2</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># $curveModel</span></span>
+<span class='r-in'><span class='co'># [1] 'skewedGaussian'</span></span>
+<span class='r-in'><span class='co'># </span></span>
+<span class='r-in'><span class='co'># attr(,'class')</span></span>
+<span class='r-in'><span class='co'># [1] 'peakPantheR_curveFit'</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='co'># $ROIsDataPoint</span></span>
+<span class='r-in'><span class='co'># $ROIsDataPoint[[1]]</span></span>
+<span class='r-in'><span class='co'>#          rt    mz    int</span></span>
+<span class='r-in'><span class='co'># 1  3315.154 522.2   2187</span></span>
+<span class='r-in'><span class='co'># 2  3316.719 522.2   3534</span></span>
+<span class='r-in'><span class='co'># 3  3318.284 522.2   6338</span></span>
+<span class='r-in'><span class='co'># 4  3319.849 522.2  11718</span></span>
+<span class='r-in'><span class='co'># 5  3321.414 522.2  21744</span></span>
+<span class='r-in'><span class='co'># 6  3322.979 522.2  37872</span></span>
+<span class='r-in'><span class='co'># 7  3324.544 522.2  62424</span></span>
+<span class='r-in'><span class='co'># 8  3326.109 522.2  98408</span></span>
+<span class='r-in'><span class='co'># 9  3327.673 522.2 152896</span></span>
+<span class='r-in'><span class='co'># 10 3329.238 522.2 225984</span></span>
+<span class='r-in'><span class='co'># ...</span></span>
+<span class='r-in'><span class='co'>#</span></span>
+<span class='r-in'><span class='co'># $ROIsDataPoint[[2]]</span></span>
+<span class='r-in'><span class='co'>#          rt    mz     int</span></span>
+<span class='r-in'><span class='co'># 1  3280.725 496.2    1349</span></span>
+<span class='r-in'><span class='co'># 2  3290.115 496.2    2069</span></span>
+<span class='r-in'><span class='co'># 3  3291.680 496.2    3103</span></span>
+<span class='r-in'><span class='co'># 4  3293.245 496.2    5570</span></span>
+<span class='r-in'><span class='co'># 5  3294.809 496.2   10730</span></span>
+<span class='r-in'><span class='co'># 6  3296.374 496.2   20904</span></span>
+<span class='r-in'><span class='co'># 7  3297.939 496.2   38712</span></span>
+<span class='r-in'><span class='co'># 8  3299.504 496.2   64368</span></span>
+<span class='r-in'><span class='co'># 9  3301.069 496.2   97096</span></span>
+<span class='r-in'><span class='co'># 10 3302.634 496.2  136320</span></span>
+<span class='r-in'><span class='co'># ...</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Reading data from 2 windows</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Data read in: 3.5 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Found 2/2 features in 0.1 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Peak statistics done in: 0.01 secs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Feature search done in: 4.82 secs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $TIC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 2410533091</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $peakTable</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   found    rtMin       rt    rtMax    mzMin    mz    mzMax peakArea peakAreaRaw</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  TRUE 3309.759 3346.828 3385.410 522.1948 522.2 522.2052 26133727    26071378</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  TRUE 3345.377 3386.529 3428.279 496.2000 496.2 496.2000 35472141    36498367</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   maxIntMeasured maxIntPredicted cpdID cpdName is_filled  ppm_error rt_dev_sec</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1         889280        901015.8  ID-1   Cpd 1     FALSE 0.02337616  1.9397590</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2        1128960       1113576.7  ID-2   Cpd 2     FALSE 0.02460103  0.9518072</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   tailingFactor asymmetryFactor</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1      1.015357        1.026824</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2      1.005378        1.009318</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $acquTime</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $curveFit</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $curveFit[[1]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $amplitude</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 162404.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $center</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 3341.888</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sigma</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.07878613</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $gamma</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.00183361</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $fitStatus</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $curveModel</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "skewedGaussian"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"class")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "peakPantheR_curveFit"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $curveFit[[2]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $amplitude</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 199249.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $center</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 3382.577</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sigma</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.07490442</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $gamma</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.00114719</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $fitStatus</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $curveModel</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "skewedGaussian"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"class")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "peakPantheR_curveFit"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ROIsDataPoint</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ROIsDataPoint[[1]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          rt    mz    int</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  3315.154 522.2   2187</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  3316.719 522.2   3534</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  3318.284 522.2   6338</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  3319.849 522.2  11718</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  3321.414 522.2  21744</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  3322.979 522.2  37872</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  3324.544 522.2  62424</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  3326.109 522.2  98408</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  3327.673 522.2 152896</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 3329.238 522.2 225984</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 3330.803 522.2 308672</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 3332.368 522.2 399360</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 3333.933 522.2 504000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 3335.498 522.2 614656</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 3337.063 522.2 711872</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 3338.628 522.2 784704</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 3340.193 522.2 836608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 3341.758 522.2 866304</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 3343.323 522.2 882304</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 3344.888 522.2 889280</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21 3346.453 522.2 888256</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22 3348.018 522.2 866816</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23 3349.583 522.2 827392</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24 3351.148 522.2 777728</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25 3352.713 522.2 727040</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26 3354.278 522.2 678464</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27 3355.843 522.2 629120</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28 3357.408 522.2 578048</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29 3358.973 522.2 524288</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30 3360.538 522.2 471040</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31 3362.102 522.2 416320</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32 3363.667 522.2 360064</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33 3365.232 522.2 302400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34 3366.797 522.2 249152</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35 3368.362 522.2 202560</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 3369.927 522.2 161024</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37 3371.492 522.2 123520</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38 3373.057 522.2  93160</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39 3374.622 522.2  71856</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40 3376.187 522.2  58392</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41 3377.752 522.2  51072</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42 3379.317 522.2  48376</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43 3380.882 522.2  49168</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44 3382.447 522.2  53120</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45 3384.012 522.2  62488</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46 3385.577 522.2  78680</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47 3387.142 522.2 102840</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48 3388.707 522.2 134656</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ROIsDataPoint[[2]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          rt    mz     int</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  3280.725 496.2    1349</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  3290.115 496.2    2069</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  3291.680 496.2    3103</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  3293.245 496.2    5570</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  3294.809 496.2   10730</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  3296.374 496.2   20904</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  3297.939 496.2   38712</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  3299.504 496.2   64368</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  3301.069 496.2   97096</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 3302.634 496.2  136320</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 3304.199 496.2  182080</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 3305.764 496.2  233472</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 3307.329 496.2  288064</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 3308.894 496.2  341248</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 3310.459 496.2  386560</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 3312.024 496.2  419648</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 3313.589 496.2  441344</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 3315.154 496.2  454592</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 3316.719 496.2  459776</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 3318.284 496.2  456320</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21 3319.849 496.2  444736</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22 3321.414 496.2  425408</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23 3322.979 496.2  397888</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24 3324.544 496.2  365952</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25 3326.109 496.2  329856</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26 3327.673 496.2  288832</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27 3329.238 496.2  244864</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28 3330.803 496.2  207616</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29 3332.368 496.2  177216</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30 3333.933 496.2  148544</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31 3335.498 496.2  119240</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32 3337.063 496.2   94736</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33 3338.628 496.2   76832</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34 3340.193 496.2   64048</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35 3341.758 496.2   53744</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 3343.323 496.2   45704</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37 3344.888 496.2   39576</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38 3346.453 496.2   35080</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39 3348.018 496.2   31432</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40 3349.583 496.2   28904</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41 3351.148 496.2   27064</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42 3352.713 496.2   25632</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43 3354.278 496.2   24480</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44 3355.843 496.2   23840</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45 3357.408 496.2   23688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46 3358.973 496.2   24680</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47 3360.538 496.2   28608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48 3362.102 496.2   39616</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49 3363.667 496.2   63344</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50 3365.232 496.2  107352</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51 3366.797 496.2  182144</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52 3368.362 496.2  295232</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53 3369.927 496.2  438016</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54 3371.492 496.2  592256</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55 3373.057 496.2  737408</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 56 3374.622 496.2  858624</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 57 3376.187 496.2  938368</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 58 3377.752 496.2  982976</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 59 3379.317 496.2 1015232</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 60 3380.882 496.2 1057280</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 61 3382.447 496.2 1095680</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 62 3384.012 496.2 1122304</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 63 3385.577 496.2 1128960</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 64 3387.142 496.2 1111040</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 65 3388.707 496.2 1058816</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 66 3390.272 496.2  996608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 67 3391.837 496.2  942272</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 68 3393.402 496.2  888640</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 69 3394.966 496.2  820160</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 70 3396.531 496.2  744448</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 71 3398.096 496.2  674688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 72 3399.661 496.2  609600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 73 3401.226 496.2  543552</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 74 3402.791 496.2  480896</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 75 3404.356 496.2  428032</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 76 3405.921 496.2  387520</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 77 3407.486 496.2  350976</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 78 3409.051 496.2  313984</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 79 3410.616 496.2  276224</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 80 3412.181 496.2  243776</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 81 3413.746 496.2  219264</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 82 3415.311 496.2  202368</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 83 3416.876 496.2  189184</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 84 3418.441 496.2  174272</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 85 3420.006 496.2  158080</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 86 3421.571 496.2  143744</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 87 3423.136 496.2  135808</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 88 3424.701 496.2  131648</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 89 3426.266 496.2  126784</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 90 3427.831 496.2  118328</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 91 3429.395 496.2  109144</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 92 3430.960 496.2  101944</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 93 3432.525 496.2   96896</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 94 3434.090 496.2   92048</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 95 3435.655 496.2   86408</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 96 3437.220 496.2   81288</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 97 3438.785 496.2   78144</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -627,11 +638,11 @@ peak, but the two values cannot be directly converted</td></tr>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Arnaud Wolfer, Goncalo Correia.</p>
+  <p><p>Developed by Arnaud Wolfer, Goncalo Correia.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -639,6 +650,8 @@ peak, but the two values cannot be directly converted</td></tr>
 
   
 
+
+  
 
   </body>
 </html>
