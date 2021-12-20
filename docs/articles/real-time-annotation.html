@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -81,14 +81,14 @@
 
       
 
-      </header><script src="real-time-annotation_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Real Time Annotation</h1>
             
             <h4 data-toc-skip class="date">2020-10-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/phenomecentre/peakPantheR/blob/master/vignettes/real-time-annotation.Rmd" class="external-link"><code>vignettes/real-time-annotation.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/phenomecentre/peakPantheR/blob/HEAD/vignettes/real-time-annotation.Rmd" class="external-link"><code>vignettes/real-time-annotation.Rmd</code></a></small>
       <div class="hidden name"><code>real-time-annotation.Rmd</code></div>
 
     </div>
@@ -106,20 +106,20 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.13/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor" aria-hidden="true"></a>Introduction</h1>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.14/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
+<div class="section level1">
+<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h1>
 <p>The <code>peakPantheR</code> package is designed for the detection, integration and reporting of pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>).</p>
 <p>The <strong>Real Time Annotation</strong> is set to detect and integrate <strong>multiple</strong> compounds in <strong>one</strong> file at a time. It therefore can be deployed on a LC-MS instrument to integrate a set of pre-defined features (<em>e.g. spiked standards</em>) as soon as the acquisition of a sample is completed.</p>
-<p>Using the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
+<p>Using the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
 <ul>
 <li>Detail the <strong>Real Time Annotation</strong> concept</li>
-<li>Apply the <strong>Real Time Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> dataset</li>
+<li>Apply the <strong>Real Time Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> dataset</li>
 </ul>
-<div id="abbreviations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#abbreviations" class="anchor" aria-hidden="true"></a>Abbreviations</h2>
+<div class="section level2">
+<h2 id="abbreviations">Abbreviations<a class="anchor" aria-label="anchor" href="#abbreviations"></a>
+</h2>
 <ul>
 <li>
 <strong>ROI</strong>: <em>Regions Of Interest</em>
@@ -155,9 +155,9 @@ document.addEventListener("DOMContentLoaded", function() {
 </ul>
 </div>
 </div>
-<div id="real-time-annotation-concept" class="section level1">
-<h1 class="hasAnchor">
-<a href="#real-time-annotation-concept" class="anchor" aria-hidden="true"></a>Real Time Annotation Concept</h1>
+<div class="section level1">
+<h1 id="real-time-annotation-concept">Real Time Annotation Concept<a class="anchor" aria-label="anchor" href="#real-time-annotation-concept"></a>
+</h1>
 <p>Real time compound integration is set to process <strong>multiple</strong> compounds in <strong>one</strong> file at a time.</p>
 <p>To achieve this, <code>peakPantheR</code> will:</p>
 <ul>
@@ -175,20 +175,20 @@ document.addEventListener("DOMContentLoaded", function() {
 </li>
 </ul>
 </div>
-<div id="real-time-annotation-example" class="section level1">
-<h1 class="hasAnchor">
-<a href="#real-time-annotation-example" class="anchor" aria-hidden="true"></a>Real Time Annotation Example</h1>
-<p>In the following example we will target two pre-defined features in a single raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> package. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
-<div id="input-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#input-data" class="anchor" aria-hidden="true"></a>Input Data</h2>
-<p>The path to a MS file from the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> is located and used as input spectra:</p>
+<div class="section level1">
+<h1 id="real-time-annotation-example">Real Time Annotation Example<a class="anchor" aria-label="anchor" href="#real-time-annotation-example"></a>
+</h1>
+<p>In the following example we will target two pre-defined features in a single raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> package. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
+<div class="section level2">
+<h2 id="input-data">Input Data<a class="anchor" aria-label="anchor" href="#input-data"></a>
+</h2>
+<p>The path to a MS file from the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> is located and used as input spectra:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span>
 <span class="co">## file paths</span>
 <span class="va">input_spectraPath</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">input_spectraPath</span>
-<span class="co">#&gt; [1] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko15.CDF"</span></code></pre></div>
+<span class="co">#&gt; [1] "C:/R/R-4.1.2/library/faahKO/cdf/KO/ko15.CDF"</span></code></pre></div>
 <p>Two targeted features (<em>e.g. compounds, fragments, adducts, …</em>) are defined and stored in a table with as columns:</p>
 <ul>
 <li>
@@ -264,9 +264,9 @@ document.addEventListener("DOMContentLoaded", function() {
 </tbody>
 </table>
 </div>
-<div id="run-single-file-annotation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#run-single-file-annotation" class="anchor" aria-hidden="true"></a>Run Single File Annotation</h2>
+<div class="section level2">
+<h2 id="run-single-file-annotation">Run Single File Annotation<a class="anchor" aria-label="anchor" href="#run-single-file-annotation"></a>
+</h2>
 <p><code><a href="../reference/peakPantheR_singleFileSearch.html">peakPantheR_singleFileSearch()</a></code> takes as input a <code>singleSpectraDataPath</code> pointing to the file to process and <code>targetFeatTable</code> defining the features to integrate. The resulting annotation contains all the fitting and integration properties:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR" class="external-link">peakPantheR</a></span><span class="op">)</span>
@@ -278,11 +278,11 @@ document.addEventListener("DOMContentLoaded", function() {
                                     verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="co">#&gt; Reading data from 2 windows</span>
-<span class="co">#&gt; Data read in: 3.05 secs</span>
+<span class="co">#&gt; Data read in: 1.29 secs</span>
 <span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
-<span class="co">#&gt; Found 2/2 features in 0.15 secs</span>
-<span class="co">#&gt; Peak statistics done in: 0.02 secs</span>
-<span class="co">#&gt; Feature search done in: 4.77 secs</span></code></pre></div>
+<span class="co">#&gt; Found 2/2 features in 0.02 secs</span>
+<span class="co">#&gt; Peak statistics done in: 0 secs</span>
+<span class="co">#&gt; Feature search done in: 1.84 secs</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">annotation</span><span class="op">$</span><span class="va">TIC</span>
 <span class="co">#&gt; [1] 2410533091</span></code></pre></div>
@@ -617,15 +617,15 @@ document.addEventListener("DOMContentLoaded", function() {
 <li>
 <code>...</code> passes arguments to <code>findTargetFeatures</code> to alter peak-picking parameters (e.g. the curveModel, the sampling or fitting parameters)</li>
 </ul>
-<p>The summary plot generated by <code>plotEICsPath</code>, corresponding to the EICs of each integrated regions of interest is as follow: <img src="../man/figures/singleFileSearch_EICsPlot.png" width="700px"></p>
+<p>The summary plot generated by <code>plotEICsPath</code>, corresponding to the EICs of each integrated regions of interest is as follow: <img src="../reference/figures/singleFileSearch_EICsPlot.png" width="700px"></p>
 <blockquote>
 <p>EICs plot: Each panel correspond to a targeted feature, with the EIC extracted on the <code>mzMin</code>, <code>mzMax</code> range found. The red dot marks the RT peak apex, and the red line highlights the RT peakwidth range found (<code>rtMin</code>, <code>rtMax</code>)</p>
 </blockquote>
 </div>
 </div>
-<div id="see-also" class="section level1">
-<h1 class="hasAnchor">
-<a href="#see-also" class="anchor" aria-hidden="true"></a>See Also</h1>
+<div class="section level1">
+<h1 id="see-also">See Also<a class="anchor" aria-label="anchor" href="#see-also"></a>
+</h1>
 <ul>
 <li><a href="getting-started.html">Getting Started with peakPantheR</a></li>
 <li><a href="parallel-annotation.html">Parallel Annotation</a></li>
@@ -651,7 +651,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>

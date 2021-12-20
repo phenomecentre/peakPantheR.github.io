@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
 
       
 
-      </header><script src="peakPantheR-GUI_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>peakPantheR Graphical User Interface</h1>
@@ -89,7 +89,7 @@
             
             <h4 data-toc-skip class="date">2020-10-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/phenomecentre/peakPantheR/blob/master/vignettes/peakPantheR-GUI.Rmd" class="external-link"><code>vignettes/peakPantheR-GUI.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/phenomecentre/peakPantheR/blob/HEAD/vignettes/peakPantheR-GUI.Rmd" class="external-link"><code>vignettes/peakPantheR-GUI.Rmd</code></a></small>
       <div class="hidden name"><code>peakPantheR-GUI.Rmd</code></div>
 
     </div>
@@ -107,21 +107,21 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.13/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer, Goncalo Correia<br></p>
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor" aria-hidden="true"></a>Introduction</h1>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.14/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer, Goncalo Correia<br></p>
+<div class="section level1">
+<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h1>
 <p>The <code>peakPantheR</code> package is designed for the detection, integration and reporting of pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>).</p>
 <p>The graphical user interface implements all of <code>peakPantheR</code>’s functionalities and can be preferred to understand the methodology, select the best parameters on a subset of the samples before running the command line, or to visually explore results.</p>
-<p>Using the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
+<p>Using the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
 <ul>
 <li>Detail the step-by-step use of the <strong>graphical user interface</strong>
 </li>
-<li>Apply the <strong>GUI</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> dataset</li>
+<li>Apply the <strong>GUI</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> dataset</li>
 </ul>
-<div id="abbreviations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#abbreviations" class="anchor" aria-hidden="true"></a>Abbreviations</h2>
+<div class="section level2">
+<h2 id="abbreviations">Abbreviations<a class="anchor" aria-label="anchor" href="#abbreviations"></a>
+</h2>
 <ul>
 <li>
 <strong>ROI</strong>: <em>Regions Of Interest</em>
@@ -144,14 +144,14 @@ document.addEventListener("DOMContentLoaded", function() {
 </li>
 </ul>
 </div>
-<div id="example-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example-data" class="anchor" aria-hidden="true"></a>Example Data</h2>
-<p>This vignette employ the <code>.csv</code> or <code>.RData</code> files generated from <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> in the vignette <a href="getting-started.html">Getting Started with peakPantheR</a>.</p>
+<div class="section level2">
+<h2 id="example-data">Example Data<a class="anchor" aria-label="anchor" href="#example-data"></a>
+</h2>
+<p>This vignette employ the <code>.csv</code> or <code>.RData</code> files generated from <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> in the vignette <a href="getting-started.html">Getting Started with peakPantheR</a>.</p>
 </div>
-<div id="getting-started" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-started" class="anchor" aria-hidden="true"></a>Getting Started</h2>
+<div class="section level2">
+<h2 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
 <p>The graphical user interface is started as follow:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR" class="external-link">peakPantheR</a></span><span class="op">)</span>
@@ -164,29 +164,29 @@ document.addEventListener("DOMContentLoaded", function() {
 <p><span class="math inline">\(~\)</span></p>
 </div>
 </div>
-<div id="graphical-user-interface" class="section level1">
-<h1 class="hasAnchor">
-<a href="#graphical-user-interface" class="anchor" aria-hidden="true"></a>Graphical User Interface</h1>
-<div id="import" class="section level2">
-<h2 class="hasAnchor">
-<a href="#import" class="anchor" aria-hidden="true"></a>Import</h2>
+<div class="section level1">
+<h1 id="graphical-user-interface">Graphical User Interface<a class="anchor" aria-label="anchor" href="#graphical-user-interface"></a>
+</h1>
+<div class="section level2">
+<h2 id="import">Import<a class="anchor" aria-label="anchor" href="#import"></a>
+</h2>
 <p>The first input format is using a <code>.RData</code> file containing a <em>peakPantheRAnnotation</em> named <code>annotationObject</code>. This object can be annotated or not, for example loading a previously run annotation (<em>see the <strong>Export</strong> section for more details</em>).</p>
-<p><img src="../man/figures/01-import_RData.png" width="700px"></p>
+<p><img src="../reference/figures/01-import_RData.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>The second input format consists of multiple <code>.csv</code> files describing the targeted features, spectra to process and corresponding metadata (optional). Spectra can also be directly selected on disk.</p>
-<p><img src="../man/figures/02-import_CSV.png" width="700px"></p>
+<p><img src="../reference/figures/02-import_CSV.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="run-annotation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#run-annotation" class="anchor" aria-hidden="true"></a>Run Annotation</h2>
+<div class="section level2">
+<h2 id="run-annotation">Run Annotation<a class="anchor" aria-label="anchor" href="#run-annotation"></a>
+</h2>
 <p>With the targeted features and spectra defined, <strong>Run annotation</strong> handles the fitting parameter selection as well as downstream computation. First the use of updated regions of interest (<code>uROI</code>) and fallback integration regions (<code>FIR</code>) can be selected if available. If <code>uROI</code> haven’t been previously defined, the option will be crossed out. Secondly the curve fitting model to use can be selected from the interface. Finally <code>Parallelisation</code> enables the selection of the number of CPU cores to employ for parallel file access and processing.</p>
-<p><img src="../man/figures/03-Run_annotation.png" width="700px"></p>
+<p><img src="../reference/figures/03-Run_annotation.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="diagnostic-plot-update" class="section level2">
-<h2 class="hasAnchor">
-<a href="#diagnostic-plot-update" class="anchor" aria-hidden="true"></a>Diagnostic: plot &amp; update</h2>
+<div class="section level2">
+<h2 id="diagnostic-plot-update">Diagnostic: plot &amp; update<a class="anchor" aria-label="anchor" href="#diagnostic-plot-update"></a>
+</h2>
 <blockquote>
 <p><strong>Note:</strong></p>
 <p>The targeted regions of interest (<code>ROI</code>) should represent a good starting point for feature integration, however it might be necessary to refine these boundary box to the specific analytical run considered. This ensures a successful integration over all the spectra irrespective of potential chromatographic equilibration differences or retention time drift.</p>
@@ -197,52 +197,52 @@ document.addEventListener("DOMContentLoaded", function() {
 <p>With all features integrated in all samples, <strong>Diagnostic</strong> provide tools to assess the quality of the peak integration and refine integration boundaries by setting <code>uROI</code> and <code>FIR</code> adapted to the specific chromatographic run being processed.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><code>Annotation statistics</code> summarises the success in integrating each targeted feature. The <code>ratio of peaks found (%)</code>, <code>ratio of peaks filled (%)</code> and the average <code>ppm error</code> and <code>RT deviation (s)</code> will highlight a feature that wasn’t reliably integrated over a large number of samples. Visual evaluation (<em>see below</em>) and the adjustment of <code>uROI</code> or <code>FIR</code> might assist in tuning the integration of said feature.</p>
-<p><img src="../man/figures/04-Diagnostic_statistics.png" width="700px"></p>
+<p><img src="../reference/figures/04-Diagnostic_statistics.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><code>Update uROI/FIR</code> automatically sets <code>uROI</code> and <code>FIR</code> for each feature based on the <em>RT</em> / <em>m/z</em> boundaries of the peaks successfully integrated.</p>
-<p><img src="../man/figures/05-Diagnostic_updateUROIFIR.png" width="700px"></p>
+<p><img src="../reference/figures/05-Diagnostic_updateUROIFIR.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><code>Diagnostic plot</code> offer a visualisation of a selected feature across all samples in order of analysis. This visualisation highlights the fitting of the feature in each sample, as well as the change in <em>RT</em> / <em>m/z</em> (of the peak apex) and peak area through time. Samples can be automatically coloured based on a <em>sample metadata</em> column.</p>
-<p><img src="../man/figures/06-Diagnostic_plot.png" width="700px"></p>
+<p><img src="../reference/figures/06-Diagnostic_plot.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Once <code>uROI</code> and <code>FIR</code> are successfully set, it is possible to go back to the <strong>Run annotation</strong> tab and refit all features in all samples (<em>Note: this will overwrite the current results</em>).</p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="view-results" class="section level2">
-<h2 class="hasAnchor">
-<a href="#view-results" class="anchor" aria-hidden="true"></a>View results</h2>
+<div class="section level2">
+<h2 id="view-results">View results<a class="anchor" aria-label="anchor" href="#view-results"></a>
+</h2>
 <p>If the features integration are satisfactory, <strong>View results</strong> regroups all the integration results</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><code>Overall results</code> displays a fitting property for all targeted features (<em>as columns</em>) and all spectra (<em>as rows</em>).</p>
-<p><img src="../man/figures/07-Results_Overall.png" width="700px"></p>
+<p><img src="../reference/figures/07-Results_Overall.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><code>Results per targeted feature</code> displays all fitting properties (<em>as columns</em>) for all samples (<em>as rows</em>) for a selected targeted feature.</p>
-<p><img src="../man/figures/08-Results_byFeature.png" width="700px"></p>
+<p><img src="../reference/figures/08-Results_byFeature.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><code>Results per sample</code> displays all fitting properties (<em>as columns</em>) for all targeted features (<em>as rows</em>) for a selected sample.</p>
-<p><img src="../man/figures/09-Results_bySample.png" width="700px"></p>
+<p><img src="../reference/figures/09-Results_bySample.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="export" class="section level2">
-<h2 class="hasAnchor">
-<a href="#export" class="anchor" aria-hidden="true"></a>Export</h2>
+<div class="section level2">
+<h2 id="export">Export<a class="anchor" aria-label="anchor" href="#export"></a>
+</h2>
 <p>The <strong>Export</strong> tab manages the saving of input parameters, annotation results and automated reporting.</p>
 <p>The <code>peakPantheRAnnotation</code> in it’s current state can be saved as a <code>.RData</code> file which can subsequently be reloaded. The <code>.csv</code> files defining the current analysis can also be exported to reproduce the current processing.</p>
 <p>All diagnostic plots from the <code>Diagnostic</code> tab can be automatically saved to disk for rapid evaluation. This can be executed in parallel if a large number of plots have to be generated.</p>
 <p>Finally each fitting property can be saved as a <code>.csv</code> file with all samples as <em>rows</em> and all targeted features as <em>columns</em>. Additionally a <em>summary</em> table will present the integration success rate for each targeted feature.</p>
-<p><img src="../man/figures/10-Export.png" width="700px"></p>
+<p><img src="../reference/figures/10-Export.png" width="700px"></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 </div>
-<div id="final-note" class="section level1">
-<h1 class="hasAnchor">
-<a href="#final-note" class="anchor" aria-hidden="true"></a>Final Note</h1>
+<div class="section level1">
+<h1 id="final-note">Final Note<a class="anchor" aria-label="anchor" href="#final-note"></a>
+</h1>
 <p>If a very high number of targeted features and samples are to be processed, <code>peakPantheR</code>’s command line functions are more efficient, as they can be integrated in scripts and the reporting automated.</p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="see-also" class="section level1">
-<h1 class="hasAnchor">
-<a href="#see-also" class="anchor" aria-hidden="true"></a>See Also</h1>
+<div class="section level1">
+<h1 id="see-also">See Also<a class="anchor" aria-label="anchor" href="#see-also"></a>
+</h1>
 <ul>
 <li><a href="getting-started.html">Getting Started with peakPantheR</a></li>
 <li><a href="real-time-annotation.html">Real Time Annotation</a></li>
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>

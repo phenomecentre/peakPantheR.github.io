@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -81,14 +81,14 @@
 
       
 
-      </header><script src="getting-started_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started with the peakPantheR package</h1>
             
             <h4 data-toc-skip class="date">2020-10-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/phenomecentre/peakPantheR/blob/master/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/phenomecentre/peakPantheR/blob/HEAD/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
       <div class="hidden name"><code>getting-started.Rmd</code></div>
 
     </div>
@@ -106,11 +106,11 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.13/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.14/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
 <p>Package for <em>Peak Picking and ANnoTation of High resolution Experiments in R</em>, implemented in <code>R</code> and <code>Shiny</code></p>
-<div id="overview" class="section level1">
-<h1 class="hasAnchor">
-<a href="#overview" class="anchor" aria-hidden="true"></a>Overview</h1>
+<div class="section level1">
+<h1 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h1>
 <p><code>peakPantheR</code> implements functions to detect, integrate and report pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>).</p>
 <p>It is designed for:</p>
 <ul>
@@ -127,11 +127,11 @@ document.addEventListener("DOMContentLoaded", function() {
 </ul>
 </li>
 </ul>
-<p><code>peakPantheR</code> can process LC/MS data files in <em>NetCDF</em>, <em>mzML</em>/<em>mzXML</em> and <em>mzData</em> format as data import is achieved using Bioconductor’s <em><a href="https://bioconductor.org/packages/3.13/mzR" class="external-link">mzR</a></em> package.</p>
+<p><code>peakPantheR</code> can process LC/MS data files in <em>NetCDF</em>, <em>mzML</em>/<em>mzXML</em> and <em>mzData</em> format as data import is achieved using Bioconductor’s <em><a href="https://bioconductor.org/packages/3.14/mzR" class="external-link">mzR</a></em> package.</p>
 </div>
-<div id="installation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h1>
+<div class="section level1">
+<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h1>
 <p>To install <code>peakPantheR</code> from Bioconductor:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
@@ -142,34 +142,34 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install devtools</span>
 <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"phenomecentre/peakPantheR"</span><span class="op">)</span></code></pre></div>
-<div id="getting-started" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-started" class="anchor" aria-hidden="true"></a>Getting Started</h2>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"phenomecentre/peakPantheR"</span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
 <p>To get started <code>peakPantheR</code>’s <a href="peakPantheR-GUI.html">graphical user interface</a> implements all the functions to detect and integrate <strong>multiple</strong> compounds in <strong>multiple</strong> files in <strong>parallel</strong> and store results in a <strong>single</strong> object. It can be employed to integrate a large number of expected features across a dataset:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR" class="external-link">peakPantheR</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/peakPantheR_start_GUI.html">peakPantheR_start_GUI</a></span><span class="op">(</span>browser <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#  To exit press ESC in the command line</span></code></pre></div>
-<p><img src="../man/figures/example-UI.png" width="700px" style="display: block; margin: auto;"></p>
+<p><img src="../reference/figures/example-UI.png" width="700px" style="display: block; margin: auto;"></p>
 <p>The GUI is to be preferred to understand the methodology, select the best parameters on a subset of the samples before running the command line, or to visually explore results.</p>
 <p>If a very high number of samples and features is to be processed, <code>peakpantheR</code>’s command line functions are more efficient, as they can be integrated in scripts and the reporting automated.</p>
 </div>
 </div>
-<div id="input-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#input-data" class="anchor" aria-hidden="true"></a>Input Data</h1>
+<div class="section level1">
+<h1 id="input-data">Input Data<a class="anchor" aria-label="anchor" href="#input-data"></a>
+</h1>
 <p>Both real time and parallel compound integration require a common set of information:</p>
 <ul>
 <li>Path(s) to <code>netCDF</code> / <code>mzML</code> MS file(s)</li>
 <li>An expected region of interest (<code>RT</code> / <code>m/z</code> window) for each compound.</li>
 </ul>
-<div id="ms-files" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ms-files" class="anchor" aria-hidden="true"></a>MS files</h2>
-<p>For demonstration purpose we can annotate a set a set of raw MS spectra (in <em>NetCDF</em> format) provided by the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> package. Briefly, this subset of the data from <span class="citation">(Saghatelian et al. 2004)</span> invesigate the metabolic consequences of knocking out the fatty acid amide hydrolase (FAAH) gene in mice. The dataset consists of samples from the spinal cords of 6 knock-out and 6 wild-type mice. Each file contains data in centroid mode acquired in positive ion mode form 200-600 m/z and 2500-4500 seconds.</p>
-<p>Below we install the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> package and locate raw CDF files of interest:</p>
+<div class="section level2">
+<h2 id="ms-files">MS files<a class="anchor" aria-label="anchor" href="#ms-files"></a>
+</h2>
+<p>For demonstration purpose we can annotate a set a set of raw MS spectra (in <em>NetCDF</em> format) provided by the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> package. Briefly, this subset of the data from <span class="citation">(Saghatelian et al. 2004)</span> invesigate the metabolic consequences of knocking out the fatty acid amide hydrolase (FAAH) gene in mice. The dataset consists of samples from the spinal cords of 6 knock-out and 6 wild-type mice. Each file contains data in centroid mode acquired in positive ion mode form 200-600 m/z and 2500-4500 seconds.</p>
+<p>Below we install the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> package and locate raw CDF files of interest:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
@@ -182,13 +182,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,
                         <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko18.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">input_spectraPaths</span>
-<span class="co">#&gt; [1] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko15.CDF"</span>
-<span class="co">#&gt; [2] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko16.CDF"</span>
-<span class="co">#&gt; [3] "C:/R/R-4.1.0/library/faahKO/cdf/KO/ko18.CDF"</span></code></pre></div>
+<span class="co">#&gt; [1] "C:/R/R-4.1.2/library/faahKO/cdf/KO/ko15.CDF"</span>
+<span class="co">#&gt; [2] "C:/R/R-4.1.2/library/faahKO/cdf/KO/ko16.CDF"</span>
+<span class="co">#&gt; [3] "C:/R/R-4.1.2/library/faahKO/cdf/KO/ko18.CDF"</span></code></pre></div>
 </div>
-<div id="expected-regions-of-interest" class="section level2">
-<h2 class="hasAnchor">
-<a href="#expected-regions-of-interest" class="anchor" aria-hidden="true"></a>Expected regions of interest</h2>
+<div class="section level2">
+<h2 id="expected-regions-of-interest">Expected regions of interest<a class="anchor" aria-label="anchor" href="#expected-regions-of-interest"></a>
+</h2>
 <p>Expected regions of interest (targeted features) are specified using the following information:</p>
 <ul>
 <li>
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <li>
 <code>mz</code> (m/z, optional / <code>NA</code>)</li>
 </ul>
-<p>Below we define 2 features of interest that are present in the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> dataset and can be employed in subsequent vignettes:</p>
+<p>Below we define 2 features of interest that are present in the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> dataset and can be employed in subsequent vignettes:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># targetFeatTable</span>
 <span class="va">input_targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>, 
@@ -266,14 +266,15 @@ document.addEventListener("DOMContentLoaded", function() {
 </table>
 </div>
 </div>
-<div id="preparing-input-for-the-graphical-user-interface" class="section level1">
-<h1 class="hasAnchor">
-<a href="#preparing-input-for-the-graphical-user-interface" class="anchor" aria-hidden="true"></a>Preparing input for the graphical user interface</h1>
+<div class="section level1">
+<h1 id="preparing-input-for-the-graphical-user-interface">Preparing input for the graphical user interface<a class="anchor" aria-label="anchor" href="#preparing-input-for-the-graphical-user-interface"></a>
+</h1>
 <p>While the command line functions accept Data.Frame and vectors as input, the graphical user interface (GUI) will read the same information from a set of <code>.csv</code> files, or an already set-up <code>peakPantheRAnnotation</code> object in <code>.RData</code> format.</p>
-<p>We can now generate GUI input files for the <em><a href="https://bioconductor.org/packages/3.13/faahKO" class="external-link">faahKO</a></em> example dataset presented previously:</p>
-<div id="peakpantherannotation--rdata" class="section level2">
-<h2 class="hasAnchor">
-<a href="#peakpantherannotation--rdata" class="anchor" aria-hidden="true"></a><em>peakPantheRAnnotation</em> .RData</h2>
+<p>We can now generate GUI input files for the <em><a href="https://bioconductor.org/packages/3.14/faahKO" class="external-link">faahKO</a></em> example dataset presented previously:</p>
+<div class="section level2">
+<h2 id="peakpantherannotation--rdata">
+<em>peakPantheRAnnotation</em> .RData<a class="anchor" aria-label="anchor" href="#peakpantherannotation--rdata"></a>
+</h2>
 <p>A <code>peakPantheRAnnotation</code> (previously annotated or not) can be passed as input in a <code>.RData</code> file. The <code>peakPantheRAnnotation</code> object must be named <em>annotationObject</em>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span>
@@ -317,13 +318,13 @@ document.addEventListener("DOMContentLoaded", function() {
         file <span class="op">=</span> <span class="st">'./example_annotation_ppR_UI.RData'</span>,
         compress<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="csv-file-input" class="section level2">
-<h2 class="hasAnchor">
-<a href="#csv-file-input" class="anchor" aria-hidden="true"></a>CSV file input</h2>
+<div class="section level2">
+<h2 id="csv-file-input">CSV file input<a class="anchor" aria-label="anchor" href="#csv-file-input"></a>
+</h2>
 <p>Another input option for the GUI input consists of a set of <code>.csv</code> files.</p>
-<div id="targeted-features" class="section level3">
-<h3 class="hasAnchor">
-<a href="#targeted-features" class="anchor" aria-hidden="true"></a>Targeted features</h3>
+<div class="section level3">
+<h3 id="targeted-features">Targeted features<a class="anchor" aria-label="anchor" href="#targeted-features"></a>
+</h3>
 <p>Targeted features are defined in a <code>.csv</code> with as rows each feature to target (the first row must be the column name), and as columns the fit parameters to use. At minimum the following parameters must be defined:</p>
 <p><code>cpdID</code>, <code>cpdName</code>, <code>rtMin</code>, <code>rt</code>, <code>rtMax</code>, <code>mzMin</code>, <code>mz</code>, <code>mzMax</code></p>
 <p>If <code>uROI</code> and <code>FIR</code> are to be set, the following columns must be provided:</p>
@@ -388,9 +389,9 @@ document.addEventListener("DOMContentLoaded", function() {
 </tbody>
 </table>
 </div>
-<div id="files-to-process-and-spectra-metadata-optional" class="section level3">
-<h3 class="hasAnchor">
-<a href="#files-to-process-and-spectra-metadata-optional" class="anchor" aria-hidden="true"></a>Files to process and spectra metadata (optional)</h3>
+<div class="section level3">
+<h3 id="files-to-process-and-spectra-metadata-optional">Files to process and spectra metadata (optional)<a class="anchor" aria-label="anchor" href="#files-to-process-and-spectra-metadata-optional"></a>
+</h3>
 <p>It is possible to select the files on disk directly through the GUI, or to select a <code>.csv</code> file containing each file path as well as spectra metadata. Each row correspond to a different spectra (the first row must define the column names) while columns correspond to the path on disk and metadata. At minimum a column <code>filepath</code> must be present, with subsequent columns defining metadata properties.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Define the spectra paths and metada</span>
@@ -421,26 +422,26 @@ document.addEventListener("DOMContentLoaded", function() {
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">C:/R/R-4.1.0/library/faahKO/cdf/KO/ko15.CDF</td>
+<td align="center">C:/R/R-4.1.2/library/faahKO/cdf/KO/ko15.CDF</td>
 <td align="center">c</td>
 <td align="center">3</td>
 </tr>
 <tr class="even">
-<td align="center">C:/R/R-4.1.0/library/faahKO/cdf/KO/ko16.CDF</td>
+<td align="center">C:/R/R-4.1.2/library/faahKO/cdf/KO/ko16.CDF</td>
 <td align="center">d</td>
 <td align="center">4</td>
 </tr>
 <tr class="odd">
-<td align="center">C:/R/R-4.1.0/library/faahKO/cdf/KO/ko18.CDF</td>
+<td align="center">C:/R/R-4.1.2/library/faahKO/cdf/KO/ko18.CDF</td>
 <td align="center">e</td>
 <td align="center">5</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="feature-meatadata-optional" class="section level3">
-<h3 class="hasAnchor">
-<a href="#feature-meatadata-optional" class="anchor" aria-hidden="true"></a>Feature meatadata (optional)</h3>
+<div class="section level3">
+<h3 id="feature-meatadata-optional">Feature meatadata (optional)<a class="anchor" aria-label="anchor" href="#feature-meatadata-optional"></a>
+</h3>
 <p>It is possible to define some feature metadata, with targeted features as rows (same order as the fitting parameters, first row defining the column names), and as columns the metadata.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Define the feature metada</span>
@@ -477,18 +478,18 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 </div>
 </div>
-<div id="see-also" class="section level1">
-<h1 class="hasAnchor">
-<a href="#see-also" class="anchor" aria-hidden="true"></a>See Also</h1>
+<div class="section level1">
+<h1 id="see-also">See Also<a class="anchor" aria-label="anchor" href="#see-also"></a>
+</h1>
 <ul>
 <li><a href="real-time-annotation.html">Real Time Annotation</a></li>
 <li><a href="parallel-annotation.html">Parallel Annotation</a></li>
 <li><a href="peakPantheR-GUI.html">Graphical user interface use</a></li>
 </ul>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor" aria-hidden="true"></a>References</h1>
+<div class="section level1 unnumbered">
+<h1 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Saghatelian04" class="csl-entry">
 Saghatelian, A., S. A. Trauger, E. J. Want, E. G. Hawkins, G. Siuzdak, and B. F. Cravatt. 2004. <span>“Assignment of Endogenous Substrates to Enzymes by Global Metabolite Profiling.”</span> <em>Biochemistry</em> 43: 14332–39. <a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">http://dx.doi.org/10.1021/bi0480335</a>.
@@ -514,7 +515,7 @@ Saghatelian, A., S. A. Trauger, E. J. Want, E. G. Hawkins, G. Siuzdak, and B. F.
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
