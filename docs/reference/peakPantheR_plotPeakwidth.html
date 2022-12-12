@@ -21,7 +21,7 @@ rotateAxis=TRUE x is the measurement values and y the run order."><!-- mathjax -
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -77,82 +77,99 @@ input order. If <code>rotateAxis=FALSE</code> x is run order / plot order, y is 
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span>
-    <span class="va">apexValue</span>,
-    widthMin <span class="op">=</span> <span class="cn">NULL</span>,
-    widthMax <span class="op">=</span> <span class="cn">NULL</span>,
-    acquTime <span class="op">=</span> <span class="cn">NULL</span>,
-    varName <span class="op">=</span> <span class="st">"variable"</span>,
-    sampleColour <span class="op">=</span> <span class="cn">NULL</span>,
-    rotateAxis <span class="op">=</span> <span class="cn">FALSE</span>,
-    verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span></span>
+<span>    <span class="va">apexValue</span>,</span>
+<span>    widthMin <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    widthMax <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    acquTime <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    varName <span class="op">=</span> <span class="st">"variable"</span>,</span>
+<span>    sampleColour <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    rotateAxis <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>apexValue</dt>
 <dd><p>(float) vector of apex value</p></dd>
+
+
 <dt>widthMin</dt>
 <dd><p>(float) vector of detected peak minimum peakwidth value or
 NULL (if NULL no peakwidth)</p></dd>
+
+
 <dt>widthMax</dt>
 <dd><p>(float) vector of detected peak maximum peakwidth value or
 NULL (uf NULL no peakwidth)</p></dd>
+
+
 <dt>acquTime</dt>
 <dd><p>(POSIXct) vector of sample acquisition time as POSIXct or
 NULL (if NULL points are plotted in the order values are passed as input with
 the first on top or left)</p></dd>
+
+
 <dt>varName</dt>
 <dd><p>(str) Name of the variable to plot</p></dd>
+
+
 <dt>sampleColour</dt>
 <dd><p>(str) NULL or vector colour for each sample (same length
 as <code>apexValue</code>, <code>widthMin</code>, <code>widthMax</code>, <code>acquTime</code>)</p></dd>
+
+
 <dt>rotateAxis</dt>
 <dd><p>(bool) if TRUE x and y axis are reversed</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>(bool) if TRUE message when NA scans are removed</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Grob (ggplot object)</p>
+    
+
+<p>Grob (ggplot object)</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Input data</span></span>
-<span class="r-in"><span class="va">apexVal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">minVal</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">maxVal</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">acqTime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'2017-07-13 21:06:14'</span>, <span class="st">'2017-07-14 21:06:14'</span>, </span>
-<span class="r-in">                        <span class="st">'2017-07-15 21:06:14'</span>, <span class="st">'2017-07-16 21:06:14'</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Plot 4 sampels with colour</span></span>
-<span class="r-in"><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span>apexValue<span class="op">=</span><span class="va">apexVal</span>, widthMin<span class="op">=</span><span class="va">minVal</span>,widthMax<span class="op">=</span><span class="va">maxVal</span>,</span>
-<span class="r-in">                        acquTime<span class="op">=</span><span class="cn">NULL</span>, varName<span class="op">=</span><span class="st">'Test variable 1'</span>,</span>
-<span class="r-in">                        sampleColour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>,<span class="st">'red'</span>,<span class="st">'green'</span>,<span class="st">'orange'</span><span class="op">)</span>,</span>
-<span class="r-in">                        rotateAxis<span class="op">=</span><span class="cn">FALSE</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Input data</span></span></span>
+<span class="r-in"><span><span class="va">apexVal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">minVal</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">maxVal</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">acqTime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'2017-07-13 21:06:14'</span>, <span class="st">'2017-07-14 21:06:14'</span>, </span></span>
+<span class="r-in"><span>                        <span class="st">'2017-07-15 21:06:14'</span>, <span class="st">'2017-07-16 21:06:14'</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Plot 4 sampels with colour</span></span></span>
+<span class="r-in"><span><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span>apexValue<span class="op">=</span><span class="va">apexVal</span>, widthMin<span class="op">=</span><span class="va">minVal</span>,widthMax<span class="op">=</span><span class="va">maxVal</span>,</span></span>
+<span class="r-in"><span>                        acquTime<span class="op">=</span><span class="cn">NULL</span>, varName<span class="op">=</span><span class="st">'Test variable 1'</span>,</span></span>
+<span class="r-in"><span>                        sampleColour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>,<span class="st">'red'</span>,<span class="st">'green'</span>,<span class="st">'orange'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                        rotateAxis<span class="op">=</span><span class="cn">FALSE</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="peakPantheR_plotPeakwidth-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Plot 4 samples with colour by acquisition time</span></span>
-<span class="r-in"><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span>apexValue<span class="op">=</span><span class="va">apexVal</span>, widthMin<span class="op">=</span><span class="va">minVal</span>,widthMax<span class="op">=</span><span class="va">maxVal</span>,</span>
-<span class="r-in">                        acquTime<span class="op">=</span><span class="va">acqTime</span>, varName<span class="op">=</span><span class="st">'Test variable 2'</span>,</span>
-<span class="r-in">                        sampleColour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>,<span class="st">'red'</span>,<span class="st">'green'</span>,<span class="st">'orange'</span><span class="op">)</span>,</span>
-<span class="r-in">                        rotateAxis<span class="op">=</span><span class="cn">FALSE</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Plot 4 samples with colour by acquisition time</span></span></span>
+<span class="r-in"><span><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span>apexValue<span class="op">=</span><span class="va">apexVal</span>, widthMin<span class="op">=</span><span class="va">minVal</span>,widthMax<span class="op">=</span><span class="va">maxVal</span>,</span></span>
+<span class="r-in"><span>                        acquTime<span class="op">=</span><span class="va">acqTime</span>, varName<span class="op">=</span><span class="st">'Test variable 2'</span>,</span></span>
+<span class="r-in"><span>                        sampleColour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>,<span class="st">'red'</span>,<span class="st">'green'</span>,<span class="st">'orange'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                        rotateAxis<span class="op">=</span><span class="cn">FALSE</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="peakPantheR_plotPeakwidth-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Plot 4 samples with colour, rotate axis</span></span>
-<span class="r-in"><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span>apexValue<span class="op">=</span><span class="va">apexVal</span>, widthMin<span class="op">=</span><span class="va">minVal</span>,widthMax<span class="op">=</span><span class="va">maxVal</span>,</span>
-<span class="r-in">                        acquTime<span class="op">=</span><span class="cn">NULL</span>, varName<span class="op">=</span><span class="st">'Test variable 3'</span>,</span>
-<span class="r-in">                        sampleColour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>,<span class="st">'red'</span>,<span class="st">'green'</span>,<span class="st">'orange'</span><span class="op">)</span>,</span>
-<span class="r-in">                        rotateAxis<span class="op">=</span><span class="cn">TRUE</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Plot 4 samples with colour, rotate axis</span></span></span>
+<span class="r-in"><span><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span>apexValue<span class="op">=</span><span class="va">apexVal</span>, widthMin<span class="op">=</span><span class="va">minVal</span>,widthMax<span class="op">=</span><span class="va">maxVal</span>,</span></span>
+<span class="r-in"><span>                        acquTime<span class="op">=</span><span class="cn">NULL</span>, varName<span class="op">=</span><span class="st">'Test variable 3'</span>,</span></span>
+<span class="r-in"><span>                        sampleColour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>,<span class="st">'red'</span>,<span class="st">'green'</span>,<span class="st">'orange'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                        rotateAxis<span class="op">=</span><span class="cn">TRUE</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="peakPantheR_plotPeakwidth-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Plot 4 samples with colour by acquisition time, rotate axis</span></span>
-<span class="r-in"><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span>apexValue<span class="op">=</span><span class="va">apexVal</span>, widthMin<span class="op">=</span><span class="va">minVal</span>,widthMax<span class="op">=</span><span class="va">maxVal</span>,</span>
-<span class="r-in">                        acquTime<span class="op">=</span><span class="va">acqTime</span>, varName<span class="op">=</span><span class="st">'Test variable 4'</span>,</span>
-<span class="r-in">                        sampleColour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>,<span class="st">'red'</span>,<span class="st">'green'</span>,<span class="st">'orange'</span><span class="op">)</span>,</span>
-<span class="r-in">                        rotateAxis<span class="op">=</span><span class="cn">FALSE</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Plot 4 samples with colour by acquisition time, rotate axis</span></span></span>
+<span class="r-in"><span><span class="fu">peakPantheR_plotPeakwidth</span><span class="op">(</span>apexValue<span class="op">=</span><span class="va">apexVal</span>, widthMin<span class="op">=</span><span class="va">minVal</span>,widthMax<span class="op">=</span><span class="va">maxVal</span>,</span></span>
+<span class="r-in"><span>                        acquTime<span class="op">=</span><span class="va">acqTime</span>, varName<span class="op">=</span><span class="st">'Test variable 4'</span>,</span></span>
+<span class="r-in"><span>                        sampleColour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>,<span class="st">'red'</span>,<span class="st">'green'</span>,<span class="st">'orange'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                        rotateAxis<span class="op">=</span><span class="cn">FALSE</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="peakPantheR_plotPeakwidth-4.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -168,7 +185,7 @@ as <code>apexValue</code>, <code>widthMin</code>, <code>widthMax</code>, <code>a
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -18,7 +18,7 @@ parameters can be passed or guessed."><!-- mathjax --><script src="https://cdnjs
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -71,26 +71,35 @@ parameters can be passed or guessed.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fitCurve</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, curveModel <span class="op">=</span> <span class="st">"skewedGaussian"</span>, params <span class="op">=</span> <span class="st">"guess"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fitCurve</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, curveModel <span class="op">=</span> <span class="st">"skewedGaussian"</span>, params <span class="op">=</span> <span class="st">"guess"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>(numeric) x values (e.g. retention time)</p></dd>
+
+
 <dt>y</dt>
 <dd><p>(numeric) y observed values (e.g. spectra intensity)</p></dd>
+
+
 <dt>curveModel</dt>
 <dd><p>(str) name of the curve model to fit (currently
 <code>skewedGaussian</code> and <code>emgGaussian</code>)</p></dd>
+
+
 <dt>params</dt>
 <dd><p>(list or str) either 'guess' for automated parametrisation or
 list of initial parameters (<code>$init_params</code>), lower parameter bounds
 (<code>$lower_bounds</code>) and upper parameter bounds (<code>$upper_bounds</code>)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A 'peakPantheR_curveFit': a list of fitted curve parameters,
+    
+
+<p>A 'peakPantheR_curveFit': a list of fitted curve parameters,
 <code>fitStatus</code> from <code>nls.lm$info</code> and curve shape name
 <code>curveModel</code>. <code>fitStatus=0</code> unsuccessful completion: improper input
 parameters, <code>fitStatus=1</code> successful completion: first convergence test
@@ -156,7 +165,7 @@ fitted_curve
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

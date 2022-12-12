@@ -27,7 +27,7 @@ previousAnnotation."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -88,119 +88,144 @@ the slots (<code>filepath</code> (from <code>spectraPaths</code>), <code>ROI</co
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S4 method for peakPantheRAnnotation</span>
-<span class="fu">resetAnnotation</span><span class="op">(</span>
-    <span class="va">previousAnnotation</span>,
-    spectraPaths <span class="op">=</span> <span class="cn">NULL</span>,
-    targetFeatTable <span class="op">=</span> <span class="cn">NULL</span>,
-    uROI <span class="op">=</span> <span class="cn">NULL</span>,
-    FIR <span class="op">=</span> <span class="cn">NULL</span>,
-    cpdMetadata <span class="op">=</span> <span class="cn">NULL</span>,
-    spectraMetadata <span class="op">=</span> <span class="cn">NULL</span>,
-    uROIExist <span class="op">=</span> <span class="cn">NULL</span>,
-    useUROI <span class="op">=</span> <span class="cn">NULL</span>,
-    useFIR <span class="op">=</span> <span class="cn">NULL</span>,
-    verbose <span class="op">=</span> <span class="cn">TRUE</span>,
-    <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S4 method for peakPantheRAnnotation</span></span>
+<span><span class="fu">resetAnnotation</span><span class="op">(</span></span>
+<span>    <span class="va">previousAnnotation</span>,</span>
+<span>    spectraPaths <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    targetFeatTable <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    uROI <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    FIR <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    cpdMetadata <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    spectraMetadata <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    uROIExist <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    useUROI <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    useFIR <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>previousAnnotation</dt>
 <dd><p>(peakPantheRAnnotation) object to reset</p></dd>
+
+
 <dt>spectraPaths</dt>
 <dd><p>NULL or a character vector of spectra file paths, to set
 samples to process</p></dd>
+
+
 <dt>targetFeatTable</dt>
 <dd><p>NULL or a <code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></code> of compounds to
 target as rows and parameters as columns: <code>cpdID</code> (str), <code>cpdName</code>
 (str), <code>rtMin</code> (float in seconds), <code>rt</code> (float in seconds, or
 <em>NA</em>), <code>rtMax</code> (float in seconds), <code>mzMin</code> (float), <code>mz</code>
 (float or <em>NA</em>), <code>mzMax</code> (float). Set compounds to target.</p></dd>
+
+
 <dt>uROI</dt>
 <dd><p>NULL or a data.frame of updated Regions Of Interest (uROI) with
 compounds as row and uROI parameters as columns: <code>rtMin</code> (float in
 seconds), <code>rt</code> (float in seconds, or <em>NA</em>), <code>rtMax</code> (float in
 seconds), <code>mzMin</code> (float), <code>mz</code> (float or <em>NA</em>), <code>mzMax</code>
 (float).</p></dd>
+
+
 <dt>FIR</dt>
 <dd><p>NULL or a data.frame of Fallback Integration Regions (FIR) with
 compounds as row and FIR parameters as columns: <code>rtMin</code> (float in
 seconds), <code>rtMax</code> (float in seconds), <code>mzMin</code> (float), <code>mzMax</code>
 (float).</p></dd>
+
+
 <dt>cpdMetadata</dt>
 <dd><p>NULL or a data.frame of compound metadata, with compounds
 as row and metadata as columns</p></dd>
+
+
 <dt>spectraMetadata</dt>
 <dd><p>NULL or a data.frame of sample metadata, with samples
 as row and metadata as columns</p></dd>
+
+
 <dt>uROIExist</dt>
 <dd><p>NULL or a logical stating if uROI have been set</p></dd>
+
+
 <dt>useUROI</dt>
 <dd><p>NULL or a logical stating if uROI are to be used</p></dd>
+
+
 <dt>useFIR</dt>
 <dd><p>NULL or a logical stating if FIR are to be used</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>(bool) If TRUE message progress</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional slots and values to set when resetting the object
 (<code>cpdID</code>, <code>cpdName</code>, <code>ROI</code>, <code>filepath</code>, <code>TIC</code>,
 <code>acquisitionTime</code>, <code>peakTables</code>, <code>dataPoints</code>, <code>peakFit</code>)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>(peakPantheRAnnotation) object reset with previous results removed
+    
+
+<p>(peakPantheRAnnotation) object reset with previous results removed
 and slots updated</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span class="r-in"><span class="co">## Initialise a peakPantheRAnnotation object with 3 samples and 2 targeted</span></span>
-<span class="r-in"><span class="co">## compounds</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Paths to spectra files</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">spectraPaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span>
-<span class="r-in">                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># targetFeatTable</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">                    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cpdID'</span>,<span class="st">'cpdName'</span>,<span class="st">'rtMin'</span>,<span class="st">'rt'</span>,<span class="st">'rtMax'</span>,<span class="st">'mzMin'</span>,<span class="st">'mz'</span>,</span>
-<span class="r-in">                    <span class="st">'mzMax'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span>, <span class="st">'Cpd 1'</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, <span class="fl">522.194778</span>,</span>
-<span class="r-in">                        <span class="fl">522.2</span>, <span class="fl">522.205222</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-2'</span>, <span class="st">'Cpd 2'</span>, <span class="fl">3280.</span>, <span class="fl">3385.577</span>, <span class="fl">3440.</span>, <span class="fl">496.195038</span>,</span>
-<span class="r-in">                        <span class="fl">496.2</span>, <span class="fl">496.204962</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.numeric</span>,</span>
-<span class="r-in">                                    FUN.VALUE<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">smallAnnotation</span>  <span class="op">&lt;-</span> <span class="fu"><a href="peakPantheRAnnotation.html">peakPantheRAnnotation</a></span><span class="op">(</span>spectraPaths<span class="op">=</span><span class="va">spectraPaths</span>, </span>
-<span class="r-in">                                        targetFeatTable<span class="op">=</span><span class="va">targetFeatTable</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">smallAnnotation</span></span>
-<span class="r-in"><span class="co"># An object of class peakPantheRAnnotation</span></span>
-<span class="r-in"><span class="co">#  2 compounds in 2 samples.</span></span>
-<span class="r-in"><span class="co">#  updated ROI do not exist (uROI)</span></span>
-<span class="r-in"><span class="co">#  does not use updated ROI (uROI)</span></span>
-<span class="r-in"><span class="co">#  does not use fallback integration regions (FIR)</span></span>
-<span class="r-in"><span class="co">#  is not annotated</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Reset and change number of spectra</span></span>
-<span class="r-in"><span class="va">newSpectraPaths</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span>
-<span class="r-in">                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span>
-<span class="r-in">                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko18.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">largerAnnotation</span> <span class="op">&lt;-</span> <span class="fu">resetAnnotation</span><span class="op">(</span><span class="va">smallAnnotation</span>,</span>
-<span class="r-in">                                    spectraPaths<span class="op">=</span><span class="va">newSpectraPaths</span>,</span>
-<span class="r-in">                                    verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">largerAnnotation</span></span>
-<span class="r-in"><span class="co"># An object of class peakPantheRAnnotation</span></span>
-<span class="r-in"><span class="co">#  2 compounds in 3 samples.</span></span>
-<span class="r-in"><span class="co">#  updated ROI do not exist (uROI)</span></span>
-<span class="r-in"><span class="co">#  does not use updated ROI (uROI)</span></span>
-<span class="r-in"><span class="co">#  does not use fallback integration regions (FIR)</span></span>
-<span class="r-in"><span class="co">#  is not annotated</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">## Initialise a peakPantheRAnnotation object with 3 samples and 2 targeted</span></span></span>
+<span class="r-in"><span><span class="co">## compounds</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Paths to spectra files</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">spectraPaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># targetFeatTable</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cpdID'</span>,<span class="st">'cpdName'</span>,<span class="st">'rtMin'</span>,<span class="st">'rt'</span>,<span class="st">'rtMax'</span>,<span class="st">'mzMin'</span>,<span class="st">'mz'</span>,</span></span>
+<span class="r-in"><span>                    <span class="st">'mzMax'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span>, <span class="st">'Cpd 1'</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, <span class="fl">522.194778</span>,</span></span>
+<span class="r-in"><span>                        <span class="fl">522.2</span>, <span class="fl">522.205222</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-2'</span>, <span class="st">'Cpd 2'</span>, <span class="fl">3280.</span>, <span class="fl">3385.577</span>, <span class="fl">3440.</span>, <span class="fl">496.195038</span>,</span></span>
+<span class="r-in"><span>                        <span class="fl">496.2</span>, <span class="fl">496.204962</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.numeric</span>,</span></span>
+<span class="r-in"><span>                                    FUN.VALUE<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">smallAnnotation</span>  <span class="op">&lt;-</span> <span class="fu"><a href="peakPantheRAnnotation.html">peakPantheRAnnotation</a></span><span class="op">(</span>spectraPaths<span class="op">=</span><span class="va">spectraPaths</span>, </span></span>
+<span class="r-in"><span>                                        targetFeatTable<span class="op">=</span><span class="va">targetFeatTable</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">smallAnnotation</span></span></span>
+<span class="r-in"><span><span class="co"># An object of class peakPantheRAnnotation</span></span></span>
+<span class="r-in"><span><span class="co">#  2 compounds in 2 samples.</span></span></span>
+<span class="r-in"><span><span class="co">#  updated ROI do not exist (uROI)</span></span></span>
+<span class="r-in"><span><span class="co">#  does not use updated ROI (uROI)</span></span></span>
+<span class="r-in"><span><span class="co">#  does not use fallback integration regions (FIR)</span></span></span>
+<span class="r-in"><span><span class="co">#  is not annotated</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Reset and change number of spectra</span></span></span>
+<span class="r-in"><span><span class="va">newSpectraPaths</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko18.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">largerAnnotation</span> <span class="op">&lt;-</span> <span class="fu">resetAnnotation</span><span class="op">(</span><span class="va">smallAnnotation</span>,</span></span>
+<span class="r-in"><span>                                    spectraPaths<span class="op">=</span><span class="va">newSpectraPaths</span>,</span></span>
+<span class="r-in"><span>                                    verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">largerAnnotation</span></span></span>
+<span class="r-in"><span><span class="co"># An object of class peakPantheRAnnotation</span></span></span>
+<span class="r-in"><span><span class="co">#  2 compounds in 3 samples.</span></span></span>
+<span class="r-in"><span><span class="co">#  updated ROI do not exist (uROI)</span></span></span>
+<span class="r-in"><span><span class="co">#  does not use updated ROI (uROI)</span></span></span>
+<span class="r-in"><span><span class="co">#  does not use fallback integration regions (FIR)</span></span></span>
+<span class="r-in"><span><span class="co">#  is not annotated</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> peakPantheRAnnotation object being reset:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   Previous "ROI", "cpdID" and "cpdName" value kept</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   Previous "uROI" value kept</span>
@@ -231,7 +256,7 @@ and slots updated</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -39,7 +39,7 @@ vs maximum measured peak intensity (fit misses the real apex in the peak)."><!--
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -113,16 +113,16 @@ vs maximum measured peak intensity (fit misses the real apex in the peak).</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">findTargetFeatures</span><span class="op">(</span>
-    <span class="va">ROIsDataPoints</span>,
-    <span class="va">ROI</span>,
-    curveModel <span class="op">=</span> <span class="st">"skewedGaussian"</span>,
-    params <span class="op">=</span> <span class="st">"guess"</span>,
-    sampling <span class="op">=</span> <span class="fl">250</span>,
-    maxApexResidualRatio <span class="op">=</span> <span class="fl">0.2</span>,
-    verbose <span class="op">=</span> <span class="cn">FALSE</span>,
-    <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">findTargetFeatures</span><span class="op">(</span></span>
+<span>    <span class="va">ROIsDataPoints</span>,</span>
+<span>    <span class="va">ROI</span>,</span>
+<span>    curveModel <span class="op">=</span> <span class="st">"skewedGaussian"</span>,</span>
+<span>    params <span class="op">=</span> <span class="st">"guess"</span>,</span>
+<span>    sampling <span class="op">=</span> <span class="fl">250</span>,</span>
+<span>    maxApexResidualRatio <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -131,40 +131,62 @@ vs maximum measured peak intensity (fit misses the real apex in the peak).</p>
 <dd><p>(list) A list (one entry per ROI window) of data.frame
 with signal as row and retention time ('rt'), mass ('mz') and intensity
 ('int) as columns. Must match each row of ROI.</p></dd>
+
+
 <dt>ROI</dt>
 <dd><p>(data.frame) A data.frame of compounds to target as rows. Columns:
 <code>rtMin</code> (float in seconds), <code>rtMax</code> (float in seconds),
 <code>mzMin</code> (float), <code>mzMax</code> (float)</p></dd>
+
+
 <dt>curveModel</dt>
 <dd><p>(str) Name of the curve model to fit (currently
 <code>skewedGaussian</code> and <code>emgGaussian</code>)</p></dd>
+
+
 <dt>params</dt>
 <dd><p>(list or str) Either 'guess' for automated parametrisation or
 list (one per ROI windows) of 'guess' or list of curve fit parameters</p></dd>
+
+
 <dt>sampling</dt>
 <dd><p>(int) Number of points to employ when subsampling the
 fittedCurve (rt, rtMin, rtMax, integral calculation)</p></dd>
+
+
 <dt>maxApexResidualRatio</dt>
 <dd><p>(float) Ratio of maximum allowed fit residual at
 the peak apex, compared to the fit max intensity. (e.g. 0.2 for a maximum
 residual of 20% of apex intensity)</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>(bool) If TRUE message the time taken and number of features
 found</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Passes arguments to <code>fitCurve</code> to alter peak fitting
 (<code>params</code>)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list: <code>list()$peakTable</code> (<em>data.frame</em>) with targeted
+    
+
+<p>A list: <code>list()$peakTable</code> (<em>data.frame</em>) with targeted
 features as rows and peak measures as columns (see Details),
 <code>list()$curveFit</code> (<em>list</em>) a list of <code>peakPantheR_curveFit</code> or
-NA for each ROI.</p><div class="section">
+NA for each ROI.</p>
+
+
+<div class="section">
 <h3 id="details-">Details:<a class="anchor" aria-label="anchor" href="#details-"></a></h3>
 <p>The returned <code>data.frame</code> is structured as follow:</p><table class="table table"><tr><td>found</td><td>was the peak found</td></tr><tr><td>rt</td><td>retention time of peak apex (sec)</td></tr><tr><td>rtMin</td><td>leading edge of peak retention time (sec) determined at 0.5% of
 apex intensity</td></tr><tr><td>rtMax</td><td>trailing edge of peak retention time (sec) determined at 0.5% of
 apex intensity</td></tr><tr><td>mz</td><td>weighted (by intensity) mean of peak m/z across scans</td></tr><tr><td>mzMin</td><td>m/z peak minimum (between rtMin, rtMax)</td></tr><tr><td>mzMax</td><td>m/z peak maximum (between rtMin, rtMax)</td></tr><tr><td>peakArea</td><td>integrated peak area</td></tr><tr><td>peakAreaRaw</td><td>integrated peak area from raw data points</td></tr><tr><td>maxIntMeasured</td><td>maximum peak intensity in raw data</td></tr><tr><td>maxIntPredicted</td><td>maximum peak intensity based on curve fit (at apex)</td></tr></table></div>
+
+
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -261,7 +283,7 @@ targetFeatTable[,3:8] &lt;- vapply(targetFeatTable[,3:8], as.numeric,
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

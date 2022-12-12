@@ -24,7 +24,7 @@ corrected."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -82,16 +82,16 @@ corrected.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S4 method for peakPantheRAnnotation</span>
-<span class="fu">retentionTimeCorrection</span><span class="op">(</span>
-    <span class="va">annotationObject</span>,
-    rtCorrectionReferences <span class="op">=</span> <span class="cn">NULL</span>,
-    method <span class="op">=</span> <span class="st">"polynomial"</span>,
-    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>polynomialOrder <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-    robust <span class="op">=</span> <span class="cn">FALSE</span>,
-    rtWindowWidth <span class="op">=</span> <span class="fl">15</span>,
-    diagnostic <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S4 method for peakPantheRAnnotation</span></span>
+<span><span class="fu">retentionTimeCorrection</span><span class="op">(</span></span>
+<span>    <span class="va">annotationObject</span>,</span>
+<span>    rtCorrectionReferences <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"polynomial"</span>,</span>
+<span>    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>polynomialOrder <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    robust <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    rtWindowWidth <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>    diagnostic <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -100,90 +100,105 @@ corrected.</p>
 <dd><p>(peakPantheRAnnotation) object with previous fit
 results to adjust retention time values in uROI and FIR
 annotationObject, rtCorrectionReferences=NULL,</p></dd>
+
+
 <dt>rtCorrectionReferences</dt>
 <dd><p>(list) of compounds IDs (<code>cpdID</code>)
 to be used as retention time references.
 All <code>cpdID</code> entries must be present in the object and previously
 annotated. If NULL, use all compounds.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>(str) name of RT correction method to use (currently
 <code>polynomial</code> or <code>constant</code></p></dd>
+
+
 <dt>params</dt>
 <dd><p>(list) list of parameters to pass to each correction method.
 Currently allowed inputs are <code>polynomialOrder</code>
 for <code>method='polynomial'</code></p></dd>
+
+
 <dt>robust</dt>
 <dd><p>(bool) whether to use the RANSAC algorithm to flag and ignore
 outliers during retention time correction</p></dd>
+
+
 <dt>rtWindowWidth</dt>
 <dd><p>(numeric) full width in seconds
 of the retention time window defined around the corrected retention time
 value for each compound</p></dd>
+
+
 <dt>diagnostic</dt>
 <dd><p>(bool) If TRUE returns diagnostic plots (specific to each
 correction method)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>(list) containing entries `annotation`, with the new and retention
+    
+
+<p>(list) containing entries `annotation`, with the new and retention
 time corrected peakPantheRAnnotation, and `plot` (if <code>diagnostic=TRUE</code>).</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span class="r-in"><span class="co">## Initialise a peakPantheRAnnotation object with 3 samples and 2 targeted</span></span>
-<span class="r-in"><span class="co">## compounds</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Paths to spectra files</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">spectraPaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span>
-<span class="r-in">                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># targetFeatTable</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">                    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cpdID'</span>,<span class="st">'cpdName'</span>,<span class="st">'rtMin'</span>,<span class="st">'rt'</span>,<span class="st">'rtMax'</span>,<span class="st">'mzMin'</span>,<span class="st">'mz'</span>,</span>
-<span class="r-in">                    <span class="st">'mzMax'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span>, <span class="st">'Cpd 1'</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, <span class="fl">522.194778</span>,</span>
-<span class="r-in">                        <span class="fl">522.2</span>, <span class="fl">522.205222</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-2'</span>, <span class="st">'Cpd 2'</span>, <span class="fl">3280.</span>, <span class="fl">3385.577</span>, <span class="fl">3440.</span>, <span class="fl">496.195038</span>,</span>
-<span class="r-in">                        <span class="fl">496.2</span>, <span class="fl">496.204962</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.numeric</span>,</span>
-<span class="r-in">                                    FUN.VALUE<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">smallAnnotation</span>  <span class="op">&lt;-</span> <span class="fu"><a href="peakPantheRAnnotation.html">peakPantheRAnnotation</a></span><span class="op">(</span>spectraPaths<span class="op">=</span><span class="va">spectraPaths</span>,</span>
-<span class="r-in">                                        targetFeatTable<span class="op">=</span><span class="va">targetFeatTable</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># annotate files serially</span></span>
-<span class="r-in"><span class="va">annotation_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation</a></span><span class="op">(</span><span class="va">smallAnnotation</span>,</span>
-<span class="r-in">                                            ncores<span class="op">=</span><span class="fl">0</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">data_annotation</span>   <span class="op">&lt;-</span> <span class="va">annotation_result</span><span class="op">$</span><span class="va">annotation</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example with constant correction</span></span>
-<span class="r-in"><span class="va">rtCorrectionOutput</span> <span class="op">&lt;-</span> <span class="fu">retentionTimeCorrection</span><span class="op">(</span></span>
-<span class="r-in">                        annotationObject <span class="op">=</span> <span class="va">data_annotation</span>,</span>
-<span class="r-in">                        rtCorrectionReferences<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span><span class="op">)</span>,</span>
-<span class="r-in">                        method<span class="op">=</span><span class="st">'constant'</span>, params<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">                        robust<span class="op">=</span><span class="cn">FALSE</span>,</span>
-<span class="r-in">                        rtWindowWidth<span class="op">=</span><span class="fl">15</span>,</span>
-<span class="r-in">                        diagnostic<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">rtCorrectedAnnotation</span> <span class="op">&lt;-</span> <span class="va">rtCorrectionOutput</span><span class="op">$</span><span class="va">annotation</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># rtCorrectedAnnotation</span></span>
-<span class="r-in"><span class="co"># An object of class peakPantheRAnnotation</span></span>
-<span class="r-in"><span class="co">#  2 compounds in 2 samples.</span></span>
-<span class="r-in"><span class="co">#  updated ROI exists, with a modified rt (uROI)</span></span>
-<span class="r-in"><span class="co">#  uses updated ROI (uROI)</span></span>
-<span class="r-in"><span class="co">#  uses fallback integration regions (FIR)</span></span>
-<span class="r-in"><span class="co">#  is annotated</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">rtCorrectionPlot</span> <span class="op">&lt;-</span> <span class="va">rtCorrectionOutput</span><span class="op">$</span><span class="va">plot</span></span>
-<span class="r-in"><span class="co"># rtCorrectedPlot</span></span>
-<span class="r-in"><span class="co"># A ggplot2 object</span></span>
-<span class="r-in"><span class="co">#  Scatterplot where x=`r` in the and y=`rt_dev_sec` from data_annotation</span></span>
-<span class="r-in"><span class="co">#  Points colored depending on whether the reference was used to fit</span></span>
-<span class="r-in"><span class="co"># the correction model</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">## Initialise a peakPantheRAnnotation object with 3 samples and 2 targeted</span></span></span>
+<span class="r-in"><span><span class="co">## compounds</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Paths to spectra files</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">spectraPaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># targetFeatTable</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cpdID'</span>,<span class="st">'cpdName'</span>,<span class="st">'rtMin'</span>,<span class="st">'rt'</span>,<span class="st">'rtMax'</span>,<span class="st">'mzMin'</span>,<span class="st">'mz'</span>,</span></span>
+<span class="r-in"><span>                    <span class="st">'mzMax'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span>, <span class="st">'Cpd 1'</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, <span class="fl">522.194778</span>,</span></span>
+<span class="r-in"><span>                        <span class="fl">522.2</span>, <span class="fl">522.205222</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-2'</span>, <span class="st">'Cpd 2'</span>, <span class="fl">3280.</span>, <span class="fl">3385.577</span>, <span class="fl">3440.</span>, <span class="fl">496.195038</span>,</span></span>
+<span class="r-in"><span>                        <span class="fl">496.2</span>, <span class="fl">496.204962</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.numeric</span>,</span></span>
+<span class="r-in"><span>                                    FUN.VALUE<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">smallAnnotation</span>  <span class="op">&lt;-</span> <span class="fu"><a href="peakPantheRAnnotation.html">peakPantheRAnnotation</a></span><span class="op">(</span>spectraPaths<span class="op">=</span><span class="va">spectraPaths</span>,</span></span>
+<span class="r-in"><span>                                        targetFeatTable<span class="op">=</span><span class="va">targetFeatTable</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># annotate files serially</span></span></span>
+<span class="r-in"><span><span class="va">annotation_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation</a></span><span class="op">(</span><span class="va">smallAnnotation</span>,</span></span>
+<span class="r-in"><span>                                            ncores<span class="op">=</span><span class="fl">0</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_annotation</span>   <span class="op">&lt;-</span> <span class="va">annotation_result</span><span class="op">$</span><span class="va">annotation</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example with constant correction</span></span></span>
+<span class="r-in"><span><span class="va">rtCorrectionOutput</span> <span class="op">&lt;-</span> <span class="fu">retentionTimeCorrection</span><span class="op">(</span></span></span>
+<span class="r-in"><span>                        annotationObject <span class="op">=</span> <span class="va">data_annotation</span>,</span></span>
+<span class="r-in"><span>                        rtCorrectionReferences<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                        method<span class="op">=</span><span class="st">'constant'</span>, params<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                        robust<span class="op">=</span><span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                        rtWindowWidth<span class="op">=</span><span class="fl">15</span>,</span></span>
+<span class="r-in"><span>                        diagnostic<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">rtCorrectedAnnotation</span> <span class="op">&lt;-</span> <span class="va">rtCorrectionOutput</span><span class="op">$</span><span class="va">annotation</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># rtCorrectedAnnotation</span></span></span>
+<span class="r-in"><span><span class="co"># An object of class peakPantheRAnnotation</span></span></span>
+<span class="r-in"><span><span class="co">#  2 compounds in 2 samples.</span></span></span>
+<span class="r-in"><span><span class="co">#  updated ROI exists, with a modified rt (uROI)</span></span></span>
+<span class="r-in"><span><span class="co">#  uses updated ROI (uROI)</span></span></span>
+<span class="r-in"><span><span class="co">#  uses fallback integration regions (FIR)</span></span></span>
+<span class="r-in"><span><span class="co">#  is annotated</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">rtCorrectionPlot</span> <span class="op">&lt;-</span> <span class="va">rtCorrectionOutput</span><span class="op">$</span><span class="va">plot</span></span></span>
+<span class="r-in"><span><span class="co"># rtCorrectedPlot</span></span></span>
+<span class="r-in"><span><span class="co"># A ggplot2 object</span></span></span>
+<span class="r-in"><span><span class="co">#  Scatterplot where x=`r` in the and y=`rt_dev_sec` from data_annotation</span></span></span>
+<span class="r-in"><span><span class="co">#  Points colored depending on whether the reference was used to fit</span></span></span>
+<span class="r-in"><span><span class="co"># the correction model</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Processing 2 compounds in 2 samples:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   uROI:	FALSE</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   FIR:	FALSE</span>
@@ -191,24 +206,24 @@ time corrected peakPantheRAnnotation, and `plot` (if <code>diagnostic=TRUE</code
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Check input, mzMLPath must be a .mzML</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading data from 2 windows</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.74 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.79 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Found 2/2 features in 0.02 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Peak statistics done in: 0 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.4 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.45 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ----- ko16 -----</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Check input, mzMLPath must be a .mzML</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading data from 2 windows</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.62 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.73 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #2</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Found 2/2 features in 0.02 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Peak statistics done in: 0 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.2 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.34 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Annotation object cannot be reordered by sample acquisition date</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ----------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Parallel annotation done in: 5.54 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Parallel annotation done in: 5.8 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   0 failure(s)</span>
 </code></pre></div>
     </div>
@@ -224,7 +239,7 @@ time corrected peakPantheRAnnotation, and `plot` (if <code>diagnostic=TRUE</code
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

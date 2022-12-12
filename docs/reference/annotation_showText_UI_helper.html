@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -69,7 +69,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">annotation_showText_UI_helper</span><span class="op">(</span><span class="va">annotProp</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">annotation_showText_UI_helper</span><span class="op">(</span><span class="va">annotProp</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -77,24 +77,27 @@
     <dl><dt>annotProp</dt>
 <dd><p>(list) Named list of annotation properties as
 created by <code><a href="annotation_showMethod_UI_helper.html">annotation_showMethod_UI_helper()</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>(str) Textual description of the annotation to show on UI</p>
+    
+
+<p>(str) Textual description of the annotation to show on UI</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Input</span></span>
-<span class="r-in"><span class="va">properties_default</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nbCompounds <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">                            nbSamples <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">                            uROIExist <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">                            useUROI <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">                            useFIR <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">                            isAnnotated <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Generate description</span></span>
-<span class="r-in"><span class="fu">annotation_showText_UI_helper</span><span class="op">(</span><span class="va">properties_default</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Input</span></span></span>
+<span class="r-in"><span><span class="va">properties_default</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nbCompounds <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>                            nbSamples <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>                            uROIExist <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                            useUROI <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                            useFIR <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                            isAnnotated <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Generate description</span></span></span>
+<span class="r-in"><span><span class="fu">annotation_showText_UI_helper</span><span class="op">(</span><span class="va">properties_default</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Not annotated"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -113,23 +116,23 @@ created by <code><a href="annotation_showMethod_UI_helper.html">annotation_showM
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[6]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "does not use fallback integration regions (FIR)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># [[1]]</span></span>
-<span class="r-in"><span class="co"># [1] "Not annotated"</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># [[2]]</span></span>
-<span class="r-in"><span class="co"># [1] "0 compounds"</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># [[3]]</span></span>
-<span class="r-in"><span class="co"># [1] "0 samples"</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># [[4]]</span></span>
-<span class="r-in"><span class="co"># [1] "updated ROI do not exist (uROI)"</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># [[5]]</span></span>
-<span class="r-in"><span class="co"># [1] "does not use updated ROI (uROI)"</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># [[6]]</span></span>
-<span class="r-in"><span class="co"># [1] "does not use fallback integration regions (FIR)"</span></span>
+<span class="r-in"><span><span class="co"># [[1]]</span></span></span>
+<span class="r-in"><span><span class="co"># [1] "Not annotated"</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># [[2]]</span></span></span>
+<span class="r-in"><span><span class="co"># [1] "0 compounds"</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># [[3]]</span></span></span>
+<span class="r-in"><span><span class="co"># [1] "0 samples"</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># [[4]]</span></span></span>
+<span class="r-in"><span><span class="co"># [1] "updated ROI do not exist (uROI)"</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># [[5]]</span></span></span>
+<span class="r-in"><span><span class="co"># [1] "does not use updated ROI (uROI)"</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># [[6]]</span></span></span>
+<span class="r-in"><span><span class="co"># [1] "does not use fallback integration regions (FIR)"</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -144,7 +147,7 @@ created by <code><a href="annotation_showMethod_UI_helper.html">annotation_showM
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

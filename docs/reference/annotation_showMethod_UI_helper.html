@@ -18,7 +18,7 @@ ease display"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/lib
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -71,26 +71,29 @@ ease display</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">annotation_showMethod_UI_helper</span><span class="op">(</span><span class="va">annotation</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">annotation_showMethod_UI_helper</span><span class="op">(</span><span class="va">annotation</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>annotation</dt>
 <dd><p>(peakPantherAnnotation) Object to describe</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>(list) Named list of annotation properties</p>
+    
+
+<p>(list) Named list of annotation properties</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Initialise an empty annotation, no uROI, no use of FIR</span></span>
-<span class="r-in"><span class="va">annotInit</span>     <span class="op">&lt;-</span> <span class="fu"><a href="peakPantheRAnnotation.html">peakPantheRAnnotation</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># return properties</span></span>
-<span class="r-in"><span class="fu">annotation_showMethod_UI_helper</span><span class="op">(</span><span class="va">annotInit</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Initialise an empty annotation, no uROI, no use of FIR</span></span></span>
+<span class="r-in"><span><span class="va">annotInit</span>     <span class="op">&lt;-</span> <span class="fu"><a href="peakPantheRAnnotation.html">peakPantheRAnnotation</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># return properties</span></span></span>
+<span class="r-in"><span><span class="fu">annotation_showMethod_UI_helper</span><span class="op">(</span><span class="va">annotInit</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $nbCompounds</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -109,23 +112,23 @@ ease display</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $isAnnotated</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># $nbCompounds</span></span>
-<span class="r-in"><span class="co"># [1] 0</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># #$nbSamples</span></span>
-<span class="r-in"><span class="co"># [1] 0</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># #$uROIExist</span></span>
-<span class="r-in"><span class="co"># [1] FALSE</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># $useUROI</span></span>
-<span class="r-in"><span class="co"># [1] FALSE</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># $useFIR</span></span>
-<span class="r-in"><span class="co"># [1] FALSE</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># $isAnnotated</span></span>
-<span class="r-in"><span class="co"># [1] FALSE</span></span>
+<span class="r-in"><span><span class="co"># $nbCompounds</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 0</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># #$nbSamples</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 0</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># #$uROIExist</span></span></span>
+<span class="r-in"><span><span class="co"># [1] FALSE</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># $useUROI</span></span></span>
+<span class="r-in"><span><span class="co"># [1] FALSE</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># $useFIR</span></span></span>
+<span class="r-in"><span><span class="co"># [1] FALSE</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># $isAnnotated</span></span></span>
+<span class="r-in"><span><span class="co"># [1] FALSE</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -140,7 +143,7 @@ ease display</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

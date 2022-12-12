@@ -18,7 +18,7 @@ residuals using the skewed gaussian Peak Shape"><!-- mathjax --><script src="htt
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -71,7 +71,7 @@ residuals using the skewed gaussian Peak Shape</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">skewedGaussian_minpack.lm_objectiveFun</span><span class="op">(</span><span class="va">params</span>, <span class="va">observed</span>, <span class="va">xx</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">skewedGaussian_minpack.lm_objectiveFun</span><span class="op">(</span><span class="va">params</span>, <span class="va">observed</span>, <span class="va">xx</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,14 +79,21 @@ residuals using the skewed gaussian Peak Shape</p>
     <dl><dt>params</dt>
 <dd><p>(list) skewed gaussian parameters (<code>params$gamma</code>,
 <code>params$center</code>, <code>params$sigma</code>, <code>params$amplitude</code>)</p></dd>
+
+
 <dt>observed</dt>
 <dd><p>(numeric) observed y value at xx</p></dd>
+
+
 <dt>xx</dt>
 <dd><p>(numeric) value at which to evalute the skewed gaussian</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>difference between observed and expected skewed gaussian value
+    
+
+<p>difference between observed and expected skewed gaussian value
 evaluated at xx</p>
     </div>
 
@@ -102,7 +109,7 @@ evaluated at xx</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

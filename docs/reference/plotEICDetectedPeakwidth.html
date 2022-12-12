@@ -21,7 +21,7 @@ on top."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mat
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -77,21 +77,21 @@ on top.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotEICDetectedPeakwidth</span><span class="op">(</span>
-    <span class="va">ROIDataPointSampleList</span>,
-    <span class="va">cpdID</span>,
-    <span class="va">cpdName</span>,
-    <span class="va">rt</span>,
-    <span class="va">rtMin</span>,
-    <span class="va">rtMax</span>,
-    <span class="va">mzMin</span>,
-    <span class="va">mzMax</span>,
-    ratio <span class="op">=</span> <span class="fl">0.85</span>,
-    sampling <span class="op">=</span> <span class="fl">250</span>,
-    curveFitSampleList <span class="op">=</span> <span class="cn">NULL</span>,
-    sampleColour <span class="op">=</span> <span class="cn">NULL</span>,
-    verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotEICDetectedPeakwidth</span><span class="op">(</span></span>
+<span>    <span class="va">ROIDataPointSampleList</span>,</span>
+<span>    <span class="va">cpdID</span>,</span>
+<span>    <span class="va">cpdName</span>,</span>
+<span>    <span class="va">rt</span>,</span>
+<span>    <span class="va">rtMin</span>,</span>
+<span>    <span class="va">rtMax</span>,</span>
+<span>    <span class="va">mzMin</span>,</span>
+<span>    <span class="va">mzMax</span>,</span>
+<span>    ratio <span class="op">=</span> <span class="fl">0.85</span>,</span>
+<span>    sampling <span class="op">=</span> <span class="fl">250</span>,</span>
+<span>    curveFitSampleList <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    sampleColour <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -100,37 +100,64 @@ on top.</p>
 <dd><p>(list) list of <code>data.frame</code> of raw data
 points for each sample (retention time 'rt', mass 'mz' and intensity 'int'
 (as column) of each raw data points (as row)).</p></dd>
+
+
 <dt>cpdID</dt>
 <dd><p>(str) Compound ID</p></dd>
+
+
 <dt>cpdName</dt>
 <dd><p>(str) Compound Name</p></dd>
+
+
 <dt>rt</dt>
 <dd><p>(float) vector of detected peak apex retention time (in sec)</p></dd>
+
+
 <dt>rtMin</dt>
 <dd><p>(float) vector of detected peak minimum retention time (in sec)</p></dd>
+
+
 <dt>rtMax</dt>
 <dd><p>(float) vector ofdetected peak maximum retention time (in sec)</p></dd>
+
+
 <dt>mzMin</dt>
 <dd><p>(float) ROI minimum m/z (matching EIC)</p></dd>
+
+
 <dt>mzMax</dt>
 <dd><p>(float) ROI maximum m/z (matching EIC)</p></dd>
+
+
 <dt>ratio</dt>
 <dd><p>(float) value between 0 and 1 defining the vertical percentage
 taken by the EICs subplot</p></dd>
+
+
 <dt>sampling</dt>
 <dd><p>(int) Number of points to employ when plotting fittedCurve</p></dd>
+
+
 <dt>curveFitSampleList</dt>
 <dd><p>(list) NULL or a list of
 <code>peakPantheR_curveFit</code> (or NA) for each sample</p></dd>
+
+
 <dt>sampleColour</dt>
 <dd><p>(str) NULL or vector colour for each sample (same length
 as <code>EICs</code>, <code>rt</code>, <code>rtMin</code>, <code>rtMax</code>)</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>(bool) if TRUE message when NA scans are removed</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Grob (ggplot object)</p>
+    
+
+<p>Grob (ggplot object)</p>
     </div>
 
   </div>
@@ -145,7 +172,7 @@ as <code>EICs</code>, <code>rt</code>, <code>rtMin</code>, <code>rtMax</code>)</
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

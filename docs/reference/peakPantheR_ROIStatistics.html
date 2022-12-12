@@ -19,7 +19,7 @@ for all IS (IS_ROI) across samples"><!-- mathjax --><script src="https://cdnjs.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -73,16 +73,16 @@ for all IS (<code>IS_ROI</code>) across samples</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">peakPantheR_ROIStatistics</span><span class="op">(</span>
-    <span class="va">referenceSpectraFiles</span>,
-    <span class="va">saveFolder</span>,
-    ROI <span class="op">=</span> <span class="cn">NULL</span>,
-    IS_ROI <span class="op">=</span> <span class="cn">NULL</span>,
-    sampleColour <span class="op">=</span> <span class="cn">NULL</span>,
-    ncores <span class="op">=</span> <span class="fl">0</span>,
-    saveISPlots <span class="op">=</span> <span class="cn">TRUE</span>,
-    verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">peakPantheR_ROIStatistics</span><span class="op">(</span></span>
+<span>    <span class="va">referenceSpectraFiles</span>,</span>
+<span>    <span class="va">saveFolder</span>,</span>
+<span>    ROI <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    IS_ROI <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    sampleColour <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    ncores <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    saveISPlots <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -90,83 +90,100 @@ for all IS (<code>IS_ROI</code>) across samples</p>
     <dl><dt>referenceSpectraFiles</dt>
 <dd><p>(str) A character vector of paths to the
 reference spectra files</p></dd>
+
+
 <dt>saveFolder</dt>
 <dd><p>(str) Path to the folder where EICs and IS mean RT
 (<code>IS_mean_RT.csv</code>) will be saved</p></dd>
+
+
 <dt>ROI</dt>
 <dd><p>(data.frame) NULL or a data.frame of Regions Of Interest (ROI)
 with compounds as row and ROI parameters as columns: <code>rtMin</code> (float in
 seconds), <code>rt</code> (float in seconds, or <em>NA</em>), <code>rtMax</code> (float in
 seconds), <code>mzMin</code> (float), <code>mz</code> (float or <em>NA</em>), <code>mzMax</code>
 (float) (if NULL, ROI EICs are not saved)</p></dd>
+
+
 <dt>IS_ROI</dt>
 <dd><p>(data.frame) NULL or a data.frame of IS ROI with IS as row and
 ROI parameters as columns: <code>rtMin</code> (float in seconds), <code>rt</code> (float
 in seconds, or <em>NA</em>), <code>rtMax</code> (float in seconds), <code>mzMin</code>
 (float), <code>mz</code> (float or <em>NA</em>), <code>mzMax</code> (float)  (if NULL IS
 mean RT is not calculated and saved in <code>IS_mean_RT.csv</code>)</p></dd>
+
+
 <dt>sampleColour</dt>
 <dd><p>(str) NULL or vector colour for each sample</p></dd>
+
+
 <dt>ncores</dt>
 <dd><p>(int) Number of cores to use to integrate IS in parallel</p></dd>
+
+
 <dt>saveISPlots</dt>
 <dd><p>(bool) If TRUE save a diagnostic plot for each IS to
 <code>saveFolder/IS_search</code> compound</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>(bool) If TRUE message progress</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>None</p>
+    
+
+<p>None</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span class="r-in"><span class="co">## Initialise a peakPantheRAnnotation object with 2 samples and 1 targeted</span></span>
-<span class="r-in"><span class="co">## compound</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Paths to spectra files</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">spectraPaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span>
-<span class="r-in">                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># targetFeatTable</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">                    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cpdID'</span>,<span class="st">'cpdName'</span>,<span class="st">'rtMin'</span>,<span class="st">'rt'</span>,<span class="st">'rtMax'</span>,<span class="st">'mzMin'</span>,<span class="st">'mz'</span>,</span>
-<span class="r-in">                    <span class="st">'mzMax'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span>, <span class="st">'Cpd 1'</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, <span class="fl">522.194778</span>,</span>
-<span class="r-in">                        <span class="fl">522.2</span>, <span class="fl">522.205222</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.numeric</span>,</span>
-<span class="r-in">                                    FUN.VALUE<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># input</span></span>
-<span class="r-in"><span class="va">refSpecFiles</span>  <span class="op">&lt;-</span> <span class="va">spectraPaths</span></span>
-<span class="r-in"><span class="va">input_ROI</span>     <span class="op">&lt;-</span> <span class="va">targetFeatTable</span></span>
-<span class="r-in"><span class="va">input_IS_ROI</span>  <span class="op">&lt;-</span> <span class="va">targetFeatTable</span></span>
-<span class="r-in"><span class="va">sampleColour</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'red'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># temporary saveFolder</span></span>
-<span class="r-in"><span class="va">saveFolder1</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Calculate ROI statiscs</span></span>
-<span class="r-in"><span class="fu">peakPantheR_ROIStatistics</span><span class="op">(</span><span class="va">refSpecFiles</span>, <span class="va">saveFolder1</span>, ROI<span class="op">=</span><span class="va">input_ROI</span>,</span>
-<span class="r-in">                            IS_ROI<span class="op">=</span><span class="va">input_IS_ROI</span>, sampleColour<span class="op">=</span><span class="va">sampleColour</span>,</span>
-<span class="r-in">                            ncores<span class="op">=</span><span class="fl">0</span>, saveISPlots<span class="op">=</span><span class="cn">TRUE</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - EICs for each ROI windows will be saved to: C:\Local\Temp\Rtmpsls192</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">## Initialise a peakPantheRAnnotation object with 2 samples and 1 targeted</span></span></span>
+<span class="r-in"><span><span class="co">## compound</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Paths to spectra files</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">spectraPaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># targetFeatTable</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cpdID'</span>,<span class="st">'cpdName'</span>,<span class="st">'rtMin'</span>,<span class="st">'rt'</span>,<span class="st">'rtMax'</span>,<span class="st">'mzMin'</span>,<span class="st">'mz'</span>,</span></span>
+<span class="r-in"><span>                    <span class="st">'mzMax'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span>, <span class="st">'Cpd 1'</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, <span class="fl">522.194778</span>,</span></span>
+<span class="r-in"><span>                        <span class="fl">522.2</span>, <span class="fl">522.205222</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.numeric</span>,</span></span>
+<span class="r-in"><span>                                    FUN.VALUE<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># input</span></span></span>
+<span class="r-in"><span><span class="va">refSpecFiles</span>  <span class="op">&lt;-</span> <span class="va">spectraPaths</span></span></span>
+<span class="r-in"><span><span class="va">input_ROI</span>     <span class="op">&lt;-</span> <span class="va">targetFeatTable</span></span></span>
+<span class="r-in"><span><span class="va">input_IS_ROI</span>  <span class="op">&lt;-</span> <span class="va">targetFeatTable</span></span></span>
+<span class="r-in"><span><span class="va">sampleColour</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'red'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># temporary saveFolder</span></span></span>
+<span class="r-in"><span><span class="va">saveFolder1</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Calculate ROI statiscs</span></span></span>
+<span class="r-in"><span><span class="fu">peakPantheR_ROIStatistics</span><span class="op">(</span><span class="va">refSpecFiles</span>, <span class="va">saveFolder1</span>, ROI<span class="op">=</span><span class="va">input_ROI</span>,</span></span>
+<span class="r-in"><span>                            IS_ROI<span class="op">=</span><span class="va">input_IS_ROI</span>, sampleColour<span class="op">=</span><span class="va">sampleColour</span>,</span></span>
+<span class="r-in"><span>                            ncores<span class="op">=</span><span class="fl">0</span>, saveISPlots<span class="op">=</span><span class="cn">TRUE</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> - EICs for each ROI windows will be saved to: C:\Temp\RtmpADhQVy</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     1 ROI in 2 reference samples</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Mean RT of IS across reference samples will be saved to: C:\Local\Temp\Rtmpsls192</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> - Mean RT of IS across reference samples will be saved to: C:\Temp\RtmpADhQVy</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     1 IS in 2 reference samples</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> -- Saving EICs for each ROI --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading data from 1 windows</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.71 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.69 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading data from 1 windows</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.67 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 ROIs saved to C:\Local\Temp\Rtmpsls192</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.65 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 ROIs saved to C:\Temp\RtmpADhQVy</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> -- Calculating mean RT for each IS --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Processing 1 compounds in 2 samples:</span>
@@ -176,28 +193,28 @@ mean RT is not calculated and saved in <code>IS_mean_RT.csv</code>)</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Check input, mzMLPath must be a .mzML</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading data from 1 windows</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.59 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.63 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Found 1/1 features in 0.01 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Peak statistics done in: 0 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.22 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.23 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ----- ko16 -----</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Check input, mzMLPath must be a .mzML</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading data from 1 windows</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.53 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.63 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Found 1/1 features in 0.01 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Peak statistics done in: 0 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.1 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.22 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Annotation object cannot be reordered by sample acquisition date</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ----------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Parallel annotation done in: 5.32 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Parallel annotation done in: 5.46 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   0 failure(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Annotation parameters saved at C:\Local\Temp\Rtmpsls192/IS_search/annotationParameters_summary.csv</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Annotation parameters saved at C:\IS_search/annotationParameters_summary.csv</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Saving diagnostic plots:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   Compound 1/1 diagnostic plot saved at C:\Local\Temp\Rtmpsls192/IS_search/cpd_1.png</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> IS mean RT saved at C:\Local\Temp\Rtmpsls192/IS_mean_RT.csv</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   Compound 1/1 diagnostic plot saved at C:\IS_search/cpd_1.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> IS mean RT saved at C:\IS_mean_RT.csv</span>
 </code></pre></div>
     </div>
   </div>
@@ -212,7 +229,7 @@ mean RT is not calculated and saved in <code>IS_mean_RT.csv</code>)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

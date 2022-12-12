@@ -20,7 +20,7 @@ integrated using fallback integration regions (FIR)."><!-- mathjax --><script sr
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -75,18 +75,18 @@ integrated using fallback integration regions (FIR).</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">peakPantheR_singleFileSearch</span><span class="op">(</span>
-    <span class="va">singleSpectraDataPath</span>,
-    <span class="va">targetFeatTable</span>,
-    peakStatistic <span class="op">=</span> <span class="cn">FALSE</span>,
-    plotEICsPath <span class="op">=</span> <span class="cn">NA</span>,
-    getAcquTime <span class="op">=</span> <span class="cn">FALSE</span>,
-    FIR <span class="op">=</span> <span class="cn">NULL</span>,
-    centroided <span class="op">=</span> <span class="cn">TRUE</span>,
-    curveModel <span class="op">=</span> <span class="st">"skewedGaussian"</span>,
-    verbose <span class="op">=</span> <span class="cn">TRUE</span>,
-    <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">peakPantheR_singleFileSearch</span><span class="op">(</span></span>
+<span>    <span class="va">singleSpectraDataPath</span>,</span>
+<span>    <span class="va">targetFeatTable</span>,</span>
+<span>    peakStatistic <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    plotEICsPath <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>    getAcquTime <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    FIR <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    centroided <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    curveModel <span class="op">=</span> <span class="st">"skewedGaussian"</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -94,51 +94,86 @@ integrated using fallback integration regions (FIR).</p>
     <dl><dt>singleSpectraDataPath</dt>
 <dd><p>(str) path to netCDF or mzML raw data file
 (centroided, <strong>only with the channel of interest</strong>).</p></dd>
+
+
 <dt>targetFeatTable</dt>
 <dd><p>a <code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></code> of compounds to target as
 rows. Columns: <code>cpdID</code> (str), <code>cpdName</code> (str), <code>rtMin</code> (float
 in seconds), <code>rt</code> (float in seconds, or <em>NA</em>), <code>rtMax</code> (float
 in seconds), <code>mzMin</code> (float), <code>mz</code> (float or <em>NA</em>),
 <code>mzMax</code> (float).</p></dd>
+
+
 <dt>peakStatistic</dt>
 <dd><p>(bool) If TRUE calculates additional peak statistics:
 'ppm_error', 'rt_dev_sec', 'tailing factor' and 'asymmetry factor'</p></dd>
+
+
 <dt>plotEICsPath</dt>
 <dd><p>(str or NA) If not NA, will save a <em>.png</em> of all ROI
 EICs at the path provided (<code>'filepath/filename.png'</code> expected). If NA no
 plot saved</p></dd>
+
+
 <dt>getAcquTime</dt>
 <dd><p>(bool) If TRUE will extract sample acquisition date-time
 from the mzML metadata (the additional file access will impact run time)</p></dd>
+
+
 <dt>FIR</dt>
 <dd><p>(data.frame or NULL) If not NULL, integrate Fallback Integration
 Regions (FIR) when a feature is not found.  Compounds as row are identical to
 <code>targetFeatTable</code>, columns are <code>rtMin</code> (float in seconds),
 <code>rtMax</code> (float in seconds), <code>mzMin</code> (float), <code>mzMax</code> (float).</p></dd>
+
+
 <dt>centroided</dt>
 <dd><p>(bool) use TRUE if the data is centroided, used by
 <code><a href="https://lgatto.github.io/MSnbase/reference/readMSData.html" class="external-link">readMSData</a></code> when reading the raw data file</p></dd>
+
+
 <dt>curveModel</dt>
 <dd><p>(str) specify the peak-shape model to fit,
 by default <code>skewedGaussian</code>.
 Accepted values are <code>skewedGaussian</code> and <code>emgGaussian</code></p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>(bool) If TRUE message calculation progress, time taken and
 number of features found</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Passes arguments to <code>findTargetFeatures</code> to alter
 peak-picking parameters (e.g. <code>curveModel</code>, <code>sampling</code>,
 <code>params</code> as a list of parameters for each ROI or 'guess',...)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list: <code>list()$TIC</code><em>(int)</em> TIC value,
-<code>list()$peakTable</code><em>(data.frame)</em> targeted features results
-(see Details), <code>list()$curveFit</code><em>(list)</em> list of
-<code>peakPantheR_curveFit</code> or NA for each ROI, <code>list()$acquTime</code><em>(POSIXct or NA)</em> date-time of sample acquisition from mzML metadata,
-<code>list()$ROIsDataPoint</code><em>(list)</em> a list of <code>data.frame</code> of raw
+    
+
+<p>a list: <code>list()$TIC</code></p>
+<p></p>
+<p><em>(int)</em> TIC value,
+<code>list()$peakTable</code></p>
+<p></p>
+<p><em>(data.frame)</em> targeted features results
+(see Details), <code>list()$curveFit</code></p>
+<p></p>
+<p><em>(list)</em> list of
+<code>peakPantheR_curveFit</code> or NA for each ROI, <code>list()$acquTime</code></p>
+
+
+<p><em>(POSIXct or NA)</em> date-time of sample acquisition from mzML metadata,
+<code>list()$ROIsDataPoint</code></p>
+<p></p>
+<p><em>(list)</em> a list of <code>data.frame</code> of raw
 data points for each ROI (retention time 'rt', mass 'mz' and intensity 'int'
-(as column) of each raw data points (as row)).</p><div class="section">
+(as column) of each raw data points (as row)).</p>
+
+
+<div class="section">
 <h3 id="details-">Details:<a class="anchor" aria-label="anchor" href="#details-"></a></h3>
 <p>The returned <em>peakTable</em> <code>data.frame</code> is structured as follow:</p><table class="table table"><tr><td>cpdID</td><td>database compound ID</td></tr><tr><td>cpdName</td><td>compound name</td></tr><tr><td>found</td><td>was the peak found</td></tr><tr><td>rt</td><td>retention time of peak apex (sec)</td></tr><tr><td>rtMin</td><td>leading edge of peak retention time (sec) determined at 0.5% of
 apex intensity</td></tr><tr><td>rtMax</td><td>trailing edge of peak retention time (sec) determined at 0.5% of
@@ -154,6 +189,8 @@ divided by the distance from the center line of the peak to the front slope,
 with all measurements made at 10% of the maximum peak height. The asymmetry
 factor of a peak will typically be similar to the tailing factor for the same
 peak, but the two values cannot be directly converted</td></tr></table></div>
+
+
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -167,136 +204,136 @@ peak, but the two values cannot be directly converted</td></tr></table></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span class="r-in"><span class="co">## Load data</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">netcdfFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## targetFeatTable</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">                    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cpdID'</span>,<span class="st">'cpdName'</span>,<span class="st">'rtMin'</span>,<span class="st">'rt'</span>,<span class="st">'rtMax'</span>,<span class="st">'mzMin'</span>,<span class="st">'mz'</span>,</span>
-<span class="r-in">                    <span class="st">'mzMax'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span>, <span class="st">'Cpd 1'</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, <span class="fl">522.194778</span>,</span>
-<span class="r-in">                        <span class="fl">522.2</span>, <span class="fl">522.205222</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-2'</span>, <span class="st">'Cpd 2'</span>, <span class="fl">3280.</span>, <span class="fl">3385.577</span>, <span class="fl">3440.</span>, <span class="fl">496.195038</span>,</span>
-<span class="r-in">                        <span class="fl">496.2</span>, <span class="fl">496.204962</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.numeric</span>,</span>
-<span class="r-in">                                    FUN.VALUE<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">peakPantheR_singleFileSearch</span><span class="op">(</span><span class="va">netcdfFilePath</span>,<span class="va">targetFeatTable</span>,</span>
-<span class="r-in">                                    peakStatistic<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Polarity can not be extracted from netCDF files, please set manually the</span></span>
-<span class="r-in"><span class="co">#    polarity with the 'polarity' method.</span></span>
-<span class="r-in"><span class="co"># Reading data from 2 windows</span></span>
-<span class="r-in"><span class="co"># Data read in: 0.16 secs</span></span>
-<span class="r-in"><span class="co"># Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for</span></span>
-<span class="r-in"><span class="co">#   mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and</span></span>
-<span class="r-in"><span class="co">#   ROI$mzMax for ROI #1</span></span>
-<span class="r-in"><span class="co"># Found 2/2 features in 0.05 secs</span></span>
-<span class="r-in"><span class="co"># Peak statistics done in: 0 secs</span></span>
-<span class="r-in"><span class="co"># Feature search done in: 0.75 secs</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">res</span></span>
-<span class="r-in"><span class="co"># $TIC</span></span>
-<span class="r-in"><span class="co"># [1] 2410533091</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># $peakTable</span></span>
-<span class="r-in"><span class="co">#   found    rtMin       rt    rtMax    mzMin    mz    mzMax peakArea</span></span>
-<span class="r-in"><span class="co"># 1  TRUE 3309.759 3346.828 3385.410 522.1948 522.2 522.2052 26133727</span></span>
-<span class="r-in"><span class="co"># 2  TRUE 3345.377 3386.529 3428.279 496.2000 496.2 496.2000 35472141</span></span>
-<span class="r-in"><span class="co">#   peakAreaRaw maxIntMeasured maxIntPredicted cpdID cpdName is_filled</span></span>
-<span class="r-in"><span class="co"># 1    26071378         889280        901015.8  ID-1   Cpd 1     FALSE</span></span>
-<span class="r-in"><span class="co"># 2    36498367        1128960       1113576.7  ID-2   Cpd 2     FALSE</span></span>
-<span class="r-in"><span class="co">#    ppm_error   rt_dev_sec  tailingFactor  asymmetryFactor</span></span>
-<span class="r-in"><span class="co"># 1 0.02337616    1.9397590       1.015357         1.026824</span></span>
-<span class="r-in"><span class="co"># 2 0.02460103    0.9518072       1.005378         1.009318</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># $acquTime</span></span>
-<span class="r-in"><span class="co"># [1] NA</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># $curveFit</span></span>
-<span class="r-in"><span class="co"># $curveFit[[1]]</span></span>
-<span class="r-in"><span class="co"># $amplitude</span></span>
-<span class="r-in"><span class="co"># [1] 162404.8</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $center</span></span>
-<span class="r-in"><span class="co"># [1] 3341.888</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $sigma</span></span>
-<span class="r-in"><span class="co"># [1] 0.07878613</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $gamma</span></span>
-<span class="r-in"><span class="co"># [1] 0.00183361</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $fitStatus</span></span>
-<span class="r-in"><span class="co"># [1] 2</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $curveModel</span></span>
-<span class="r-in"><span class="co"># [1] 'skewedGaussian'</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># attr(,'class')</span></span>
-<span class="r-in"><span class="co"># [1] 'peakPantheR_curveFit'</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $curveFit[[2]]</span></span>
-<span class="r-in"><span class="co"># $amplitude</span></span>
-<span class="r-in"><span class="co"># [1] 199249.1</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $center</span></span>
-<span class="r-in"><span class="co"># [1] 3382.577</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $sigma</span></span>
-<span class="r-in"><span class="co"># [1] 0.07490442</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $gamma</span></span>
-<span class="r-in"><span class="co"># [1] 0.00114719</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $fitStatus</span></span>
-<span class="r-in"><span class="co"># [1] 2</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># $curveModel</span></span>
-<span class="r-in"><span class="co"># [1] 'skewedGaussian'</span></span>
-<span class="r-in"><span class="co"># </span></span>
-<span class="r-in"><span class="co"># attr(,'class')</span></span>
-<span class="r-in"><span class="co"># [1] 'peakPantheR_curveFit'</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># $ROIsDataPoint</span></span>
-<span class="r-in"><span class="co"># $ROIsDataPoint[[1]]</span></span>
-<span class="r-in"><span class="co">#          rt    mz    int</span></span>
-<span class="r-in"><span class="co"># 1  3315.154 522.2   2187</span></span>
-<span class="r-in"><span class="co"># 2  3316.719 522.2   3534</span></span>
-<span class="r-in"><span class="co"># 3  3318.284 522.2   6338</span></span>
-<span class="r-in"><span class="co"># 4  3319.849 522.2  11718</span></span>
-<span class="r-in"><span class="co"># 5  3321.414 522.2  21744</span></span>
-<span class="r-in"><span class="co"># 6  3322.979 522.2  37872</span></span>
-<span class="r-in"><span class="co"># 7  3324.544 522.2  62424</span></span>
-<span class="r-in"><span class="co"># 8  3326.109 522.2  98408</span></span>
-<span class="r-in"><span class="co"># 9  3327.673 522.2 152896</span></span>
-<span class="r-in"><span class="co"># 10 3329.238 522.2 225984</span></span>
-<span class="r-in"><span class="co"># ...</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co"># $ROIsDataPoint[[2]]</span></span>
-<span class="r-in"><span class="co">#          rt    mz     int</span></span>
-<span class="r-in"><span class="co"># 1  3280.725 496.2    1349</span></span>
-<span class="r-in"><span class="co"># 2  3290.115 496.2    2069</span></span>
-<span class="r-in"><span class="co"># 3  3291.680 496.2    3103</span></span>
-<span class="r-in"><span class="co"># 4  3293.245 496.2    5570</span></span>
-<span class="r-in"><span class="co"># 5  3294.809 496.2   10730</span></span>
-<span class="r-in"><span class="co"># 6  3296.374 496.2   20904</span></span>
-<span class="r-in"><span class="co"># 7  3297.939 496.2   38712</span></span>
-<span class="r-in"><span class="co"># 8  3299.504 496.2   64368</span></span>
-<span class="r-in"><span class="co"># 9  3301.069 496.2   97096</span></span>
-<span class="r-in"><span class="co"># 10 3302.634 496.2  136320</span></span>
-<span class="r-in"><span class="co"># ...</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'faahKO'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">## Load data</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">netcdfFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">'faahKO'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## targetFeatTable</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cpdID'</span>,<span class="st">'cpdName'</span>,<span class="st">'rtMin'</span>,<span class="st">'rt'</span>,<span class="st">'rtMax'</span>,<span class="st">'mzMin'</span>,<span class="st">'mz'</span>,</span></span>
+<span class="r-in"><span>                    <span class="st">'mzMax'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-1'</span>, <span class="st">'Cpd 1'</span>, <span class="fl">3310.</span>, <span class="fl">3344.888</span>, <span class="fl">3390.</span>, <span class="fl">522.194778</span>,</span></span>
+<span class="r-in"><span>                        <span class="fl">522.2</span>, <span class="fl">522.205222</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ID-2'</span>, <span class="st">'Cpd 2'</span>, <span class="fl">3280.</span>, <span class="fl">3385.577</span>, <span class="fl">3440.</span>, <span class="fl">496.195038</span>,</span></span>
+<span class="r-in"><span>                        <span class="fl">496.2</span>, <span class="fl">496.204962</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">targetFeatTable</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.numeric</span>,</span></span>
+<span class="r-in"><span>                                    FUN.VALUE<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">peakPantheR_singleFileSearch</span><span class="op">(</span><span class="va">netcdfFilePath</span>,<span class="va">targetFeatTable</span>,</span></span>
+<span class="r-in"><span>                                    peakStatistic<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Polarity can not be extracted from netCDF files, please set manually the</span></span></span>
+<span class="r-in"><span><span class="co">#    polarity with the 'polarity' method.</span></span></span>
+<span class="r-in"><span><span class="co"># Reading data from 2 windows</span></span></span>
+<span class="r-in"><span><span class="co"># Data read in: 0.16 secs</span></span></span>
+<span class="r-in"><span><span class="co"># Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for</span></span></span>
+<span class="r-in"><span><span class="co">#   mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and</span></span></span>
+<span class="r-in"><span><span class="co">#   ROI$mzMax for ROI #1</span></span></span>
+<span class="r-in"><span><span class="co"># Found 2/2 features in 0.05 secs</span></span></span>
+<span class="r-in"><span><span class="co"># Peak statistics done in: 0 secs</span></span></span>
+<span class="r-in"><span><span class="co"># Feature search done in: 0.75 secs</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">res</span></span></span>
+<span class="r-in"><span><span class="co"># $TIC</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 2410533091</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># $peakTable</span></span></span>
+<span class="r-in"><span><span class="co">#   found    rtMin       rt    rtMax    mzMin    mz    mzMax peakArea</span></span></span>
+<span class="r-in"><span><span class="co"># 1  TRUE 3309.759 3346.828 3385.410 522.1948 522.2 522.2052 26133727</span></span></span>
+<span class="r-in"><span><span class="co"># 2  TRUE 3345.377 3386.529 3428.279 496.2000 496.2 496.2000 35472141</span></span></span>
+<span class="r-in"><span><span class="co">#   peakAreaRaw maxIntMeasured maxIntPredicted cpdID cpdName is_filled</span></span></span>
+<span class="r-in"><span><span class="co"># 1    26071378         889280        901015.8  ID-1   Cpd 1     FALSE</span></span></span>
+<span class="r-in"><span><span class="co"># 2    36498367        1128960       1113576.7  ID-2   Cpd 2     FALSE</span></span></span>
+<span class="r-in"><span><span class="co">#    ppm_error   rt_dev_sec  tailingFactor  asymmetryFactor</span></span></span>
+<span class="r-in"><span><span class="co"># 1 0.02337616    1.9397590       1.015357         1.026824</span></span></span>
+<span class="r-in"><span><span class="co"># 2 0.02460103    0.9518072       1.005378         1.009318</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># $acquTime</span></span></span>
+<span class="r-in"><span><span class="co"># [1] NA</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># $curveFit</span></span></span>
+<span class="r-in"><span><span class="co"># $curveFit[[1]]</span></span></span>
+<span class="r-in"><span><span class="co"># $amplitude</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 162404.8</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $center</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 3341.888</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $sigma</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 0.07878613</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $gamma</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 0.00183361</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $fitStatus</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 2</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $curveModel</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 'skewedGaussian'</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># attr(,'class')</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 'peakPantheR_curveFit'</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $curveFit[[2]]</span></span></span>
+<span class="r-in"><span><span class="co"># $amplitude</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 199249.1</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $center</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 3382.577</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $sigma</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 0.07490442</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $gamma</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 0.00114719</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $fitStatus</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 2</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># $curveModel</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 'skewedGaussian'</span></span></span>
+<span class="r-in"><span><span class="co"># </span></span></span>
+<span class="r-in"><span><span class="co"># attr(,'class')</span></span></span>
+<span class="r-in"><span><span class="co"># [1] 'peakPantheR_curveFit'</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># $ROIsDataPoint</span></span></span>
+<span class="r-in"><span><span class="co"># $ROIsDataPoint[[1]]</span></span></span>
+<span class="r-in"><span><span class="co">#          rt    mz    int</span></span></span>
+<span class="r-in"><span><span class="co"># 1  3315.154 522.2   2187</span></span></span>
+<span class="r-in"><span><span class="co"># 2  3316.719 522.2   3534</span></span></span>
+<span class="r-in"><span><span class="co"># 3  3318.284 522.2   6338</span></span></span>
+<span class="r-in"><span><span class="co"># 4  3319.849 522.2  11718</span></span></span>
+<span class="r-in"><span><span class="co"># 5  3321.414 522.2  21744</span></span></span>
+<span class="r-in"><span><span class="co"># 6  3322.979 522.2  37872</span></span></span>
+<span class="r-in"><span><span class="co"># 7  3324.544 522.2  62424</span></span></span>
+<span class="r-in"><span><span class="co"># 8  3326.109 522.2  98408</span></span></span>
+<span class="r-in"><span><span class="co"># 9  3327.673 522.2 152896</span></span></span>
+<span class="r-in"><span><span class="co"># 10 3329.238 522.2 225984</span></span></span>
+<span class="r-in"><span><span class="co"># ...</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># $ROIsDataPoint[[2]]</span></span></span>
+<span class="r-in"><span><span class="co">#          rt    mz     int</span></span></span>
+<span class="r-in"><span><span class="co"># 1  3280.725 496.2    1349</span></span></span>
+<span class="r-in"><span><span class="co"># 2  3290.115 496.2    2069</span></span></span>
+<span class="r-in"><span><span class="co"># 3  3291.680 496.2    3103</span></span></span>
+<span class="r-in"><span><span class="co"># 4  3293.245 496.2    5570</span></span></span>
+<span class="r-in"><span><span class="co"># 5  3294.809 496.2   10730</span></span></span>
+<span class="r-in"><span><span class="co"># 6  3296.374 496.2   20904</span></span></span>
+<span class="r-in"><span><span class="co"># 7  3297.939 496.2   38712</span></span></span>
+<span class="r-in"><span><span class="co"># 8  3299.504 496.2   64368</span></span></span>
+<span class="r-in"><span><span class="co"># 9  3301.069 496.2   97096</span></span></span>
+<span class="r-in"><span><span class="co"># 10 3302.634 496.2  136320</span></span></span>
+<span class="r-in"><span><span class="co"># ...</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading data from 2 windows</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.71 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data read in: 1.8 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Found 2/2 features in 0.02 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Peak statistics done in: 0 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.32 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Feature search done in: 2.46 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $TIC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2410533091</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -513,7 +550,7 @@ peak, but the two values cannot be directly converted</td></tr></table></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 97 3438.785 496.2   78144</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -528,7 +565,7 @@ peak, but the two values cannot be directly converted</td></tr></table></div>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

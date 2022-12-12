@@ -19,7 +19,7 @@ the raw data file are returned"><!-- mathjax --><script src="https://cdnjs.cloud
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
       </span>
     </div>
 
@@ -73,32 +73,43 @@ the raw data file are returned</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">extractSignalRawData</span><span class="op">(</span><span class="va">rawSpec</span>, <span class="va">rt</span>, <span class="va">mz</span>, msLevel <span class="op">=</span> <span class="fl">1L</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extractSignalRawData</span><span class="op">(</span><span class="va">rawSpec</span>, <span class="va">rt</span>, <span class="va">mz</span>, msLevel <span class="op">=</span> <span class="fl">1L</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>rawSpec</dt>
 <dd><p>an <code><a href="https://lgatto.github.io/MSnbase/reference/OnDiskMSnExp-class.html" class="external-link">OnDiskMSnExp-class</a></code></p></dd>
+
+
 <dt>rt</dt>
 <dd><p>(numeric(2) or two-column matrix) the lower and upper retention
 time range from which the data should be extracted. If a matrix is passed,
 each row corresponds to a different window. If not provided, the full
 retention time range will be extracted.</p></dd>
+
+
 <dt>mz</dt>
 <dd><p>(numeric(2) or two-column matrix) the lower and upper mass range
 from which the data should be extracted. If a matrix is passed, each row
 corresponds to a different window. If not provided, the full mass range will
 be extracted.</p></dd>
+
+
 <dt>msLevel</dt>
 <dd><p>(int) the MS level at which the data should be extracted
 (default to MS level 1)</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>(bool) If TRUE message progress and warnings</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list (one entry per window) of data.frame with signal as row and
+    
+
+<p>a list (one entry per window) of data.frame with signal as row and
 retention time ('rt'), mass ('mz') and intensity ('int) as columns.</p>
     </div>
     <div id="details">
@@ -204,7 +215,7 @@ dataPoints  &lt;- extractSignalRawData(rawSpec,
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
