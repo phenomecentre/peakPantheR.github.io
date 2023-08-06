@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">peakPantheR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.14.0</span>
       </span>
     </div>
 
@@ -106,16 +106,17 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.16/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer, Goncalo Correia<br></p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.17/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer, Goncalo Correia<br></p>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>The <code>peakPantheR</code> package is designed for the detection, integration and reporting of pre-defined features in MS files (<em>e.g. compounds, fragments, adducts, …</em>).</p>
 <p>The <strong>Parallel Annotation</strong> is set to detect and integrate <strong>multiple</strong> compounds in <strong>multiple</strong> files in <strong>parallel</strong> and store results in a <strong>single</strong> object. It can be employed to integrate a large number of expected features across a dataset.</p>
-<p>Using the <em><a href="https://bioconductor.org/packages/3.16/faahKO" class="external-link">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
+<p>Using the <em><a href="https://bioconductor.org/packages/3.17/faahKO" class="external-link">faahKO</a></em> raw MS dataset as an example, this vignette will:</p>
 <ul>
 <li>Detail the <strong>Parallel Annotation</strong> concept</li>
-<li>Apply the <strong>Parallel Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.16/faahKO" class="external-link">faahKO</a></em> dataset</li>
+<li>Apply the <strong>Parallel Annotation</strong> to a subset of pre-defined features in the <em><a href="https://bioconductor.org/packages/3.17/faahKO" class="external-link">faahKO</a></em>
+dataset</li>
 </ul>
 <div class="section level3">
 <h3 id="abbreviations">Abbreviations<a class="anchor" aria-label="anchor" href="#abbreviations"></a>
@@ -203,22 +204,23 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level2">
 <h2 id="parallel-annotation-example">Parallel Annotation Example<a class="anchor" aria-label="anchor" href="#parallel-annotation-example"></a>
 </h2>
-<p>We can target 2 pre-defined features in 6 raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.16/faahKO" class="external-link">faahKO</a></em> package using <code><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation()</a></code>. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
+<p>We can target 2 pre-defined features in 6 raw MS spectra file from the <em><a href="https://bioconductor.org/packages/3.17/faahKO" class="external-link">faahKO</a></em> package using <code><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation()</a></code>. For more details on the installation and input data employed, please consult the <a href="getting-started.html">Getting Started with peakPantheR</a> vignette.</p>
 <div class="section level3">
 <h3 id="input-data">Input Data<a class="anchor" aria-label="anchor" href="#input-data"></a>
 </h3>
-<p>First the paths to 3 MS file from the <em><a href="https://bioconductor.org/packages/3.16/faahKO" class="external-link">faahKO</a></em> are located and used as input spectras. In this example these 3 samples are considered as representative of the whole run (e.g. Quality Control samples):</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<p>First the paths to 3 MS file from the <em><a href="https://bioconductor.org/packages/3.17/faahKO" class="external-link">faahKO</a></em> are located and used as input spectras. In this example these 3 samples are considered as representative of the whole run (e.g. Quality Control samples):</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.doi.org/10.1021/bi0480335" class="external-link">faahKO</a></span><span class="op">)</span></span>
 <span><span class="co">## file paths</span></span>
 <span><span class="va">input_spectraPaths</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,</span>
 <span>                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko16.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,</span>
 <span>                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko18.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">input_spectraPaths</span></span>
-<span><span class="co">#&gt; [1] "C:/R/R-4.2.2/library/faahKO/cdf/KO/ko15.CDF"</span></span>
-<span><span class="co">#&gt; [2] "C:/R/R-4.2.2/library/faahKO/cdf/KO/ko16.CDF"</span></span>
-<span><span class="co">#&gt; [3] "C:/R/R-4.2.2/library/faahKO/cdf/KO/ko18.CDF"</span></span></code></pre></div>
-<p>Two targeted features (<em>e.g. compounds, fragments, adducts, …</em>) are defined and stored in a table with as columns:</p>
+<span><span class="co">#&gt; [1] "C:/R/win-library/4.3/faahKO/cdf/KO/ko15.CDF"</span></span>
+<span><span class="co">#&gt; [2] "C:/R/win-library/4.3/faahKO/cdf/KO/ko16.CDF"</span></span>
+<span><span class="co">#&gt; [3] "C:/R/win-library/4.3/faahKO/cdf/KO/ko18.CDF"</span></span></code></pre></div>
+<p>Two targeted features (<em>e.g. compounds, fragments, adducts,
+…</em>) are defined and stored in a table with as columns:</p>
 <ul>
 <li>
 <code>cpdID</code> (numeric)</li>
@@ -237,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <li>
 <code>mz</code> (m/z, optional / <code>NA</code>)</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># targetFeatTable</span></span>
 <span><span class="va">input_targetFeatTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">8</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>, </span>
 <span>                        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cpdID"</span>, <span class="st">"cpdName"</span>, <span class="st">"rtMin"</span>, <span class="st">"rt"</span>, <span class="st">"rtMax"</span>, <span class="st">"mzMin"</span>, </span>
@@ -292,8 +294,9 @@ document.addEventListener("DOMContentLoaded", function() {
 </tr>
 </tbody>
 </table>
-<p>Additional compound and spectra metadata can be provided but isn’t employed during the fitting procedure:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>Additional compound and spectra metadata can be provided but isn’t
+employed during the fitting procedure:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># spectra Metadata</span></span>
 <span><span class="va">input_spectraMetadata</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sample type 1"</span>, <span class="st">"sample type 2"</span>, </span>
 <span>                            <span class="st">"sample type 1"</span><span class="op">)</span>, <span class="fl">3</span>, <span class="fl">1</span>, </span>
@@ -321,13 +324,13 @@ document.addEventListener("DOMContentLoaded", function() {
 <h3 id="initialise-and-run-parallel-annotation">Initialise and Run Parallel Annotation<a class="anchor" aria-label="anchor" href="#initialise-and-run-parallel-annotation"></a>
 </h3>
 <p>A <code>peakPantheRAnnotation</code> object is first initialised with the path to the files to process (<code>spectraPaths</code>), features to integrate (<code>targetFeatTable</code>) and additional information and parameters such as <code>spectraMetadata</code>, <code>uROI</code>, <code>FIR</code> and if they should be used (<code>useUROI=TRUE</code>, <code>useFIR=TRUE</code>):</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phenomecentre/peakPantheR" class="external-link">peakPantheR</a></span><span class="op">)</span></span>
 <span><span class="va">init_annotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/peakPantheRAnnotation.html">peakPantheRAnnotation</a></span><span class="op">(</span>spectraPaths <span class="op">=</span> <span class="va">input_spectraPaths</span>,</span>
 <span>                        targetFeatTable <span class="op">=</span> <span class="va">input_targetFeatTable</span>,</span>
 <span>                        spectraMetadata <span class="op">=</span> <span class="va">input_spectraMetadata</span><span class="op">)</span></span></code></pre></div>
 <p>The resulting <code>peakPantheRAnnotation</code> object is not annotated, does not contain and use <code>uROI</code> and <code>FIR</code></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">init_annotation</span></span>
 <span><span class="co">#&gt; An object of class peakPantheRAnnotation</span></span>
 <span><span class="co">#&gt;  2 compounds in 3 samples. </span></span>
@@ -336,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <span><span class="co">#&gt;   does not use fallback integration regions (FIR)</span></span>
 <span><span class="co">#&gt;   is not annotated</span></span></code></pre></div>
 <p><code><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation()</a></code> will run the annotation across files in parallel (if <code>ncores</code> &gt;0) and return the successful annotations (<code>result$annotation</code>) and failures (<code>result$failures</code>):</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># annotate files serially</span></span>
 <span><span class="va">annotation_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation</a></span><span class="op">(</span><span class="va">init_annotation</span>, ncores<span class="op">=</span><span class="fl">0</span>,</span>
 <span>                                                    curveModel<span class="op">=</span><span class="st">'skewedGaussian'</span>,</span>
@@ -348,34 +351,34 @@ document.addEventListener("DOMContentLoaded", function() {
 <span><span class="co">#&gt; Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></span>
 <span><span class="co">#&gt; Check input, mzMLPath must be a .mzML</span></span>
 <span><span class="co">#&gt; Reading data from 2 windows</span></span>
-<span><span class="co">#&gt; Data read in: 1.65 secs</span></span>
+<span><span class="co">#&gt; Data read in: 1.38 secs</span></span>
 <span><span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></span>
-<span><span class="co">#&gt; Found 2/2 features in 0.04 secs</span></span>
+<span><span class="co">#&gt; Found 2/2 features in 0.03 secs</span></span>
 <span><span class="co">#&gt; Peak statistics done in: 0 secs</span></span>
-<span><span class="co">#&gt; Feature search done in: 2.33 secs</span></span>
+<span><span class="co">#&gt; Feature search done in: 1.98 secs</span></span>
 <span><span class="co">#&gt; ----- ko16 -----</span></span>
 <span><span class="co">#&gt; Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></span>
 <span><span class="co">#&gt; Check input, mzMLPath must be a .mzML</span></span>
 <span><span class="co">#&gt; Reading data from 2 windows</span></span>
-<span><span class="co">#&gt; Data read in: 1.65 secs</span></span>
+<span><span class="co">#&gt; Data read in: 1.39 secs</span></span>
 <span><span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></span>
 <span><span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #2</span></span>
-<span><span class="co">#&gt; Found 2/2 features in 0.02 secs</span></span>
+<span><span class="co">#&gt; Found 2/2 features in 0.01 secs</span></span>
 <span><span class="co">#&gt; Peak statistics done in: 0 secs</span></span>
-<span><span class="co">#&gt; Feature search done in: 2.24 secs</span></span>
+<span><span class="co">#&gt; Feature search done in: 1.9 secs</span></span>
 <span><span class="co">#&gt; ----- ko18 -----</span></span>
 <span><span class="co">#&gt; Polarity can not be extracted from netCDF files, please set manually the polarity with the 'polarity' method.</span></span>
 <span><span class="co">#&gt; Check input, mzMLPath must be a .mzML</span></span>
 <span><span class="co">#&gt; Reading data from 2 windows</span></span>
-<span><span class="co">#&gt; Data read in: 1.62 secs</span></span>
+<span><span class="co">#&gt; Data read in: 1.39 secs</span></span>
 <span><span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #1</span></span>
 <span><span class="co">#&gt; Warning: rtMin/rtMax outside of ROI; datapoints cannot be used for mzMin/mzMax calculation, approximate mz and returning ROI$mzMin and ROI$mzMax for ROI #2</span></span>
-<span><span class="co">#&gt; Found 2/2 features in 0.02 secs</span></span>
+<span><span class="co">#&gt; Found 2/2 features in 0.01 secs</span></span>
 <span><span class="co">#&gt; Peak statistics done in: 0 secs</span></span>
-<span><span class="co">#&gt; Feature search done in: 2.2 secs</span></span>
+<span><span class="co">#&gt; Feature search done in: 1.89 secs</span></span>
 <span><span class="co">#&gt; Annotation object cannot be reordered by sample acquisition date</span></span>
 <span><span class="co">#&gt; ----------------</span></span>
-<span><span class="co">#&gt; Parallel annotation done in: 8.18 secs</span></span>
+<span><span class="co">#&gt; Parallel annotation done in: 7.01 secs</span></span>
 <span><span class="co">#&gt;   0 failure(s)</span></span>
 <span></span>
 <span><span class="co"># successful fit</span></span>
@@ -406,7 +409,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <code>FIR</code> are established as the median of found <code>rtMin</code>, <code>rtMax</code>, <code>mzMin</code>, <code>mzMax</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">updated_annotation</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/annotationParamsDiagnostic-peakPantheRAnnotation-method.html">annotationParamsDiagnostic</a></span><span class="op">(</span><span class="va">data_annotation</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; uROI will be set as mimimum/maximum of found peaks (+/-5% of ROI in retention time)</span></span>
 <span><span class="co">#&gt; FIR will be calculated as the median of found "rtMin","rtMax","mzMin","mzMax"</span></span>
@@ -420,7 +423,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <span><span class="co">#&gt;   does not use fallback integration regions (FIR)</span></span>
 <span><span class="co">#&gt;   is annotated</span></span></code></pre></div>
 <p><code><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code> will save to disk <code>annotationParameters_summary.csv</code> containing the original <code>ROI</code> and newly determined <code>uROI</code> and <code>FIR</code> for manual validation. Additionnaly a diagnostic plot for each compound is saved for reference and can be generated in parallel with the argument <code>ncores</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a colourScale based on the sampleType</span></span>
 <span><span class="va">uniq_sType</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="../reference/spectraMetadata-peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">updated_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">sampleType</span><span class="op">)</span>,</span>
 <span>                    na.last<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
@@ -566,7 +569,42 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level4">
 <h4 id="retention-time-correction">Retention time correction<a class="anchor" aria-label="anchor" href="#retention-time-correction"></a>
 </h4>
-<p>The optional <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> method provides an interface to adjust the expected ROI rt values and account for chromatographic batch effects. By comparing expected and found rt values for a set of reference compounds, a model of the chromatographic shift for the present batch can be established. This model can be in turned used to correct the expected retention time of all targeted compounds. In order to apply this method, the <code>peakPantheRAnnotation</code> must be previously annotated (<code>isAnnotated=TRUE</code>). The retention time correction algorithm to use can be selected using the <code>method</code> argument (currently <code>polynomial</code> and <code>constant</code> methods are available). <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> fits a correction function to model the dependency of the mean <code>rt_dev_sec</code> per reference feature with the expected databased retention time. If <code>useUROI=TRUE</code>, the expected retention time value is taken from the <code>UROI_rt</code> field, otherwise <code>ROI_rt</code> is used. If <code>robust=TRUE</code>, the RANSAC algorithm is used to automatically detect outliers and exclude them from the fit (this should only be used with a large number of reference features). <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> returns a list with 2 elements: * a modified <code>peakPantheRAnnotation</code> object * a <code>ggplot2</code> diagnostic plot (optional, depending on whether <code>TRUE</code> or <code>FALSE</code> is passed to the <code>diagnostic</code> argument). The returned <code>peakPantheRAnnotation</code> object contains the same <code>uROI</code> and <code>FIR</code> <code>mz</code> values as the original annotation, but the retention time related parameters (<code>rt</code>, <code>rtMin</code> and <code>rtMax</code>) are replaced by the adjusted values. The <code>rtMax</code> and <code>rtMin</code> are set as the corrected <code>rt</code> value plus or minus half the value passed to the <code>rtWindowWidth</code> argument, respectively. <code>useUROI</code> is also set to TRUE. To continue with the workflow, simply set a new annotation object with the fit parameters established by <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> and call <code><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation()</a></code> for the final annotation.</p>
+<p>The optional <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> method provides
+an interface to adjust the expected ROI rt values and account for
+chromatographic batch effects. By comparing expected and found rt values
+for a set of reference compounds, a model of the chromatographic shift
+for the present batch can be established. This model can be in turned
+used to correct the expected retention time of all targeted compounds.
+In order to apply this method, the <code>peakPantheRAnnotation</code>
+must be previously annotated (<code>isAnnotated=TRUE</code>). The
+retention time correction algorithm to use can be selected using the
+<code>method</code> argument (currently <code>polynomial</code> and
+<code>constant</code> methods are available).
+<code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> fits a correction function to
+model the dependency of the mean <code>rt_dev_sec</code> per reference
+feature with the expected databased retention time. If
+<code>useUROI=TRUE</code>, the expected retention time value is taken
+from the <code>UROI_rt</code> field, otherwise <code>ROI_rt</code> is
+used. If <code>robust=TRUE</code>, the RANSAC algorithm is used to
+automatically detect outliers and exclude them from the fit (this should
+only be used with a large number of reference features).
+<code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> returns a list with 2 elements: *
+a modified <code>peakPantheRAnnotation</code> object * a
+<code>ggplot2</code> diagnostic plot (optional, depending on whether
+<code>TRUE</code> or <code>FALSE</code> is passed to the
+<code>diagnostic</code> argument). The returned
+<code>peakPantheRAnnotation</code> object contains the same
+<code>uROI</code> and <code>FIR</code> <code>mz</code> values as the
+original annotation, but the retention time related parameters
+(<code>rt</code>, <code>rtMin</code> and <code>rtMax</code>) are
+replaced by the adjusted values. The <code>rtMax</code> and
+<code>rtMin</code> are set as the corrected <code>rt</code> value plus
+or minus half the value passed to the <code>rtWindowWidth</code>
+argument, respectively. <code>useUROI</code> is also set to TRUE. To
+continue with the workflow, simply set a new annotation object with the
+fit parameters established by <code><a href="../reference/retentionTimeCorrection-peakPantheRAnnotation-method.html">retentionTimeCorrection()</a></code> and
+call <code><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation()</a></code> for the final
+annotation.</p>
 <p><img src="parallel-annotation_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 <pre><code><span><span class="co">#&gt; Warning in applyRTCorrection_checkInputParams(params, method, referenceTable):</span></span>
 <span><span class="co">#&gt; `polynomialOrder` is larger than the number of references passed.</span></span>
@@ -574,14 +612,29 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 </div>
 <div class="section level3">
-<h3 id="new-initialisation-with-updated-parameters-to-be-applied-to-all-study-samples">New Initialisation with Updated Parameters to be Applied to All Study Samples<a class="anchor" aria-label="anchor" href="#new-initialisation-with-updated-parameters-to-be-applied-to-all-study-samples"></a>
+<h3 id="new-initialisation-with-updated-parameters-to-be-applied-to-all-study-samples">New Initialisation with Updated Parameters to be Applied to All
+Study Samples<a class="anchor" aria-label="anchor" href="#new-initialisation-with-updated-parameters-to-be-applied-to-all-study-samples"></a>
 </h3>
-<p>Following this manual validation of the fit on reference samples, the modified parameters in the <code>.csv</code> file can be reloaded and applied to all study samples.</p>
+<p>Following this manual validation of the fit on reference samples, the
+modified parameters in the <code>.csv</code> file can be reloaded and
+applied to all study samples.</p>
 <div class="section level4">
 <h4 id="load-new-fit-parameters">Load new fit parameters<a class="anchor" aria-label="anchor" href="#load-new-fit-parameters"></a>
 </h4>
-<p><code><a href="../reference/peakPantheR_loadAnnotationParamsCSV.html">peakPantheR_loadAnnotationParamsCSV()</a></code> will load the new <code>.csv</code> parameters (as generated by <code><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code>) and initialise a <code>peakPantheRAnnotation</code> object without <code>spectraPaths</code>, <code>spectraMetadata</code> or <code>cpdMetadata</code> which will need to be added before annotation. <code>useUROI</code> and <code>useFIR</code> are set to <code>FALSE</code> by default and will need to be modified according to the analysis to run. <code>uROIExist</code> is established depending on the <code>.csv</code> uROI column, and will only be set to TRUE if no <code>NA</code> are present. It is possible to reset the <code>FIR</code> values with the <code>uROI</code> windows using <code><a href="../reference/resetFIR-peakPantheRAnnotation-method.html">resetFIR()</a></code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p><code><a href="../reference/peakPantheR_loadAnnotationParamsCSV.html">peakPantheR_loadAnnotationParamsCSV()</a></code> will load the new
+<code>.csv</code> parameters (as generated by
+<code><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code>) and initialise a
+<code>peakPantheRAnnotation</code> object without
+<code>spectraPaths</code>, <code>spectraMetadata</code> or
+<code>cpdMetadata</code> which will need to be added before annotation.
+<code>useUROI</code> and <code>useFIR</code> are set to
+<code>FALSE</code> by default and will need to be modified according to
+the analysis to run. <code>uROIExist</code> is established depending on
+the <code>.csv</code> uROI column, and will only be set to TRUE if no
+<code>NA</code> are present. It is possible to reset the
+<code>FIR</code> values with the <code>uROI</code> windows using
+<code><a href="../reference/resetFIR-peakPantheRAnnotation-method.html">resetFIR()</a></code>.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">update_csv_path</span> <span class="op">&lt;-</span> <span class="st">'/path_to_new_csv/'</span></span>
 <span></span>
 <span><span class="co"># load csv</span></span>
@@ -603,8 +656,11 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level4">
 <h4 id="add-new-samples-to-process">Add new samples to process<a class="anchor" aria-label="anchor" href="#add-new-samples-to-process"></a>
 </h4>
-<p>Now that the fit parameters were set on 3 representative samples (e.g. QC), the same processing can be applied to all study samples. <code><a href="../reference/resetAnnotation-peakPantheRAnnotation-method.html">resetAnnotation()</a></code> will reinitialise all the results and modify the samples or compounds targeted as required:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p>Now that the fit parameters were set on 3 representative samples
+(e.g. QC), the same processing can be applied to all study samples.
+<code><a href="../reference/resetAnnotation-peakPantheRAnnotation-method.html">resetAnnotation()</a></code> will reinitialise all the results and
+modify the samples or compounds targeted as required:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## new files</span></span>
 <span><span class="va">new_spectraPaths</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/KO/ko15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,</span>
 <span>                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/WT/wt15.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span>,</span>
@@ -614,14 +670,14 @@ document.addEventListener("DOMContentLoaded", function() {
 <span>                        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'cdf/WT/wt18.CDF'</span>, package <span class="op">=</span> <span class="st">"faahKO"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">new_spectraPaths</span></span>
-<span><span class="co">#&gt; [1] "C:/R/R-4.2.2/library/faahKO/cdf/KO/ko15.CDF"</span></span>
-<span><span class="co">#&gt; [2] "C:/R/R-4.2.2/library/faahKO/cdf/WT/wt15.CDF"</span></span>
-<span><span class="co">#&gt; [3] "C:/R/R-4.2.2/library/faahKO/cdf/KO/ko16.CDF"</span></span>
-<span><span class="co">#&gt; [4] "C:/R/R-4.2.2/library/faahKO/cdf/WT/wt16.CDF"</span></span>
-<span><span class="co">#&gt; [5] "C:/R/R-4.2.2/library/faahKO/cdf/KO/ko18.CDF"</span></span>
-<span><span class="co">#&gt; [6] "C:/R/R-4.2.2/library/faahKO/cdf/WT/wt18.CDF"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "C:/R/win-library/4.3/faahKO/cdf/KO/ko15.CDF"</span></span>
+<span><span class="co">#&gt; [2] "C:/R/win-library/4.3/faahKO/cdf/WT/wt15.CDF"</span></span>
+<span><span class="co">#&gt; [3] "C:/R/win-library/4.3/faahKO/cdf/KO/ko16.CDF"</span></span>
+<span><span class="co">#&gt; [4] "C:/R/win-library/4.3/faahKO/cdf/WT/wt16.CDF"</span></span>
+<span><span class="co">#&gt; [5] "C:/R/win-library/4.3/faahKO/cdf/KO/ko18.CDF"</span></span>
+<span><span class="co">#&gt; [6] "C:/R/win-library/4.3/faahKO/cdf/WT/wt18.CDF"</span></span></code></pre></div>
 <p>Below we define the metadata of these new samples:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## new spectra metadata</span></span>
 <span><span class="va">new_spectraMetadata</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"KO"</span>, <span class="st">"WT"</span>, <span class="st">"KO"</span>, <span class="st">"WT"</span>, <span class="st">"KO"</span>, <span class="st">"WT"</span><span class="op">)</span>,</span>
 <span>                                        <span class="fl">6</span>, <span class="fl">1</span>, dimnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Group"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, </span>
@@ -652,7 +708,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## add new samples to the annotation loaded from csv, useUROI, useFIR</span></span>
 <span></span>
 <span><span class="va">new_annotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/resetAnnotation-peakPantheRAnnotation-method.html">resetAnnotation</a></span><span class="op">(</span><span class="va">new_annotation</span>, spectraPaths<span class="op">=</span><span class="va">new_spectraPaths</span>,</span>
@@ -668,7 +724,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <span><span class="co">#&gt;   Previous "uROIExist" value kept</span></span>
 <span><span class="co">#&gt;   New "useUROI" value set</span></span>
 <span><span class="co">#&gt;   New "useFIR" value set</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">new_annotation</span></span>
 <span><span class="co">#&gt; An object of class peakPantheRAnnotation</span></span>
 <span><span class="co">#&gt;  2 compounds in 6 samples. </span></span>
@@ -681,8 +737,9 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level3">
 <h3 id="run-final-parallel-annotation">Run Final Parallel Annotation<a class="anchor" aria-label="anchor" href="#run-final-parallel-annotation"></a>
 </h3>
-<p>We can now run the final annotation on all samples with the optimised targeted features:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<p>We can now run the final annotation on all samples with the optimised
+targeted features:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># annotate files serially</span></span>
 <span><span class="va">new_annotation_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/peakPantheR_parallelAnnotation.html">peakPantheR_parallelAnnotation</a></span><span class="op">(</span><span class="va">new_annotation</span>, </span>
 <span>                                                        ncores<span class="op">=</span><span class="fl">0</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
@@ -719,8 +776,9 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level4">
 <h4 id="output-final-results">Output final results<a class="anchor" aria-label="anchor" href="#output-final-results"></a>
 </h4>
-<p>The final fits can be saved to disk with <code><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code>:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<p>The final fits can be saved to disk with
+<code><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic()</a></code>:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a colourScale based on the sampleType</span></span>
 <span><span class="va">uniq_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="../reference/spectraMetadata-peakPantheRAnnotation-method.html">spectraMetadata</a></span><span class="op">(</span><span class="va">final_annotation</span><span class="op">)</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span>,na.last<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">col_group</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'red'</span><span class="op">)</span>,</span>
@@ -733,8 +791,11 @@ document.addEventListener("DOMContentLoaded", function() {
 <span><span class="co"># output fit diagnostic to disk</span></span>
 <span><span class="fu"><a href="../reference/outputAnnotationDiagnostic-peakPantheRAnnotation-method.html">outputAnnotationDiagnostic</a></span><span class="op">(</span><span class="va">final_annotation</span>, saveFolder<span class="op">=</span><span class="va">final_output_folder</span>,</span>
 <span>                        savePlots<span class="op">=</span><span class="cn">TRUE</span>, sampleColour<span class="op">=</span><span class="va">col_group</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>For each processed sample, a <code>peakTables</code> contains all the fit information for all compounds targeted. <code>annotationTable( , column)</code> will group the values across all samples and compounds for any <code>peakTables</code> column:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<p>For each processed sample, a <code>peakTables</code> contains all the
+fit information for all compounds targeted.
+<code>annotationTable( , column)</code> will group the values across all
+samples and compounds for any <code>peakTables</code> column:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># peakTables for the first sample</span></span>
 <span><span class="fu"><a href="../reference/peakTables-peakPantheRAnnotation-method.html">peakTables</a></span><span class="op">(</span><span class="va">final_annotation</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <table class="table">
@@ -847,55 +908,88 @@ document.addEventListener("DOMContentLoaded", function() {
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Extract the found peak area for all compounds and all samples</span></span>
 <span><span class="fu"><a href="../reference/annotationTable-peakPantheRAnnotation-method.html">annotationTable</a></span><span class="op">(</span><span class="va">final_annotation</span>, column<span class="op">=</span><span class="st">'peakArea'</span><span class="op">)</span></span></code></pre></div>
-<table style="width:97%;" class="table">
+<table class="table">
+<caption>Table continues below</caption>
 <colgroup>
-<col width="69%">
-<col width="13%">
-<col width="13%">
+<col width="88%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
 <th align="center">ID-1</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/KO/ko15.CDF</strong></td>
+<td align="center">4289965</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/WT/wt15.CDF</strong></td>
+<td align="center">4355690</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/KO/ko16.CDF</strong></td>
+<td align="center">46184</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/WT/wt16.CDF</strong></td>
+<td align="center">28157</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/KO/ko18.CDF</strong></td>
+<td align="center">141309</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/WT/wt18.CDF</strong></td>
+<td align="center">101738</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col width="88%">
+<col width="11%">
+</colgroup>
+<thead><tr class="header">
+<th align="center"> </th>
 <th align="center">ID-2</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>C:/R/R-4.2.2/library/faahKO/cdf/KO/ko15.CDF</strong></td>
-<td align="center">4289965</td>
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/KO/ko15.CDF</strong></td>
 <td align="center">7312556</td>
 </tr>
 <tr class="even">
-<td align="center"><strong>C:/R/R-4.2.2/library/faahKO/cdf/WT/wt15.CDF</strong></td>
-<td align="center">4355690</td>
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/WT/wt15.CDF</strong></td>
 <td align="center">9278578</td>
 </tr>
 <tr class="odd">
-<td align="center"><strong>C:/R/R-4.2.2/library/faahKO/cdf/KO/ko16.CDF</strong></td>
-<td align="center">46184</td>
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/KO/ko16.CDF</strong></td>
 <td align="center">473801</td>
 </tr>
 <tr class="even">
-<td align="center"><strong>C:/R/R-4.2.2/library/faahKO/cdf/WT/wt16.CDF</strong></td>
-<td align="center">28157</td>
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/WT/wt16.CDF</strong></td>
 <td align="center">475297</td>
 </tr>
 <tr class="odd">
-<td align="center"><strong>C:/R/R-4.2.2/library/faahKO/cdf/KO/ko18.CDF</strong></td>
-<td align="center">141309</td>
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/KO/ko18.CDF</strong></td>
 <td align="center">743452</td>
 </tr>
 <tr class="even">
-<td align="center"><strong>C:/R/R-4.2.2/library/faahKO/cdf/WT/wt18.CDF</strong></td>
-<td align="center">101738</td>
+<td align="center"><strong>C:/R/win-library/4.3/faahKO/cdf/WT/wt18.CDF</strong></td>
 <td align="center">1480713</td>
 </tr>
 </tbody>
 </table>
-<p>Finally all annotation results can be saved to disk as <code>.csv</code> with <code><a href="../reference/outputAnnotationResult-peakPantheRAnnotation-method.html">outputAnnotationResult()</a></code>. These <code>.csv</code> will contain the compound metadata, spectra metadata and a file for each column of peakTables (with samples as rows and compounds as columns):</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<p>Finally all annotation results can be saved to disk as
+<code>.csv</code> with <code><a href="../reference/outputAnnotationResult-peakPantheRAnnotation-method.html">outputAnnotationResult()</a></code>. These
+<code>.csv</code> will contain the compound metadata, spectra metadata
+and a file for each column of peakTables (with samples as rows and
+compounds as columns):</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a temporary location to save the diagnotic (otherwise provide the path</span></span>
 <span><span class="co"># to the selected location)</span></span>
 <span><span class="va">final_output_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -937,7 +1031,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <h2 id="see-also">See Also<a class="anchor" aria-label="anchor" href="#see-also"></a>
 </h2>
 <ul>
-<li><a href="getting-started.html">Getting Started with peakPantheR</a></li>
+<li><a href="getting-started.html">Getting Started with
+peakPantheR</a></li>
 <li><a href="real-time-annotation.html">Real Time Annotation</a></li>
 <li><a href="peakPantheR-GUI.html">Graphical user interface use</a></li>
 </ul>
@@ -947,149 +1042,157 @@ document.addEventListener("DOMContentLoaded", function() {
 </h2>
 <pre><code><span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
-<span><span class="co">#&gt;  version  R version 4.2.2 (2022-10-31 ucrt)</span></span>
-<span><span class="co">#&gt;  os       Windows 10 x64 (build 19045)</span></span>
+<span><span class="co">#&gt;  version  R version 4.3.1 (2023-06-16 ucrt)</span></span>
+<span><span class="co">#&gt;  os       Windows 11 x64 (build 22621)</span></span>
 <span><span class="co">#&gt;  system   x86_64, mingw32</span></span>
 <span><span class="co">#&gt;  ui       RTerm</span></span>
 <span><span class="co">#&gt;  language en</span></span>
 <span><span class="co">#&gt;  collate  English_United Kingdom.utf8</span></span>
 <span><span class="co">#&gt;  ctype    English_United Kingdom.utf8</span></span>
 <span><span class="co">#&gt;  tz       Europe/Paris</span></span>
-<span><span class="co">#&gt;  date     2022-12-12</span></span>
-<span><span class="co">#&gt;  pandoc   2.7.1 @ D:/Documents/rstudio-pandoc/ (via rmarkdown)</span></span>
+<span><span class="co">#&gt;  date     2023-08-06</span></span>
+<span><span class="co">#&gt;  pandoc   3.1.1 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">package             </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version  </span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span></span>
-<span><span class="co">#&gt;  affy                   1.76.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  affyio                 1.68.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  Biobase              * 2.58.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  BiocGenerics         * 0.44.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  BiocManager            1.30.19   <span style="color: #555555;">2022-10-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  BiocParallel         * 1.32.4    <span style="color: #555555;">2022-12-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  BiocStyle            * 2.26.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  bitops                 1.0-7     <span style="color: #555555;">2021-04-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  bookdown               0.30      <span style="color: #555555;">2022-11-09</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  bslib                  0.4.1     <span style="color: #555555;">2022-11-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  cachem                 1.0.6     <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  callr                  3.7.3     <span style="color: #555555;">2022-11-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  cli                    3.4.1     <span style="color: #555555;">2022-09-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  clue                   0.3-63    <span style="color: #555555;">2022-11-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  cluster                2.1.4     <span style="color: #555555;">2022-08-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  codetools              0.2-18    <span style="color: #555555;">2020-11-04</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  colorspace             2.0-3     <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  crayon                 1.5.2     <span style="color: #555555;">2022-09-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  DelayedArray           0.24.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  DEoptimR               1.0-11    <span style="color: #555555;">2022-04-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  desc                   1.4.2     <span style="color: #555555;">2022-09-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  devtools               2.4.5     <span style="color: #555555;">2022-10-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  digest                 0.6.30    <span style="color: #555555;">2022-10-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  doParallel           * 1.0.17    <span style="color: #555555;">2022-02-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  DT                     0.26      <span style="color: #555555;">2022-10-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  ellipsis               0.3.2     <span style="color: #555555;">2021-04-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  evaluate               0.18      <span style="color: #555555;">2022-11-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  faahKO               * 1.38.0    <span style="color: #555555;">2022-11-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  fansi                  1.0.3     <span style="color: #555555;">2022-03-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  farver                 2.1.1     <span style="color: #555555;">2022-07-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  fastmap                1.1.0     <span style="color: #555555;">2021-01-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  foreach              * 1.5.2     <span style="color: #555555;">2022-02-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  fs                     1.5.2     <span style="color: #555555;">2021-12-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  GenomeInfoDb           1.34.2    <span style="color: #555555;">2022-11-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  GenomeInfoDbData       1.2.9     <span style="color: #555555;">2022-11-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  GenomicRanges          1.50.1    <span style="color: #555555;">2022-11-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  ggplot2                3.4.0     <span style="color: #555555;">2022-11-04</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  glue                   1.6.2     <span style="color: #555555;">2022-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  gtable                 0.3.1     <span style="color: #555555;">2022-09-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  highr                  0.9       <span style="color: #555555;">2021-04-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  htmltools              0.5.3     <span style="color: #555555;">2022-07-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  htmlwidgets            1.5.4     <span style="color: #555555;">2021-09-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  httpuv                 1.6.6     <span style="color: #555555;">2022-09-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  impute                 1.72.1    <span style="color: #555555;">2022-11-13</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  IRanges                2.32.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  iterators            * 1.0.14    <span style="color: #555555;">2022-02-05</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  jquerylib              0.1.4     <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  jsonlite               1.8.4     <span style="color: #555555;">2022-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  knitr                  1.41      <span style="color: #555555;">2022-11-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  labeling               0.4.2     <span style="color: #555555;">2020-10-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  later                  1.3.0     <span style="color: #555555;">2021-08-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  lattice                0.20-45   <span style="color: #555555;">2021-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  lifecycle              1.0.3     <span style="color: #555555;">2022-10-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  limma                  3.54.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  magrittr               2.0.3     <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  MALDIquant             1.22      <span style="color: #555555;">2022-11-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  MASS                   7.3-58.1  <span style="color: #555555;">2022-08-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  MassSpecWavelet        1.64.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  Matrix                 1.5-3     <span style="color: #555555;">2022-11-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  MatrixGenerics         1.10.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  matrixStats            0.63.0    <span style="color: #555555;">2022-11-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  memoise                2.0.1     <span style="color: #555555;">2021-11-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  mime                   0.12      <span style="color: #555555;">2021-09-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  miniUI                 0.1.1.1   <span style="color: #555555;">2018-05-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  minpack.lm             1.2-2     <span style="color: #555555;">2022-04-13</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  MsCoreUtils            1.10.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  MsFeatures             1.6.0     <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  MSnbase              * 2.24.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  munsell                0.5.0     <span style="color: #555555;">2018-06-12</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  mzID                   1.36.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  mzR                  * 2.32.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  ncdf4                  1.20      <span style="color: #555555;">2022-12-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  pander               * 0.6.5     <span style="color: #555555;">2022-03-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  pcaMethods             1.90.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  peakPantheR          * 1.12.2    <span style="color: #555555;">2022-12-12</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  pillar                 1.8.1     <span style="color: #555555;">2022-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  pkgbuild               1.4.0     <span style="color: #555555;">2022-11-27</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  pkgconfig              2.0.3     <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  pkgdown                2.0.6     <span style="color: #555555;">2022-07-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  pkgload                1.3.2     <span style="color: #555555;">2022-11-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  plyr                   1.8.8     <span style="color: #555555;">2022-11-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  pracma                 2.4.2     <span style="color: #555555;">2022-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  preprocessCore         1.60.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  prettyunits            1.1.1     <span style="color: #555555;">2020-01-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  processx               3.8.0     <span style="color: #555555;">2022-10-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  profvis                0.3.7     <span style="color: #555555;">2020-11-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  promises               1.2.0.1   <span style="color: #555555;">2021-02-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  ProtGenerics         * 1.30.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  ps                     1.7.2     <span style="color: #555555;">2022-10-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  purrr                  0.3.5     <span style="color: #555555;">2022-10-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  R6                     2.5.1     <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  ragg                   1.2.4     <span style="color: #555555;">2022-10-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  RANN                   2.6.1     <span style="color: #555555;">2019-01-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  RColorBrewer           1.1-3     <span style="color: #555555;">2022-04-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  Rcpp                 * 1.0.9     <span style="color: #555555;">2022-07-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  RCurl                  1.98-1.9  <span style="color: #555555;">2022-10-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  remotes                2.4.2     <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  rlang                  1.0.6     <span style="color: #555555;">2022-09-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  rmarkdown              2.18      <span style="color: #555555;">2022-11-09</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  robustbase             0.95-0    <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  rprojroot              2.0.3     <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  rstudioapi             0.14      <span style="color: #555555;">2022-08-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  S4Vectors            * 0.36.1    <span style="color: #555555;">2022-12-05</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  sass                   0.4.4     <span style="color: #555555;">2022-11-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  scales                 1.2.1     <span style="color: #555555;">2022-08-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  sessioninfo            1.2.2     <span style="color: #555555;">2021-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  shiny                  1.7.3     <span style="color: #555555;">2022-10-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  shinycssloaders        1.0.0     <span style="color: #555555;">2020-07-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  stringi                1.7.8     <span style="color: #555555;">2022-07-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  stringr                1.5.0     <span style="color: #555555;">2022-12-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  SummarizedExperiment   1.28.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  systemfonts            1.0.4     <span style="color: #555555;">2022-02-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  textshaping            0.3.6     <span style="color: #555555;">2021-10-13</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  tibble                 3.1.8     <span style="color: #555555;">2022-07-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  urlchecker             1.0.1     <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  usethis                2.1.6     <span style="color: #555555;">2022-05-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  utf8                   1.2.2     <span style="color: #555555;">2021-07-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  vctrs                  0.5.1     <span style="color: #555555;">2022-11-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  vsn                    3.66.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  withr                  2.5.0     <span style="color: #555555;">2022-03-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  xcms                 * 3.20.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  xfun                   0.34      <span style="color: #555555;">2022-10-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  XML                    3.99-0.12 <span style="color: #555555;">2022-10-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  xtable                 1.8-4     <span style="color: #555555;">2019-04-21</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.2)</span></span></span>
-<span><span class="co">#&gt;  XVector                0.38.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
-<span><span class="co">#&gt;  yaml                   2.3.6     <span style="color: #555555;">2022-10-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  zlibbioc               1.44.0    <span style="color: #555555;">2022-11-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  abind                  1.4-5     <span style="color: #555555;">2016-07-21</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  affy                   1.78.2    <span style="color: #555555;">2023-07-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  affyio                 1.70.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  Biobase              * 2.60.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  BiocGenerics         * 0.46.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  BiocManager            1.30.21.1 <span style="color: #555555;">2023-07-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  BiocParallel         * 1.34.2    <span style="color: #555555;">2023-05-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  BiocStyle            * 2.28.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  bitops                 1.0-7     <span style="color: #555555;">2021-04-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  bookdown               0.34      <span style="color: #555555;">2023-05-09</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  bslib                  0.5.0     <span style="color: #555555;">2023-06-09</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  cachem                 1.0.8     <span style="color: #555555;">2023-05-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  callr                  3.7.3     <span style="color: #555555;">2022-11-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  cli                    3.6.1     <span style="color: #555555;">2023-03-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  clue                   0.3-64    <span style="color: #555555;">2023-01-31</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  cluster                2.1.4     <span style="color: #555555;">2022-08-22</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  codetools              0.2-19    <span style="color: #555555;">2023-02-01</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  colorspace             2.1-0     <span style="color: #555555;">2023-01-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  crayon                 1.5.2     <span style="color: #555555;">2022-09-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  DelayedArray           0.26.7    <span style="color: #555555;">2023-07-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  DEoptimR               1.1-0     <span style="color: #555555;">2023-07-12</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  desc                   1.4.2     <span style="color: #555555;">2022-09-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  devtools               2.4.5     <span style="color: #555555;">2022-10-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  digest                 0.6.33    <span style="color: #555555;">2023-07-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  doParallel           * 1.0.17    <span style="color: #555555;">2022-02-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  dplyr                  1.1.2     <span style="color: #555555;">2023-04-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  DT                     0.28      <span style="color: #555555;">2023-05-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  ellipsis               0.3.2     <span style="color: #555555;">2021-04-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  evaluate               0.21      <span style="color: #555555;">2023-05-05</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  faahKO               * 1.40.0    <span style="color: #555555;">2023-04-27</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  fansi                  1.0.4     <span style="color: #555555;">2023-01-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  farver                 2.1.1     <span style="color: #555555;">2022-07-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  fastmap                1.1.1     <span style="color: #555555;">2023-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  foreach              * 1.5.2     <span style="color: #555555;">2022-02-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  fs                     1.6.3     <span style="color: #555555;">2023-07-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  generics               0.1.3     <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  GenomeInfoDb           1.36.1    <span style="color: #555555;">2023-06-21</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  GenomeInfoDbData       1.2.10    <span style="color: #555555;">2023-08-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  GenomicRanges          1.52.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  ggplot2                3.4.2     <span style="color: #555555;">2023-04-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  glue                   1.6.2     <span style="color: #555555;">2022-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  gtable                 0.3.3     <span style="color: #555555;">2023-03-21</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  highr                  0.10      <span style="color: #555555;">2022-12-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  htmltools              0.5.5     <span style="color: #555555;">2023-03-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  htmlwidgets            1.6.2     <span style="color: #555555;">2023-03-17</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  httpuv                 1.6.11    <span style="color: #555555;">2023-05-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  impute                 1.74.1    <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  IRanges                2.34.1    <span style="color: #555555;">2023-06-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  iterators            * 1.0.14    <span style="color: #555555;">2022-02-05</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  jquerylib              0.1.4     <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  jsonlite               1.8.7     <span style="color: #555555;">2023-06-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  knitr                  1.43      <span style="color: #555555;">2023-05-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  labeling               0.4.2     <span style="color: #555555;">2020-10-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  later                  1.3.1     <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  lattice                0.21-8    <span style="color: #555555;">2023-04-05</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  lifecycle              1.0.3     <span style="color: #555555;">2022-10-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  limma                  3.56.2    <span style="color: #555555;">2023-06-04</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  magrittr               2.0.3     <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  MALDIquant             1.22.1    <span style="color: #555555;">2023-03-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  MASS                   7.3-60    <span style="color: #555555;">2023-05-04</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  MassSpecWavelet        1.66.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  Matrix                 1.6-0     <span style="color: #555555;">2023-07-08</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  MatrixGenerics         1.12.3    <span style="color: #555555;">2023-07-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  matrixStats            1.0.0     <span style="color: #555555;">2023-06-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  memoise                2.0.1     <span style="color: #555555;">2021-11-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  mime                   0.12      <span style="color: #555555;">2021-09-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  miniUI                 0.1.1.1   <span style="color: #555555;">2018-05-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  minpack.lm             1.2-3     <span style="color: #555555;">2023-01-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  MsCoreUtils            1.12.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  MsFeatures             1.8.0     <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  MSnbase              * 2.26.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  multtest               2.56.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  munsell                0.5.0     <span style="color: #555555;">2018-06-12</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  mzID                   1.38.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  mzR                  * 2.34.1    <span style="color: #555555;">2023-06-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  ncdf4                  1.21      <span style="color: #555555;">2023-01-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  pander               * 0.6.5     <span style="color: #555555;">2022-03-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  pcaMethods             1.92.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  peakPantheR          * 1.14.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  pillar                 1.9.0     <span style="color: #555555;">2023-03-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  pkgbuild               1.4.2     <span style="color: #555555;">2023-06-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  pkgconfig              2.0.3     <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  pkgdown                2.0.7     <span style="color: #555555;">2022-12-14</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  pkgload                1.3.2.1   <span style="color: #555555;">2023-07-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  plyr                   1.8.8     <span style="color: #555555;">2022-11-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  pracma                 2.4.2     <span style="color: #555555;">2022-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  preprocessCore         1.62.1    <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  prettyunits            1.1.1     <span style="color: #555555;">2020-01-24</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  processx               3.8.2     <span style="color: #555555;">2023-06-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  profvis                0.3.8     <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  promises               1.2.0.1   <span style="color: #555555;">2021-02-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  ProtGenerics         * 1.32.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  ps                     1.7.5     <span style="color: #555555;">2023-04-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  purrr                  1.0.1     <span style="color: #555555;">2023-01-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  R6                     2.5.1     <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  ragg                   1.2.5     <span style="color: #555555;">2023-01-12</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  RANN                   2.6.1     <span style="color: #555555;">2019-01-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  RColorBrewer           1.1-3     <span style="color: #555555;">2022-04-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  Rcpp                 * 1.0.11    <span style="color: #555555;">2023-07-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  RCurl                  1.98-1.12 <span style="color: #555555;">2023-03-27</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  remotes                2.4.2.1   <span style="color: #555555;">2023-07-18</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  rlang                  1.1.1     <span style="color: #555555;">2023-04-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  rmarkdown              2.23      <span style="color: #555555;">2023-07-01</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  robustbase             0.99-0    <span style="color: #555555;">2023-06-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  rprojroot              2.0.3     <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  rstudioapi             0.15.0    <span style="color: #555555;">2023-07-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  S4Arrays               1.0.5     <span style="color: #555555;">2023-07-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  S4Vectors            * 0.38.1    <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  sass                   0.4.7     <span style="color: #555555;">2023-07-15</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  scales                 1.2.1     <span style="color: #555555;">2022-08-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  sessioninfo            1.2.2     <span style="color: #555555;">2021-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  shiny                  1.7.4.1   <span style="color: #555555;">2023-07-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  shinycssloaders        1.0.0     <span style="color: #555555;">2020-07-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  stringi                1.7.12    <span style="color: #555555;">2023-01-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  stringr                1.5.0     <span style="color: #555555;">2022-12-02</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  SummarizedExperiment   1.30.2    <span style="color: #555555;">2023-06-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  survival               3.5-5     <span style="color: #555555;">2023-03-12</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  systemfonts            1.0.4     <span style="color: #555555;">2022-02-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  textshaping            0.3.6     <span style="color: #555555;">2021-10-13</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  tibble                 3.2.1     <span style="color: #555555;">2023-03-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  tidyselect             1.2.0     <span style="color: #555555;">2022-10-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  urlchecker             1.0.1     <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  usethis                2.2.2     <span style="color: #555555;">2023-07-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  utf8                   1.2.3     <span style="color: #555555;">2023-01-31</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  vctrs                  0.6.3     <span style="color: #555555;">2023-06-14</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  vsn                    3.68.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  withr                  2.5.0     <span style="color: #555555;">2022-03-03</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  xcms                 * 3.22.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  xfun                   0.39      <span style="color: #555555;">2023-04-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  XML                    3.99-0.14 <span style="color: #555555;">2023-03-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  xtable                 1.8-4     <span style="color: #555555;">2019-04-21</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.1)</span></span></span>
+<span><span class="co">#&gt;  XVector                0.40.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
+<span><span class="co">#&gt;  yaml                   2.3.7     <span style="color: #555555;">2023-01-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.3.0)</span></span></span>
+<span><span class="co">#&gt;  zlibbioc               1.46.0    <span style="color: #555555;">2023-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">Bioconductor</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #555555;"> [1] </span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;"> [2] C:/R/R-4.2.2/library</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [1] C:/Temp/RtmpeME828/temp_libpath1cb02fdd4ac0</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [2] C:/R/win-library/4.3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [3] C:/R/R-4.3.1/library</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────</span></span></span></code></pre>
 </div>
@@ -1112,7 +1215,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
