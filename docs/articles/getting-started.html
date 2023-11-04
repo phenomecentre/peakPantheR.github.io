@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.17/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
+</script><p><strong>Package</strong>: <em><a href="https://bioconductor.org/packages/3.18/peakPantheR" class="external-link">peakPantheR</a></em><br><strong>Authors</strong>: Arnaud Wolfer<br></p>
 <p>Package for <em>Peak Picking and ANnoTation of High resolution
 Experiments in R</em>, implemented in <code>R</code> and
 <code>Shiny</code></p>
@@ -139,7 +139,7 @@ object</li>
 </ul>
 <p><code>peakPantheR</code> can process LC/MS data files in
 <em>NetCDF</em>, <em>mzML</em>/<em>mzXML</em> and <em>mzData</em> format
-as data import is achieved using Bioconductor’s <em><a href="https://bioconductor.org/packages/3.17/mzR" class="external-link">mzR</a></em>
+as data import is achieved using Bioconductor’s <em><a href="https://bioconductor.org/packages/3.18/mzR" class="external-link">mzR</a></em>
 package.</p>
 </div>
 <div class="section level2">
@@ -194,14 +194,14 @@ window) for each compound.</li>
 <h3 id="ms-files">MS files<a class="anchor" aria-label="anchor" href="#ms-files"></a>
 </h3>
 <p>For demonstration purpose we can annotate a set a set of raw MS
-spectra (in <em>NetCDF</em> format) provided by the <em><a href="https://bioconductor.org/packages/3.17/faahKO" class="external-link">faahKO</a></em>
+spectra (in <em>NetCDF</em> format) provided by the <em><a href="https://bioconductor.org/packages/3.18/faahKO" class="external-link">faahKO</a></em>
 package. Briefly, this subset of the data from <span class="citation">(Saghatelian et al. 2004)</span> invesigate the
 metabolic consequences of knocking out the fatty acid amide hydrolase
 (FAAH) gene in mice. The dataset consists of samples from the spinal
 cords of 6 knock-out and 6 wild-type mice. Each file contains data in
 centroid mode acquired in positive ion mode form 200-600 m/z and
 2500-4500 seconds.</p>
-<p>Below we install the <em><a href="https://bioconductor.org/packages/3.17/faahKO" class="external-link">faahKO</a></em>
+<p>Below we install the <em><a href="https://bioconductor.org/packages/3.18/faahKO" class="external-link">faahKO</a></em>
 package and locate raw CDF files of interest:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
@@ -242,7 +242,7 @@ the following information:</p>
 <li>
 <code>mz</code> (m/z, optional / <code>NA</code>)</li>
 </ul>
-<p>Below we define 2 features of interest that are present in the <em><a href="https://bioconductor.org/packages/3.17/faahKO" class="external-link">faahKO</a></em>
+<p>Below we define 2 features of interest that are present in the <em><a href="https://bioconductor.org/packages/3.18/faahKO" class="external-link">faahKO</a></em>
 dataset and can be employed in subsequent vignettes:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># targetFeatTable</span></span>
@@ -310,7 +310,7 @@ input, the graphical user interface (GUI) will read the same information
 from a set of <code>.csv</code> files, or an already set-up
 <code>peakPantheRAnnotation</code> object in <code>.RData</code>
 format.</p>
-<p>We can now generate GUI input files for the <em><a href="https://bioconductor.org/packages/3.17/faahKO" class="external-link">faahKO</a></em>
+<p>We can now generate GUI input files for the <em><a href="https://bioconductor.org/packages/3.18/faahKO" class="external-link">faahKO</a></em>
 example dataset presented previously:</p>
 <div class="section level3">
 <h3 id="peakpantherannotation--rdata">
